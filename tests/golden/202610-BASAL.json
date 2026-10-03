@@ -1,0 +1,287 @@
+{
+  "days": [
+    {
+      "allergens": null,
+      "date": "2026-10-01",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 1,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Amanida de patata",
+        "Truita francesa",
+        "Enciam i tomàquet"
+      ],
+      "weekday": "Dijous"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-02",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 2,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Macarrons integrals ecològics amb",
+        "carbonara vegetal",
+        "Botifarra de porc amb samfaina"
+      ],
+      "weekday": "Divendres"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-05",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 5,
+      "dessert": "Iogurt natural",
+      "items": [
+        "Crema de carbassó",
+        "Escalopa d'au cordon bleu de gall dindi",
+        "Enciam i blat de moro"
+      ],
+      "weekday": "Dilluns"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-06",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 6,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Amanida de cigrons (pastanaga, blat de",
+        "moro i tomàquet)",
+        "Mandonguilles mixtes a la jardinera (m.",
+        "tendra, pastanaga, pèsol, patata)"
+      ],
+      "weekday": "Dimarts"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-07",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 7,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Arròs integral amb salsa de tomàquet",
+        "Salmó al forn amb anet",
+        "Enciam i olives"
+      ],
+      "weekday": "Dimecres"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-08",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 8,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Bròquil, patata i pastanaga",
+        "Llenties estofades amb verdures"
+      ],
+      "weekday": "Dijous"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-09",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 9,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Fideus a la cassola amb verdures",
+        "Truita de patata",
+        "Enciam i tomàquet"
+      ],
+      "weekday": "Divendres"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-13",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Iogurt natural",
+      "items": [
+        "Crema de pastanaga",
+        "Lluç a la romana",
+        "Enciam i brots de soja"
+      ],
+      "weekday": "Dimarts"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-14",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Amanida d'arròs (pebrot vermell, blat de",
+        "moro i olives)",
+        "Cigrons estofats amb verdures"
+      ],
+      "weekday": "Dimecres"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-15",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Mongeta tendra amb patata",
+        "Truita francesa",
+        "Enciam i tomàquet"
+      ],
+      "weekday": "Dijous"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-16",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Espaguetis integrals ecològics amb",
+        "verdures",
+        "Pollastre al xilindrón",
+        "Enciam i blat de moro"
+      ],
+      "weekday": "Divendres"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-19",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 19,
+      "dessert": "Iogurt natural",
+      "items": [
+        "Llenties estofades amb quinoa",
+        "Truita de patata i espinacs",
+        "Enciam i olives"
+      ],
+      "weekday": "Dilluns"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-20",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 20,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Amanida russa",
+        "Macarrons integrals ecològics amb",
+        "bolonyesa vegetal"
+      ],
+      "weekday": "Dimarts"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-21",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 21,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Mongetes blanques estofades amb",
+        "verdures",
+        "Pollastre a la llimona",
+        "Enciam i espàrrecs"
+      ],
+      "weekday": "Dimecres"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-22",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 22,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Paella marinera",
+        "Lluç al forn amb all i julivert",
+        "Enciam i pastanaga"
+      ],
+      "weekday": "Dijous"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-23",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": 23,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Coliflor gratinada amb beixamel",
+        "Roti de gall d'indi a la jardinera (m.",
+        "tendra, pastanaga, pèsol, patata)"
+      ],
+      "weekday": "Divendres"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-26",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Iogurt natural",
+      "items": [
+        "Tricolor de verdures amb dauets de gall",
+        "d´indi",
+        "Truita de patata i carbassó",
+        "Enciam i tomàquet"
+      ],
+      "weekday": "Dilluns"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-27",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Cigrons amb espinacs",
+        "Botifarra de porc al forn",
+        "Enciam i pastanaga"
+      ],
+      "weekday": "Dimarts"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-28",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Crema de verdures",
+        "Pollastre rostit al forn amb herbes",
+        "aromàtiques",
+        "Patates xips"
+      ],
+      "weekday": "Dimecres"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-29",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Arròs tres delícies (pèsols, pastanaga,",
+        "truita i pernil dolç)",
+        "Llenties estofades amb verdures"
+      ],
+      "weekday": "Dijous"
+    },
+    {
+      "allergens": null,
+      "date": "2026-10-30",
+      "date_label_mismatch": false,
+      "day_label_from_pdf": null,
+      "dessert": "Fruita de temporada",
+      "items": [
+        "Macarrons integrals ecològics amb salsa",
+        "de tomàquet i tonyina",
+        "Lluç arrebossat",
+        "Enciam i olives"
+      ],
+      "weekday": "Divendres"
+    }
+  ],
+  "diet": "UNKNOWN",
+  "month": 10,
+  "month_name": "Octubre",
+  "source": "202610-BASAL.pdf",
+  "year": 2026
+}

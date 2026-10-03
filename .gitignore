@@ -1,0 +1,14 @@
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+
+# Claude Code session-local state (lock files, etc.), not project content.
+/.claude/
+
+# mypy's cache, regenerable.
+/.mypy_cache/
+
+# PDFs/JSON/ICS fetched or generated at runtime, not source.
+/output/
+
+# macOS Finder metadata.
+.DS_Store
