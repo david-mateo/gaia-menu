@@ -1,7 +1,55 @@
 ---
 name: gaia-menu
 description: Fetch Escola Gaia's monthly BASAL school lunch menu PDF, parse it into structured JSON, and optionally export it as an .ics calendar file. Can also enrich each day with a short title, a recommended dinner pairing, and an English translation. Use when the user wants this month's (or a given) school menu turned into calendar entries, structured data, or a bilingual menu with dinner suggestions.
-disable-model-invocation: true
+---
+
+# MONTHLY PIPELINE (start here when run as the scheduled job)
+
+Goal: each month, upsert the new month into the 4 public calendars in
+`public/`, then commit + push to `main`. Run from the repo root. One work
+dir per month: `W=~/.hermes/gaia-menu-work/<YYYYMM>` (step 0 prints it
+as WORKDIR). Follow steps in order. Never hand-edit generated JSON.
+
+Only generated output (`public/`, `data/glossary.json`) goes to `main`.
+Any code/doc change belongs on a separate branch, never `main`.
+
+**Step 0 - what now?** (job runs on the 28th..5th)
+
+    python3 scripts/pipeline_status.py
+
+Read the last line `NEXT=...`: WAIT -> stop silently. FETCH -> 1.
+ENRICH -> 2. APPLY -> 4. PUBLISH -> 5. DONE -> stop silently.
+After each step run step 0 again until DONE or WAIT.
+
+**Step 1 - fetch + parse**
+
+    mkdir -p $W && python3 scripts/menu.py --download-dir $W -o $W/menu.json
+
+Exit 1 = fetch problem, exit 2 = layout changed: report stderr verbatim, STOP.
+
+**Step 2 - prepare request**
+
+    python3 scripts/prepare_enrichment.py $W/menu.json -o $W/request.json
+
+**Step 3 - write $W/response.json** (you; schema and rules in the
+"Enrich" section below). Translate every phrase in `new_phrases`.
+
+**Step 4 - merge**
+
+    python3 scripts/apply_enrichment.py $W/menu.json $W/response.json -o $W/enriched.json
+
+Exit 2 = fix response.json per the message, re-run.
+
+**Step 5 - publish** (upserts the 4 .ics, commits as "Hermes (gaia-menu)",
+pushes to main, writes `$W/published.done`)
+
+    python3 scripts/publish_month.py $W <YYYYMM>
+
+Exit 1 = read the message, retry once, else report it.
+
+Final report (2 lines max): month, what was pushed (or the exact error).
+Stay silent if step 0 said WAIT or DONE at the start.
+
 ---
 
 # Gaia school menu
@@ -180,6 +228,7 @@ python3 scripts/run_tests.py --update-golden
   `menu.py` wraps; only touch these directly for development/debugging.
 - `scripts/prepare_enrichment.py`, `apply_enrichment.py`, `food_groups.py`
   - the title/dinner/translation round trip above.
+- `scripts/pipeline_status.py`, `publish_month.py` - scheduled-job helpers (what to do next; publish + commit + push to main).
 - `scripts/publish_ics.py` - upserts a month's JSON into `public/*.ics`.
 - `scripts/run_tests.py` - regression runner against `tests/fixtures/*.pdf`
   (parsing only, not enrichment).
