@@ -1,0 +1,213 @@
+{
+ "new_translations": {
+  "(pebrot vermell, blat de moro i olives)": "(red pepper, corn and olives)",
+  "Amanida d'arròs": "Rice salad",
+  "Arròs amb verduretes": "Rice with vegetables",
+  "Bròquil amb patata": "Broccoli with potato",
+  "Crema de carbassa": "Pumpkin cream soup",
+  "Crema de pastanaga ecològica": "Organic carrot cream soup",
+  "Cuetes de rap amb allada": "Monkfish tails with garlic mayo",
+  "Daus de gall d'indi al curri": "Turkey cubes in curry",
+  "Espirals integrals amb verdures": "Wholegrain spirals with vegetables",
+  "Gallineta en salsa verda": "Redfish in green sauce",
+  "Hamburguesa mixta al forn": "Mixed baked burger",
+  "Llom amb salsa de xampinyons": "Pork loin with mushroom sauce",
+  "Menestra de verdures": "Vegetable medley",
+  "Mongetes blanques amb bledes": "White beans with chard",
+  "Nuggets de pollastre": "Chicken nuggets",
+  "Pollastre a l'allet": "Garlic chicken",
+  "Pèsols amb patates": "Peas with potatoes"
+ },
+ "days": [
+  {
+   "date": "2026-09-08",
+   "en_items": [
+    "Vegetable lentil stew",
+    "Chicken nuggets",
+    "Lettuce and corn"
+   ],
+   "en_dessert": "Plain yogurt",
+   "ca_title": "Llenties + nuggets",
+   "en_title": "Lentils + nuggets",
+   "dinner_a": "Pasta",
+   "dinner_b": "Fish"
+  },
+  {
+   "date": "2026-09-09",
+   "en_items": [
+    "Organic carrot cream soup",
+    "Turkey cubes in curry"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Crema de pastanaga + gall d'indi",
+   "en_title": "Carrot soup + turkey",
+   "dinner_a": "Pasta",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-09-10",
+   "en_items": [
+    "Wholegrain rice with tomato sauce",
+    "Monkfish tails with garlic mayo",
+    "Lettuce and olives"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Arròs + rap",
+   "en_title": "Rice + monkfish",
+   "dinner_a": "Soup",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-09-14",
+   "en_items": [
+    "Lentil stew with quinoa",
+    "Lemon chicken",
+    "Lettuce and carrot"
+   ],
+   "en_dessert": "Plain yogurt",
+   "ca_title": "Llenties + pollastre",
+   "en_title": "Lentils + chicken",
+   "dinner_a": "Rice",
+   "dinner_b": "Fish"
+  },
+  {
+   "date": "2026-09-15",
+   "en_items": [
+    "Vegetable cream soup",
+    "Organic wholegrain macaroni with vegetable bolognese"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Crema de verdures + macarrons",
+   "en_title": "Vegetable soup + macaroni",
+   "dinner_a": "Fish",
+   "dinner_b": "Potato"
+  },
+  {
+   "date": "2026-09-16",
+   "en_items": [
+    "White bean stew with vegetables",
+    "French omelette",
+    "Lettuce and tomato"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Mongetes + truita",
+   "en_title": "White beans + omelette",
+   "dinner_a": "Pasta",
+   "dinner_b": "Meat"
+  },
+  {
+   "date": "2026-09-17",
+   "en_items": [
+    "Rice salad (red pepper, corn and olives)",
+    "Breaded hake",
+    "Lettuce and soy sprouts"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Amanida d'arròs + lluç",
+   "en_title": "Rice salad + hake",
+   "dinner_a": "Soup",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-09-18",
+   "en_items": [
+    "Broccoli with potato",
+    "Pork loin with mushroom sauce"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Bròquil + llom",
+   "en_title": "Broccoli + pork loin",
+   "dinner_a": "Fish",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-09-21",
+   "en_items": [
+    "Peas with potatoes",
+    "Mixed baked burger",
+    "Lettuce and olives"
+   ],
+   "en_dessert": "Plain yogurt",
+   "ca_title": "Pèsols + hamburguesa",
+   "en_title": "Peas + burger",
+   "dinner_a": "Soup",
+   "dinner_b": "Fish"
+  },
+  {
+   "date": "2026-09-22",
+   "en_items": [
+    "Wholegrain spirals with vegetables",
+    "Potato and courgette omelette",
+    "Lettuce and carrot"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Espirals + truita",
+   "en_title": "Spirals + omelette",
+   "dinner_a": "Rice",
+   "dinner_b": "Meat"
+  },
+  {
+   "date": "2026-09-23",
+   "en_items": [
+    "Pumpkin cream soup",
+    "Redfish in green sauce"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Crema de carbassa + gallineta",
+   "en_title": "Pumpkin soup + redfish",
+   "dinner_a": "Eggs",
+   "dinner_b": "Pasta"
+  },
+  {
+   "date": "2026-09-25",
+   "en_items": [
+    "Vegetable medley",
+    "Garlic chicken",
+    "Lettuce and corn"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Menestra + pollastre",
+   "en_title": "Vegetable medley + chicken",
+   "dinner_a": "Fish",
+   "dinner_b": "Rice"
+  },
+  {
+   "date": "2026-09-28",
+   "en_items": [
+    "Green beans with potato",
+    "Lentil stew with quinoa"
+   ],
+   "en_dessert": "Plain yogurt",
+   "ca_title": "Mongeta tendra + llenties",
+   "en_title": "Green beans + lentils",
+   "dinner_a": "Soup",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-09-29",
+   "en_items": [
+    "Rice with vegetables",
+    "Breaded hake",
+    "Lettuce and carrot"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Arròs + lluç",
+   "en_title": "Rice + hake",
+   "dinner_a": "Pasta",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-09-30",
+   "en_items": [
+    "White beans with chard",
+    "Oven-roasted chicken with aromatic herbs",
+    "Lettuce and asparagus"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Mongetes + pollastre",
+   "en_title": "White beans + chicken",
+   "dinner_a": "Pasta",
+   "dinner_b": "Fish"
+  }
+ ]
+}

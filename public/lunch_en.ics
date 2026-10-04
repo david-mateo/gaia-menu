@@ -3,6 +3,144 @@ VERSION:2.0
 PRODID:-//gaia-menu//publish_ics//CA
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
+UID:20260908-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260908T111500Z
+DTEND:20260908T120000Z
+SUMMARY:🧑‍🍳 Lentils + nuggets
+DESCRIPTION:Vegetable lentil stew\nChicken nuggets\nLettuce and corn\nDes
+ sert: Plain yogurt\nAllergens: 1\, 2\, 3\, 4\, 6\, 7\, 9\, 10\, 12
+END:VEVENT
+BEGIN:VEVENT
+UID:20260909-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260909T111500Z
+DTEND:20260909T120000Z
+SUMMARY:🧑‍🍳 Carrot soup + turkey
+DESCRIPTION:Organic carrot cream soup\nTurkey cubes in curry\nDessert: Se
+ asonal fruit\nAllergens: 7
+END:VEVENT
+BEGIN:VEVENT
+UID:20260910-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260910T111500Z
+DTEND:20260910T120000Z
+SUMMARY:🧑‍🍳 Rice + monkfish
+DESCRIPTION:Wholegrain rice with tomato sauce\nMonkfish tails with garlic
+  mayo\nLettuce and olives\nDessert: Seasonal fruit\nAllergens: 1\, 2\, 4
+ \, 10\, 12\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260914-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260914T111500Z
+DTEND:20260914T120000Z
+SUMMARY:🧑‍🍳 Lentils + chicken
+DESCRIPTION:Lentil stew with quinoa\nLemon chicken\nLettuce and carrot\nD
+ essert: Plain yogurt\nAllergens: 1\, 7\, 10
+END:VEVENT
+BEGIN:VEVENT
+UID:20260915-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260915T111500Z
+DTEND:20260915T120000Z
+SUMMARY:🧑‍🍳 Vegetable soup + macaroni
+DESCRIPTION:Vegetable cream soup\nOrganic wholegrain macaroni with vegeta
+ ble bolognese\nDessert: Seasonal fruit\nAllergens: 1\, 5\, 6\, 7\, 8\, 1
+ 0\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260916-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260916T111500Z
+DTEND:20260916T120000Z
+SUMMARY:🧑‍🍳 White beans + omelette
+DESCRIPTION:White bean stew with vegetables\nFrench omelette\nLettuce and
+  tomato\nDessert: Seasonal fruit\nAllergens: 3\, 8\, 10
+END:VEVENT
+BEGIN:VEVENT
+UID:20260917-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260917T111500Z
+DTEND:20260917T120000Z
+SUMMARY:🧑‍🍳 Rice salad + hake
+DESCRIPTION:Rice salad (red pepper\, corn and olives)\nBreaded hake\nLett
+ uce and soy sprouts\nDessert: Seasonal fruit\nAllergens: 1\, 2\, 3\, 4\,
+  6\, 7\, 8\, 10\, 12\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260918-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260918T111500Z
+DTEND:20260918T120000Z
+SUMMARY:🧑‍🍳 Broccoli + pork loin
+DESCRIPTION:Broccoli with potato\nPork loin with mushroom sauce\nDessert:
+  Seasonal fruit\nAllergens: 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260921-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260921T111500Z
+DTEND:20260921T120000Z
+SUMMARY:🧑‍🍳 Peas + burger
+DESCRIPTION:Peas with potatoes\nMixed baked burger\nLettuce and olives\nD
+ essert: Plain yogurt\nAllergens: 7\, 9\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260922-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260922T111500Z
+DTEND:20260922T120000Z
+SUMMARY:🧑‍🍳 Spirals + omelette
+DESCRIPTION:Wholegrain spirals with vegetables\nPotato and courgette omel
+ ette\nLettuce and carrot\nDessert: Seasonal fruit\nAllergens: 1\, 3\, 10
+END:VEVENT
+BEGIN:VEVENT
+UID:20260923-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260923T111500Z
+DTEND:20260923T120000Z
+SUMMARY:🧑‍🍳 Pumpkin soup + redfish
+DESCRIPTION:Pumpkin cream soup\nRedfish in green sauce\nDessert: Seasonal
+  fruit\nAllergens: 1\, 4\, 9\, 10\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260925-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260925T111500Z
+DTEND:20260925T120000Z
+SUMMARY:🧑‍🍳 Vegetable medley + chicken
+DESCRIPTION:Vegetable medley\nGarlic chicken\nLettuce and corn\nDessert: 
+ Seasonal fruit
+END:VEVENT
+BEGIN:VEVENT
+UID:20260928-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260928T111500Z
+DTEND:20260928T120000Z
+SUMMARY:🧑‍🍳 Green beans + lentils
+DESCRIPTION:Green beans with potato\nLentil stew with quinoa\nDessert: Pl
+ ain yogurt\nAllergens: 1\, 7\, 10\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260929T111500Z
+DTEND:20260929T120000Z
+SUMMARY:🧑‍🍳 Rice + hake
+DESCRIPTION:Rice with vegetables\nBreaded hake\nLettuce and carrot\nDesse
+ rt: Seasonal fruit\nAllergens: 1\, 2\, 4\, 6\, 7\, 12\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260930-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260930T111500Z
+DTEND:20260930T120000Z
+SUMMARY:🧑‍🍳 White beans + chicken
+DESCRIPTION:White beans with chard\nOven-roasted chicken with aromatic he
+ rbs\nLettuce and asparagus\nDessert: Seasonal fruit\nAllergens: 10
+END:VEVENT
+BEGIN:VEVENT
 UID:20261001-lunch@gaia-menu
 DTSTAMP:20261003T212452Z
 DTSTART:20261001T111500Z

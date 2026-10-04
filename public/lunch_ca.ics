@@ -3,6 +3,147 @@ VERSION:2.0
 PRODID:-//gaia-menu//publish_ics//CA
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
+UID:20260908-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260908T111500Z
+DTEND:20260908T120000Z
+SUMMARY:🧑‍🍳 Llenties + nuggets
+DESCRIPTION:Llenties estofades amb verdures\nNuggets de pollastre\nEnciam
+  i blat de moro\nPostres: Iogurt natural\nAl·lèrgens: 1\, 2\, 3\, 4\, 6\
+ , 7\, 9\, 10\, 12
+END:VEVENT
+BEGIN:VEVENT
+UID:20260909-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260909T111500Z
+DTEND:20260909T120000Z
+SUMMARY:🧑‍🍳 Crema de pastanaga + gall d'indi
+DESCRIPTION:Crema de pastanaga ecològica\nDaus de gall d'indi al curri\nP
+ ostres: Fruita de temporada\nAl·lèrgens: 7
+END:VEVENT
+BEGIN:VEVENT
+UID:20260910-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260910T111500Z
+DTEND:20260910T120000Z
+SUMMARY:🧑‍🍳 Arròs + rap
+DESCRIPTION:Arròs integral amb salsa de tomàquet\nCuetes de rap amb allad
+ a\nEnciam i olives\nPostres: Fruita de temporada\nAl·lèrgens: 1\, 2\, 4\
+ , 10\, 12\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260914-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260914T111500Z
+DTEND:20260914T120000Z
+SUMMARY:🧑‍🍳 Llenties + pollastre
+DESCRIPTION:Llenties estofades amb quinoa\nPollastre a la llimona\nEnciam
+  i pastanaga\nPostres: Iogurt natural\nAl·lèrgens: 1\, 7\, 10
+END:VEVENT
+BEGIN:VEVENT
+UID:20260915-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260915T111500Z
+DTEND:20260915T120000Z
+SUMMARY:🧑‍🍳 Crema de verdures + macarrons
+DESCRIPTION:Crema de verdures\nMacarrons integrals ecològics amb\nbolonye
+ sa vegetal\nPostres: Fruita de temporada\nAl·lèrgens: 1\, 5\, 6\, 7\, 8\
+ , 10\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260916-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260916T111500Z
+DTEND:20260916T120000Z
+SUMMARY:🧑‍🍳 Mongetes + truita
+DESCRIPTION:Mongetes blanques estofades amb\nverdures\nTruita francesa\nE
+ nciam i tomàquet\nPostres: Fruita de temporada\nAl·lèrgens: 3\, 8\, 10
+END:VEVENT
+BEGIN:VEVENT
+UID:20260917-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260917T111500Z
+DTEND:20260917T120000Z
+SUMMARY:🧑‍🍳 Amanida d'arròs + lluç
+DESCRIPTION:Amanida d'arròs\n(pebrot vermell\, blat de moro i olives)\nLl
+ uç a la romana\nEnciam i brots de soja\nPostres: Fruita de temporada\nAl
+ ·lèrgens: 1\, 2\, 3\, 4\, 6\, 7\, 8\, 10\, 12\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260918-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260918T111500Z
+DTEND:20260918T120000Z
+SUMMARY:🧑‍🍳 Bròquil + llom
+DESCRIPTION:Bròquil amb patata\nLlom amb salsa de xampinyons\nPostres: Fr
+ uita de temporada\nAl·lèrgens: 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260921-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260921T111500Z
+DTEND:20260921T120000Z
+SUMMARY:🧑‍🍳 Pèsols + hamburguesa
+DESCRIPTION:Pèsols amb patates\nHamburguesa mixta al forn\nEnciam i olive
+ s\nPostres: Iogurt natural\nAl·lèrgens: 7\, 9\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260922-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260922T111500Z
+DTEND:20260922T120000Z
+SUMMARY:🧑‍🍳 Espirals + truita
+DESCRIPTION:Espirals integrals amb verdures\nTruita de patata i carbassó\
+ nEnciam i pastanaga\nPostres: Fruita de temporada\nAl·lèrgens: 1\, 3\, 1
+ 0
+END:VEVENT
+BEGIN:VEVENT
+UID:20260923-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260923T111500Z
+DTEND:20260923T120000Z
+SUMMARY:🧑‍🍳 Crema de carbassa + gallineta
+DESCRIPTION:Crema de carbassa\nGallineta en salsa verda\nPostres: Fruita 
+ de temporada\nAl·lèrgens: 1\, 4\, 9\, 10\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260925-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260925T111500Z
+DTEND:20260925T120000Z
+SUMMARY:🧑‍🍳 Menestra + pollastre
+DESCRIPTION:Menestra de verdures\nPollastre a l'allet\nEnciam i blat de m
+ oro\nPostres: Fruita de temporada
+END:VEVENT
+BEGIN:VEVENT
+UID:20260928-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260928T111500Z
+DTEND:20260928T120000Z
+SUMMARY:🧑‍🍳 Mongeta tendra + llenties
+DESCRIPTION:Mongeta tendra amb patata\nLlenties estofades amb quinoa\nPos
+ tres: Iogurt natural\nAl·lèrgens: 1\, 7\, 10\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260929-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260929T111500Z
+DTEND:20260929T120000Z
+SUMMARY:🧑‍🍳 Arròs + lluç
+DESCRIPTION:Arròs amb verduretes\nLluç arrebossat\nEnciam i pastanaga\nPo
+ stres: Fruita de temporada\nAl·lèrgens: 1\, 2\, 4\, 6\, 7\, 12\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20260930-lunch@gaia-menu
+DTSTAMP:20261004T095357Z
+DTSTART:20260930T111500Z
+DTEND:20260930T120000Z
+SUMMARY:🧑‍🍳 Mongetes + pollastre
+DESCRIPTION:Mongetes blanques amb bledes\nPollastre rostit al forn amb he
+ rbes\naromàtiques\nEnciam i espàrrecs\nPostres: Fruita de temporada\nAl·
+ lèrgens: 10
+END:VEVENT
+BEGIN:VEVENT
 UID:20261001-lunch@gaia-menu
 DTSTAMP:20261003T212452Z
 DTSTART:20261001T111500Z
