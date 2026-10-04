@@ -94,7 +94,10 @@ python3 scripts/menu.py -o menu.json --ics menu.ics
 Adds to each day a short title, a dinner-pairing suggestion, and an
 English translation. It's a round trip: scripts prepare the input and
 merge/validate the output; you (the model running this skill) fill in
-the summarizing, translating, and nutritional pairing in between.
+the summarizing, translating, and lunch-tagging in between. The dinner
+pairing itself is **not** your call - `apply_enrichment.py` computes it
+deterministically from the tags you provide (see "Dinner pairing"
+below).
 
 ```
 python3 scripts/prepare_enrichment.py menu.json -o request.json
@@ -102,11 +105,14 @@ python3 scripts/prepare_enrichment.py menu.json -o request.json
 python3 scripts/apply_enrichment.py menu.json response.json -o enriched.json
 ```
 
-**request.json** gives you, per day, `items`/`dessert` plus the next
-school day's `next_day_items`/`next_day_dessert`; `known_translations`
+**request.json** gives you, per day, `items`/`dessert`; `known_translations`
 (Catalan phrases already in the glossary - reuse verbatim); `new_phrases`
-(Catalan phrases you must translate); and `food_groups`, the closed list
-you must pick dinner pairings from.
+(Catalan phrases you must translate); and `base_groups`/`protein_groups`
+plus `lunch_only_groups`, the closed lists you must tag each day's lunch
+from (`lunch_only_groups` tags are valid on `lunch_groups` but will never
+be suggested back to you as a dinner pairing - currently just
+`"Processed Meat"`, for cured/smoked/sausage preparations like botifarra,
+ham, or hot dogs: a cap to respect, not something to recommend more of).
 
 **response.json** you write:
 
@@ -120,8 +126,7 @@ you must pick dinner pairings from.
       "en_dessert": "Seasonal fruit",
       "ca_title": "Amanida de patata + truita",
       "en_title": "Potato salad + omelette",
-      "dinner_a": "Soup",
-      "dinner_b": "Fish"
+      "lunch_groups": ["Potato", "Eggs", "Salad"]
     }
   ]
 }
@@ -133,7 +138,8 @@ entry per date, matched exactly.
 Fill each day's fields in this order: `en_items`/`en_dessert` first
 (translate), then `en_title` (summarize what you just translated), then
 `ca_title` directly from the original Catalan items (pick and shorten
-the 1-2 main dishes - not a translation of `en_title`).
+the 1-2 main dishes - not a translation of `en_title`), then
+`lunch_groups`.
 
 **Title** (`ca_title`/`en_title`): 3-4 words, "dish + dish" joined by
 " + ". Drop articles, sauces, and garnish unless they're the point - a
@@ -155,12 +161,30 @@ wrapped its name onto two lines (e.g. "Macarrons integrals ecològics
 amb" / "carbonara vegetal" is one dish, row 2 above). Read a short item
 that doesn't stand alone as a continuation of the previous one.
 
-**Dinner pairing** (`dinner_a` + `dinner_b`): exactly two words from
-`food_groups`, nothing else. Choose whichever pairing nutritionally
-complements the day's lunch (e.g. lunch had no protein beyond legumes →
-pair with Fish or Eggs), using no food group already present in that
-day's own lunch or the next school day's lunch
-(`next_day_items`/`next_day_dessert`, `null` on the last day).
+**`lunch_groups`**: 1-3 tags from `base_groups`/`protein_groups`/
+`lunch_only_groups` describing what today's lunch actually contains
+(e.g. a potato-and-egg dish with a side salad →
+`["Potato", "Eggs", "Salad"]`). This is classification, not creativity -
+tag what's there, don't try to guess a good dinner pairing yourself.
+
+Use `"Fish"` for white/lean fish (lluç/hake, bacallà/cod, rap/monkfish,
+llenguado/sole, orada/sea bream) and `"Oily Fish"` for oily/blue fish
+(salmó/salmon, tonyina/tuna, sardina/sardine, verat/mackerel,
+seitó-anxova/anchovy) - get the species right rather than defaulting to
+one (see README.md for why the split matters).
+
+**Dinner pairing**: computed by script, not you. `apply_enrichment.py`
+picks one `base_groups` entry and one `protein_groups` entry per day,
+excluding anything in that day's own `lunch_groups` or the next school
+day's (so dinner never repeats what's already eaten within a day of
+it - a `lunch_only_groups` tag like `"Processed Meat"` also excludes its
+`LUNCH_ONLY_IMPLIES` counterpart, e.g. plain `"Meat"`). Among what's left
+it prefers whichever group is furthest below its weekly weight-adjusted
+target (`food_groups.WEIGHTS` - e.g. `"Oily Fish"` is weighted twice
+`"Meat"`, so it gets suggested roughly twice as often, not at the same
+rate), via state persisted in `data/dinner_rotation.json` (same pattern
+as the translation glossary - re-running for an already-assigned date
+returns the same pairing rather than reassigning).
 
 **Then**, merge and validate:
 
@@ -168,16 +192,19 @@ day's own lunch or the next school day's lunch
 python3 scripts/apply_enrichment.py menu.json response.json -o enriched.json
 ```
 
-This adds `title` ("🧑‍🍳 " + `ca_title`) and `dinner` ("🍽️ " + the
-Catalan food-group words joined by " + ") to each day, plus an `en`
+This adds `lunch_food_groups` (= your `lunch_groups`, kept for
+transparency), `title` ("🧑‍🍳 " + `ca_title`), and `dinner` ("🍽️ " + the
+Catalan base/protein words joined by " + ") to each day, plus an `en`
 block with the English items/dessert/title/dinner (same two emoji). The
-emoji and the Catalan food-group words come from the script - don't put
-them in response.json yourself. It also merges `new_translations` into
-`data/glossary.json`.
+emoji, the dinner pairing, and the Catalan food-group words all come
+from the script - don't put them in response.json yourself. It also
+merges `new_translations` into `data/glossary.json` and updates
+`data/dinner_rotation.json`.
 
-Fails with exit code 2 if a day is missing from your response or a
-`dinner_a`/`dinner_b` isn't in `food_groups`. Fix response.json and rerun
-- don't hand-edit enriched.json.
+Fails with exit code 2 if a day is missing from your response, its
+`lunch_groups` is empty, or contains a value outside
+`base_groups`/`protein_groups`/`lunch_only_groups`. Fix response.json
+and rerun - don't hand-edit enriched.json.
 
 ## Publish the 4 public calendars
 
@@ -226,14 +253,16 @@ python3 scripts/run_tests.py --update-golden
 - `scripts/menu.py` - fetch/parse/ics entry point.
 - `scripts/fetch_menu.py`, `parse_menu.py`, `to_ics.py` - the pieces
   `menu.py` wraps; only touch these directly for development/debugging.
-- `scripts/prepare_enrichment.py`, `apply_enrichment.py`, `food_groups.py`
-  - the title/dinner/translation round trip above.
+- `scripts/prepare_enrichment.py`, `apply_enrichment.py`, `food_groups.py`,
+  `dinner_rotation.py` - the title/dinner/translation round trip above.
 - `scripts/pipeline_status.py`, `publish_month.py` - scheduled-job helpers (what to do next; publish + commit + push to main).
 - `scripts/publish_ics.py` - upserts a month's JSON into `public/*.ics`.
 - `scripts/run_tests.py` - regression runner against `tests/fixtures/*.pdf`
   (parsing only, not enrichment).
 - `data/glossary.json` - persistent Catalan→English phrase cache, grown
   by `apply_enrichment.py`.
+- `data/dinner_rotation.json` - persistent dinner-pairing usage counts,
+  grown by `apply_enrichment.py`.
 - `public/*.ics` - the 4 live, publicly-hosted calendars (see "Publish
   the 4 public calendars" above). Don't hand-edit; only `publish_ics.py`
   writes these.

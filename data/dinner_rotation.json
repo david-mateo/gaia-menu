@@ -1,0 +1,158 @@
+{
+  "by_date": {
+    "2026-10-01": {
+      "base": "Soup",
+      "protein": "Legumes"
+    },
+    "2026-10-02": {
+      "base": "Vegetables",
+      "protein": "Fish"
+    },
+    "2026-10-05": {
+      "base": "Pasta",
+      "protein": "Oily Fish"
+    },
+    "2026-10-06": {
+      "base": "Potato",
+      "protein": "Poultry"
+    },
+    "2026-10-07": {
+      "base": "Bread",
+      "protein": "Meat"
+    },
+    "2026-10-08": {
+      "base": "Rice",
+      "protein": "Seafood"
+    },
+    "2026-10-09": {
+      "base": "Cereal",
+      "protein": "Dairy"
+    },
+    "2026-10-13": {
+      "base": "Vegetables",
+      "protein": "Eggs"
+    },
+    "2026-10-14": {
+      "base": "Soup",
+      "protein": "Oily Fish"
+    },
+    "2026-10-15": {
+      "base": "Potato",
+      "protein": "Fish"
+    },
+    "2026-10-16": {
+      "base": "Bread",
+      "protein": "Meat"
+    },
+    "2026-10-19": {
+      "base": "Rice",
+      "protein": "Poultry"
+    },
+    "2026-10-20": {
+      "base": "Cereal",
+      "protein": "Eggs"
+    },
+    "2026-10-21": {
+      "base": "Pasta",
+      "protein": "Dairy"
+    },
+    "2026-10-22": {
+      "base": "Salad",
+      "protein": "Legumes"
+    },
+    "2026-10-23": {
+      "base": "Salad",
+      "protein": "Seafood"
+    },
+    "2026-10-26": {
+      "base": "Soup",
+      "protein": "Oily Fish"
+    },
+    "2026-10-27": {
+      "base": "Vegetables",
+      "protein": "Eggs"
+    },
+    "2026-10-28": {
+      "base": "Salad",
+      "protein": "Oily Fish"
+    },
+    "2026-10-29": {
+      "base": "Vegetables",
+      "protein": "Poultry"
+    },
+    "2026-10-30": {
+      "base": "Potato",
+      "protein": "Legumes"
+    }
+  },
+  "usage": {
+    "base": {
+      "Bread": {
+        "count": 2,
+        "last_date": "2026-10-16"
+      },
+      "Cereal": {
+        "count": 2,
+        "last_date": "2026-10-20"
+      },
+      "Pasta": {
+        "count": 2,
+        "last_date": "2026-10-21"
+      },
+      "Potato": {
+        "count": 3,
+        "last_date": "2026-10-30"
+      },
+      "Rice": {
+        "count": 2,
+        "last_date": "2026-10-19"
+      },
+      "Salad": {
+        "count": 3,
+        "last_date": "2026-10-28"
+      },
+      "Soup": {
+        "count": 3,
+        "last_date": "2026-10-26"
+      },
+      "Vegetables": {
+        "count": 4,
+        "last_date": "2026-10-29"
+      }
+    },
+    "protein": {
+      "Dairy": {
+        "count": 2,
+        "last_date": "2026-10-21"
+      },
+      "Eggs": {
+        "count": 3,
+        "last_date": "2026-10-27"
+      },
+      "Fish": {
+        "count": 2,
+        "last_date": "2026-10-15"
+      },
+      "Legumes": {
+        "count": 3,
+        "last_date": "2026-10-30"
+      },
+      "Meat": {
+        "count": 2,
+        "last_date": "2026-10-16"
+      },
+      "Oily Fish": {
+        "count": 4,
+        "last_date": "2026-10-28"
+      },
+      "Poultry": {
+        "count": 3,
+        "last_date": "2026-10-29"
+      },
+      "Seafood": {
+        "count": 2,
+        "last_date": "2026-10-23"
+      }
+    }
+  }
+}

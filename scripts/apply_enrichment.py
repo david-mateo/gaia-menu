@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Merges an enrichment response into parse_menu.py's JSON, and updates
-the translation glossary.
+"""Merges an enrichment response into parse_menu.py's JSON, assigns each
+day's dinner pairing, and updates the translation glossary and the
+dinner-rotation state.
 
-Usage: apply_enrichment.py <menu.json> <response.json> [-o enriched.json] [--glossary data/glossary.json]
+Usage: apply_enrichment.py <menu.json> <response.json> [-o enriched.json]
+       [--glossary data/glossary.json] [--rotation data/dinner_rotation.json]
 
 Expected response.json shape:
 {
@@ -10,18 +12,23 @@ Expected response.json shape:
   "days": [
     {"date": "...", "en_items": [...], "en_dessert": "..." | null,
      "ca_title": "...", "en_title": "...",
-     "dinner_a": "<food group>", "dinner_b": "<food group>"}
+     "lunch_groups": ["<food group>", ...]}
   ]
 }
 
 Adds to each day in menu.json:
+  "lunch_food_groups": [...]  (= lunch_groups, kept for transparency)
   "title":  "🧑‍🍳 <ca_title>"
-  "dinner": "🍽️ <Catalan dinner_a> + <Catalan dinner_b>"
+  "dinner": "🍽️ <Catalan base> + <Catalan protein>"
   "en": {"items": [...], "dessert": "...", "title": "🧑‍🍳 <en_title>",
-         "dinner": "🍽️ <dinner_a> + <dinner_b>"}
+         "dinner": "🍽️ <base> + <protein>"}
+
+The dinner pairing (base + protein) is not chosen by the model - it's
+computed here by dinner_rotation.assign() from each day's lunch_groups.
 
 Raises EnrichmentError (exit code 2) if a day is missing from the
-response or a dinner pick isn't one of food_groups.FOOD_GROUPS.
+response, 'lunch_groups' is empty, or contains a value outside
+food_groups.LUNCH_TAGS.
 """
 import argparse
 import json
@@ -30,7 +37,8 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent))
-from food_groups import FOOD_GROUPS_EN_TO_CA  # noqa: E402
+from dinner_rotation import DEFAULT_ROTATION, assign, load_state, save_state  # noqa: E402
+from food_groups import FOOD_GROUPS_EN_TO_CA, LUNCH_ONLY_IMPLIES, LUNCH_TAGS_EN_TO_CA  # noqa: E402
 from prepare_enrichment import DEFAULT_GLOSSARY, load_glossary  # noqa: E402
 
 LUNCH_EMOJI = "🧑‍🍳 "
@@ -41,28 +49,36 @@ class EnrichmentError(RuntimeError):
     pass
 
 
-def apply(menu: dict[str, Any], response: dict[str, Any]) -> dict[str, Any]:
+def apply(menu: dict[str, Any], response: dict[str, Any], rotation: dict[str, Any]) -> dict[str, Any]:
     by_date = {d["date"]: d for d in response["days"]}
+    days = menu["days"]
 
-    for day in menu["days"]:
+    for i, day in enumerate(days):
         resp = by_date.get(day["date"])
         if resp is None:
             raise EnrichmentError(f"{day['date']}: missing from response")
 
-        for key in ("ca_title", "en_title", "dinner_a", "dinner_b", "en_items"):
+        for key in ("ca_title", "en_title", "en_items", "lunch_groups"):
             if key not in resp:
                 raise EnrichmentError(f"{day['date']}: response missing '{key}'")
 
-        for pick in (resp["dinner_a"], resp["dinner_b"]):
-            if pick not in FOOD_GROUPS_EN_TO_CA:
+        if not resp["lunch_groups"]:
+            raise EnrichmentError(f"{day['date']}: 'lunch_groups' is empty")
+        for group in resp["lunch_groups"]:
+            if group not in LUNCH_TAGS_EN_TO_CA:
                 raise EnrichmentError(
-                    f"{day['date']}: dinner pick '{pick}' is not one of "
-                    f"{list(FOOD_GROUPS_EN_TO_CA)}"
+                    f"{day['date']}: lunch group '{group}' is not one of "
+                    f"{list(LUNCH_TAGS_EN_TO_CA)}"
                 )
 
-        ca_dinner = f"{FOOD_GROUPS_EN_TO_CA[resp['dinner_a']]} + {FOOD_GROUPS_EN_TO_CA[resp['dinner_b']]}"
-        en_dinner = f"{resp['dinner_a']} + {resp['dinner_b']}"
+        next_resp = by_date.get(days[i + 1]["date"]) if i + 1 < len(days) else None
+        today_and_tomorrow = resp["lunch_groups"] + (next_resp["lunch_groups"] if next_resp else [])
+        excluded = {LUNCH_ONLY_IMPLIES.get(g, g) for g in today_and_tomorrow}
+        base, protein = assign(rotation, day["date"], excluded)
+        ca_dinner = f"{FOOD_GROUPS_EN_TO_CA[base]} + {FOOD_GROUPS_EN_TO_CA[protein]}"
+        en_dinner = f"{base} + {protein}"
 
+        day["lunch_food_groups"] = resp["lunch_groups"]
         day["title"] = LUNCH_EMOJI + resp["ca_title"]
         day["dinner"] = DINNER_EMOJI + ca_dinner
         day["en"] = {
@@ -92,19 +108,22 @@ def main() -> int:
     ap.add_argument("response_json", type=Path)
     ap.add_argument("-o", "--output", type=Path, help="Write enriched JSON here (default: stdout)")
     ap.add_argument("--glossary", type=Path, default=DEFAULT_GLOSSARY)
+    ap.add_argument("--rotation", type=Path, default=DEFAULT_ROTATION)
     args = ap.parse_args()
 
     menu = json.loads(args.menu_json.read_text(encoding="utf-8"))
     response = json.loads(args.response_json.read_text(encoding="utf-8"))
+    rotation = load_state(args.rotation)
 
     try:
-        enriched = apply(menu, response)
+        enriched = apply(menu, response, rotation)
     except EnrichmentError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 2
 
     glossary = load_glossary(args.glossary)
     update_glossary(args.glossary, glossary, response.get("new_translations", {}))
+    save_state(args.rotation, rotation)
 
     out = json.dumps(enriched, ensure_ascii=False, indent=2)
     if args.output:

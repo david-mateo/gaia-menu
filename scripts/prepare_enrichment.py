@@ -5,17 +5,21 @@ Usage: prepare_enrichment.py <menu.json> [-o request.json] [--glossary data/glos
 
 Output JSON:
 {
-  "food_groups": [...allowed English dinner-pairing words...],
+  "base_groups": [...English base-course tags you may use...],
+  "protein_groups": [...English protein tags you may use...],
+  "lunch_only_groups": [...extra tags valid only for lunch_groups,
+                         never a dinner suggestion...],
   "known_translations": {"<ca phrase>": "<en phrase>", ...},
   "new_phrases": ["<ca phrase not yet in the glossary>", ...],
   "days": [
-    {"date": "...", "items": [...], "dessert": "...",
-     "next_day_items": [...] | null, "next_day_dessert": "..." | null}
+    {"date": "...", "items": [...], "dessert": "..."}
   ]
 }
 
 See SKILL.md for what to do with this file (an agent fills in a response,
-scripts/apply_enrichment.py merges it back).
+scripts/apply_enrichment.py merges it back). The dinner pairing itself
+is computed deterministically from the "lunch_groups" tags you provide
+per day (see dinner_rotation.py) - you don't pick it.
 """
 import argparse
 import json
@@ -24,7 +28,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent))
-from food_groups import FOOD_GROUPS  # noqa: E402
+from food_groups import BASE_GROUPS, LUNCH_ONLY_GROUPS, PROTEIN_GROUPS  # noqa: E402
 
 DEFAULT_GLOSSARY = Path(__file__).parent.parent / "data" / "glossary.json"
 
@@ -46,19 +50,15 @@ def build_request(menu: dict[str, Any], glossary: dict[str, str]) -> dict[str, A
     known = {p: glossary[p] for p in phrases if p in glossary}
     new_phrases = sorted(p for p in phrases if p not in glossary)
 
-    days_ctx: list[dict[str, Any]] = []
-    for i, day in enumerate(days):
-        nxt = days[i + 1] if i + 1 < len(days) else None
-        days_ctx.append({
-            "date": day["date"],
-            "items": day["items"],
-            "dessert": day["dessert"],
-            "next_day_items": nxt["items"] if nxt else None,
-            "next_day_dessert": nxt["dessert"] if nxt else None,
-        })
+    days_ctx: list[dict[str, Any]] = [
+        {"date": day["date"], "items": day["items"], "dessert": day["dessert"]}
+        for day in days
+    ]
 
     return {
-        "food_groups": FOOD_GROUPS,
+        "base_groups": BASE_GROUPS,
+        "protein_groups": PROTEIN_GROUPS,
+        "lunch_only_groups": LUNCH_ONLY_GROUPS,
         "known_translations": known,
         "new_phrases": new_phrases,
         "days": days_ctx,
