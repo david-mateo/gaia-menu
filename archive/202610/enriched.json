@@ -1,0 +1,532 @@
+{
+  "source": "202610-ESCOLA-GAIA_BASAL-ESCOLAR-MP.pdf",
+  "diet": "BASAL-ESCOLAR",
+  "year": 2026,
+  "month": 10,
+  "month_name": "Octubre",
+  "days": [
+    {
+      "date": "2026-10-01",
+      "weekday": "Dijous",
+      "items": [
+        "Amanida de patata",
+        "Truita francesa",
+        "Enciam i tomàquet"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 1,
+      "date_label_mismatch": false,
+      "title": "🍽️ Amanida de patata + truita",
+      "dinner": "🍽️ Sopa + Peix",
+      "en": {
+        "items": [
+          "Potato salad",
+          "French omelette",
+          "Lettuce and tomato"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Potato salad + omelette",
+        "dinner": "🍽️ Soup + Fish"
+      }
+    },
+    {
+      "date": "2026-10-02",
+      "weekday": "Divendres",
+      "items": [
+        "Macarrons integrals ecològics amb",
+        "carbonara vegetal",
+        "Botifarra de porc amb samfaina"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 2,
+      "date_label_mismatch": false,
+      "title": "🍽️ Macarrons + botifarra",
+      "dinner": "🍽️ Peix + Ou",
+      "en": {
+        "items": [
+          "Organic whole-wheat macaroni with vegetable carbonara",
+          "Pork sausage with samfaina"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Macaroni + sausage",
+        "dinner": "🍽️ Fish + Eggs"
+      }
+    },
+    {
+      "date": "2026-10-05",
+      "weekday": "Dilluns",
+      "items": [
+        "Crema de carbassó",
+        "Escalopa d'au cordon bleu de gall dindi",
+        "Enciam i blat de moro"
+      ],
+      "dessert": "Iogurt natural",
+      "allergens": null,
+      "day_label_from_pdf": 5,
+      "date_label_mismatch": false,
+      "title": "🍽️ Crema de carbassó + escalopa de gall dindi",
+      "dinner": "🍽️ Peix + Arròs",
+      "en": {
+        "items": [
+          "Zucchini cream soup",
+          "Turkey cordon bleu cutlet",
+          "Lettuce and corn"
+        ],
+        "dessert": "Plain yogurt",
+        "title": "🍽️ Zucchini soup + turkey cutlet",
+        "dinner": "🍽️ Fish + Rice"
+      }
+    },
+    {
+      "date": "2026-10-06",
+      "weekday": "Dimarts",
+      "items": [
+        "Amanida de cigrons (pastanaga, blat de",
+        "moro i tomàquet)",
+        "Mandonguilles mixtes a la jardinera (m.",
+        "tendra, pastanaga, pèsol, patata)"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 6,
+      "date_label_mismatch": false,
+      "title": "🍽️ Amanida de cigrons + mandonguilles",
+      "dinner": "🍽️ Sopa + Ou",
+      "en": {
+        "items": [
+          "Chickpea salad (carrot, corn and tomato)",
+          "Mixed meatballs with garden vegetables (green beans, carrot, pea, potato)"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Chickpea salad + meatballs",
+        "dinner": "🍽️ Soup + Eggs"
+      }
+    },
+    {
+      "date": "2026-10-07",
+      "weekday": "Dimecres",
+      "items": [
+        "Arròs integral amb salsa de tomàquet",
+        "Salmó al forn amb anet",
+        "Enciam i olives"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 7,
+      "date_label_mismatch": false,
+      "title": "🍽️ Arròs + salmó",
+      "dinner": "🍽️ Aviram + Pasta",
+      "en": {
+        "items": [
+          "Brown rice with tomato sauce",
+          "Baked salmon with dill",
+          "Lettuce and olives"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Rice + salmon",
+        "dinner": "🍽️ Poultry + Pasta"
+      }
+    },
+    {
+      "date": "2026-10-08",
+      "weekday": "Dijous",
+      "items": [
+        "Bròquil, patata i pastanaga",
+        "Llenties estofades amb verdures"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 8,
+      "date_label_mismatch": false,
+      "title": "🍽️ Verdures + llenties",
+      "dinner": "🍽️ Peix + Arròs",
+      "en": {
+        "items": [
+          "Broccoli, potato and carrot",
+          "Stewed lentils with vegetables"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Vegetables + lentils",
+        "dinner": "🍽️ Fish + Rice"
+      }
+    },
+    {
+      "date": "2026-10-09",
+      "weekday": "Divendres",
+      "items": [
+        "Fideus a la cassola amb verdures",
+        "Truita de patata",
+        "Enciam i tomàquet"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 9,
+      "date_label_mismatch": false,
+      "title": "🍽️ Fideus amb verdures + truita",
+      "dinner": "🍽️ Aviram + Llegums",
+      "en": {
+        "items": [
+          "Casserole noodles with vegetables",
+          "Potato omelette",
+          "Lettuce and tomato"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Noodles with vegetables + omelette",
+        "dinner": "🍽️ Poultry + Legumes"
+      }
+    },
+    {
+      "date": "2026-10-13",
+      "weekday": "Dimarts",
+      "items": [
+        "Crema de pastanaga",
+        "Lluç a la romana",
+        "Enciam i brots de soja"
+      ],
+      "dessert": "Iogurt natural",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Crema de pastanaga + lluç",
+      "dinner": "🍽️ Ou + Pasta",
+      "en": {
+        "items": [
+          "Carrot cream soup",
+          "Battered hake rings",
+          "Lettuce and soybean sprouts"
+        ],
+        "dessert": "Plain yogurt",
+        "title": "🍽️ Carrot soup + hake",
+        "dinner": "🍽️ Eggs + Pasta"
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "weekday": "Dimecres",
+      "items": [
+        "Amanida d'arròs (pebrot vermell, blat de",
+        "moro i olives)",
+        "Cigrons estofats amb verdures"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Amanida d'arròs + cigrons",
+      "dinner": "🍽️ Peix + Aviram",
+      "en": {
+        "items": [
+          "Rice salad (red pepper, corn and olives)",
+          "Stewed chickpeas with vegetables"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Rice salad + chickpeas",
+        "dinner": "🍽️ Fish + Poultry"
+      }
+    },
+    {
+      "date": "2026-10-15",
+      "weekday": "Dijous",
+      "items": [
+        "Mongeta tendra amb patata",
+        "Truita francesa",
+        "Enciam i tomàquet"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Mongeta tendra + truita",
+      "dinner": "🍽️ Peix + Llegums",
+      "en": {
+        "items": [
+          "Green beans with potato",
+          "French omelette",
+          "Lettuce and tomato"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Green beans + omelette",
+        "dinner": "🍽️ Fish + Legumes"
+      }
+    },
+    {
+      "date": "2026-10-16",
+      "weekday": "Divendres",
+      "items": [
+        "Espaguetis integrals ecològics amb",
+        "verdures",
+        "Pollastre al xilindrón",
+        "Enciam i blat de moro"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Espaguetis amb verdures + pollastre",
+      "dinner": "🍽️ Peix + Sopa",
+      "en": {
+        "items": [
+          "Organic whole-wheat spaghetti with vegetables",
+          "Chicken chilindrón",
+          "Lettuce and corn"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Spaghetti with vegetables + chicken",
+        "dinner": "🍽️ Fish + Soup"
+      }
+    },
+    {
+      "date": "2026-10-19",
+      "weekday": "Dilluns",
+      "items": [
+        "Llenties estofades amb quinoa",
+        "Truita de patata i espinacs",
+        "Enciam i olives"
+      ],
+      "dessert": "Iogurt natural",
+      "allergens": null,
+      "day_label_from_pdf": 19,
+      "date_label_mismatch": false,
+      "title": "🍽️ Llenties amb quinoa + truita",
+      "dinner": "🍽️ Peix + Carn",
+      "en": {
+        "items": [
+          "Stewed lentils with quinoa",
+          "Potato and spinach omelette",
+          "Lettuce and olives"
+        ],
+        "dessert": "Plain yogurt",
+        "title": "🍽️ Lentils with quinoa + omelette",
+        "dinner": "🍽️ Fish + Meat"
+      }
+    },
+    {
+      "date": "2026-10-20",
+      "weekday": "Dimarts",
+      "items": [
+        "Amanida russa",
+        "Macarrons integrals ecològics amb",
+        "bolonyesa vegetal"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 20,
+      "date_label_mismatch": false,
+      "title": "🍽️ Amanida russa + macarrons",
+      "dinner": "🍽️ Peix + Ou",
+      "en": {
+        "items": [
+          "Russian salad",
+          "Organic whole-wheat macaroni with vegetable bolognese"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Russian salad + macaroni",
+        "dinner": "🍽️ Fish + Eggs"
+      }
+    },
+    {
+      "date": "2026-10-21",
+      "weekday": "Dimecres",
+      "items": [
+        "Mongetes blanques estofades amb",
+        "verdures",
+        "Pollastre a la llimona",
+        "Enciam i espàrrecs"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 21,
+      "date_label_mismatch": false,
+      "title": "🍽️ Mongetes blanques + pollastre",
+      "dinner": "🍽️ Ou + Pasta",
+      "en": {
+        "items": [
+          "Stewed white beans with vegetables",
+          "Lemon chicken",
+          "Lettuce and asparagus"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ White beans + chicken",
+        "dinner": "🍽️ Eggs + Pasta"
+      }
+    },
+    {
+      "date": "2026-10-22",
+      "weekday": "Dijous",
+      "items": [
+        "Paella marinera",
+        "Lluç al forn amb all i julivert",
+        "Enciam i pastanaga"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 22,
+      "date_label_mismatch": false,
+      "title": "🍽️ Paella marinera + lluç",
+      "dinner": "🍽️ Carn + Llegums",
+      "en": {
+        "items": [
+          "Seafood paella",
+          "Baked hake with garlic and parsley",
+          "Lettuce and carrot"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Seafood paella + hake",
+        "dinner": "🍽️ Meat + Legumes"
+      }
+    },
+    {
+      "date": "2026-10-23",
+      "weekday": "Divendres",
+      "items": [
+        "Coliflor gratinada amb beixamel",
+        "Roti de gall d'indi a la jardinera (m.",
+        "tendra, pastanaga, pèsol, patata)"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": 23,
+      "date_label_mismatch": false,
+      "title": "🍽️ Coliflor gratinada + rostit de gall dindi",
+      "dinner": "🍽️ Peix + Pasta",
+      "en": {
+        "items": [
+          "Cauliflower gratin with béchamel",
+          "Turkey roast with garden vegetables (green beans, carrot, pea, potato)"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Cauliflower gratin + turkey roast",
+        "dinner": "🍽️ Fish + Pasta"
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "weekday": "Dilluns",
+      "items": [
+        "Tricolor de verdures amb dauets de gall",
+        "d´indi",
+        "Truita de patata i carbassó",
+        "Enciam i tomàquet"
+      ],
+      "dessert": "Iogurt natural",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Tricolor de verdures + truita",
+      "dinner": "🍽️ Peix + Arròs",
+      "en": {
+        "items": [
+          "Tricolor vegetables with diced turkey",
+          "Potato and zucchini omelette",
+          "Lettuce and tomato"
+        ],
+        "dessert": "Plain yogurt",
+        "title": "🍽️ Tricolor vegetables + omelette",
+        "dinner": "🍽️ Fish + Rice"
+      }
+    },
+    {
+      "date": "2026-10-27",
+      "weekday": "Dimarts",
+      "items": [
+        "Cigrons amb espinacs",
+        "Botifarra de porc al forn",
+        "Enciam i pastanaga"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Cigrons amb espinacs + botifarra",
+      "dinner": "🍽️ Peix + Ou",
+      "en": {
+        "items": [
+          "Chickpeas with spinach",
+          "Baked pork sausage",
+          "Lettuce and carrot"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Chickpeas with spinach + sausage",
+        "dinner": "🍽️ Fish + Eggs"
+      }
+    },
+    {
+      "date": "2026-10-28",
+      "weekday": "Dimecres",
+      "items": [
+        "Crema de verdures",
+        "Pollastre rostit al forn amb herbes",
+        "aromàtiques",
+        "Patates xips"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Crema de verdures + pollastre rostit",
+      "dinner": "🍽️ Peix + Pasta",
+      "en": {
+        "items": [
+          "Vegetable cream soup",
+          "Roast chicken with aromatic herbs",
+          "Potato chips"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Vegetable soup + roast chicken",
+        "dinner": "🍽️ Fish + Pasta"
+      }
+    },
+    {
+      "date": "2026-10-29",
+      "weekday": "Dijous",
+      "items": [
+        "Arròs tres delícies (pèsols, pastanaga,",
+        "truita i pernil dolç)",
+        "Llenties estofades amb verdures"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Arròs tres delícies + llenties",
+      "dinner": "🍽️ Sopa + Aviram",
+      "en": {
+        "items": [
+          "Three delights rice (peas, carrot, omelette and ham)",
+          "Stewed lentils with vegetables"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Three delights rice + lentils",
+        "dinner": "🍽️ Soup + Poultry"
+      }
+    },
+    {
+      "date": "2026-10-30",
+      "weekday": "Divendres",
+      "items": [
+        "Macarrons integrals ecològics amb salsa",
+        "de tomàquet i tonyina",
+        "Lluç arrebossat",
+        "Enciam i olives"
+      ],
+      "dessert": "Fruita de temporada",
+      "allergens": null,
+      "day_label_from_pdf": null,
+      "date_label_mismatch": false,
+      "title": "🍽️ Macarrons amb tonyina + lluç",
+      "dinner": "🍽️ Aviram + Llegums",
+      "en": {
+        "items": [
+          "Organic whole-wheat macaroni with sauce of tomato and tuna",
+          "Breaded hake",
+          "Lettuce and olives"
+        ],
+        "dessert": "Seasonal fruit",
+        "title": "🍽️ Tuna macaroni + hake",
+        "dinner": "🍽️ Poultry + Legumes"
+      }
+    }
+  ]
+}

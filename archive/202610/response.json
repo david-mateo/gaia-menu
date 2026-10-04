@@ -1,0 +1,330 @@
+{
+ "new_translations": {
+  "Amanida d'arròs (pebrot vermell, blat de": "Rice salad (red pepper, corn",
+  "Amanida de cigrons (pastanaga, blat de": "Chickpea salad (carrot, corn",
+  "Amanida de patata": "Potato salad",
+  "Amanida russa": "Russian salad",
+  "Arròs integral amb salsa de tomàquet": "Brown rice with tomato sauce",
+  "Arròs tres delícies (pèsols, pastanaga,": "Three delights rice (peas, carrot,",
+  "Botifarra de porc al forn": "Baked pork sausage",
+  "Botifarra de porc amb samfaina": "Pork sausage with samfaina",
+  "Bròquil, patata i pastanaga": "Broccoli, potato and carrot",
+  "Cigrons amb espinacs": "Chickpeas with spinach",
+  "Cigrons estofats amb verdures": "Stewed chickpeas with vegetables",
+  "Coliflor gratinada amb beixamel": "Cauliflower gratin with béchamel",
+  "Crema de carbassó": "Zucchini cream soup",
+  "Crema de pastanaga": "Carrot cream soup",
+  "Crema de verdures": "Vegetable cream soup",
+  "Enciam i blat de moro": "Lettuce and corn",
+  "Enciam i brots de soja": "Lettuce and soybean sprouts",
+  "Enciam i espàrrecs": "Lettuce and asparagus",
+  "Enciam i olives": "Lettuce and olives",
+  "Enciam i pastanaga": "Lettuce and carrot",
+  "Enciam i tomàquet": "Lettuce and tomato",
+  "Escalopa d'au cordon bleu de gall dindi": "Turkey cordon bleu cutlet",
+  "Espaguetis integrals ecològics amb": "Organic whole-wheat spaghetti with",
+  "Fideus a la cassola amb verdures": "Casserole noodles with vegetables",
+  "Fruita de temporada": "Seasonal fruit",
+  "Iogurt natural": "Plain yogurt",
+  "Llenties estofades amb quinoa": "Stewed lentils with quinoa",
+  "Llenties estofades amb verdures": "Stewed lentils with vegetables",
+  "Lluç a la romana": "Battered hake rings",
+  "Lluç al forn amb all i julivert": "Baked hake with garlic and parsley",
+  "Lluç arrebossat": "Breaded hake",
+  "Macarrons integrals ecològics amb": "Organic whole-wheat macaroni with",
+  "Macarrons integrals ecològics amb salsa": "Organic whole-wheat macaroni with sauce",
+  "Mandonguilles mixtes a la jardinera (m.": "Mixed meatballs with garden vegetables (green",
+  "Mongeta tendra amb patata": "Green beans with potato",
+  "Mongetes blanques estofades amb": "Stewed white beans with",
+  "Paella marinera": "Seafood paella",
+  "Patates xips": "Potato chips",
+  "Pollastre a la llimona": "Lemon chicken",
+  "Pollastre al xilindrón": "Chicken chilindrón",
+  "Pollastre rostit al forn amb herbes": "Roast chicken with",
+  "Roti de gall d'indi a la jardinera (m.": "Turkey roast with garden vegetables (green",
+  "Salmó al forn amb anet": "Baked salmon with dill",
+  "Tricolor de verdures amb dauets de gall": "Tricolor vegetables with diced",
+  "Truita de patata": "Potato omelette",
+  "Truita de patata i carbassó": "Potato and zucchini omelette",
+  "Truita de patata i espinacs": "Potato and spinach omelette",
+  "Truita francesa": "French omelette",
+  "aromàtiques": "aromatic herbs",
+  "bolonyesa vegetal": "vegetable bolognese",
+  "carbonara vegetal": "vegetable carbonara",
+  "de tomàquet i tonyina": "of tomato and tuna",
+  "d´indi": "turkey",
+  "moro i olives)": "and olives)",
+  "moro i tomàquet)": "and tomato)",
+  "tendra, pastanaga, pèsol, patata)": "beans, carrot, pea, potato)",
+  "truita i pernil dolç)": "omelette and ham)",
+  "verdures": "vegetables"
+ },
+ "days": [
+  {
+   "date": "2026-10-01",
+   "en_items": [
+    "Potato salad",
+    "French omelette",
+    "Lettuce and tomato"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Amanida de patata + truita",
+   "en_title": "Potato salad + omelette",
+   "dinner_a": "Soup",
+   "dinner_b": "Fish"
+  },
+  {
+   "date": "2026-10-02",
+   "en_items": [
+    "Organic whole-wheat macaroni with vegetable carbonara",
+    "Pork sausage with samfaina"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Macarrons + botifarra",
+   "en_title": "Macaroni + sausage",
+   "dinner_a": "Fish",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-10-05",
+   "en_items": [
+    "Zucchini cream soup",
+    "Turkey cordon bleu cutlet",
+    "Lettuce and corn"
+   ],
+   "en_dessert": "Plain yogurt",
+   "ca_title": "Crema de carbassó + escalopa de gall dindi",
+   "en_title": "Zucchini soup + turkey cutlet",
+   "dinner_a": "Fish",
+   "dinner_b": "Rice"
+  },
+  {
+   "date": "2026-10-06",
+   "en_items": [
+    "Chickpea salad (carrot, corn and tomato)",
+    "Mixed meatballs with garden vegetables (green beans, carrot, pea, potato)"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Amanida de cigrons + mandonguilles",
+   "en_title": "Chickpea salad + meatballs",
+   "dinner_a": "Soup",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-10-07",
+   "en_items": [
+    "Brown rice with tomato sauce",
+    "Baked salmon with dill",
+    "Lettuce and olives"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Arròs + salmó",
+   "en_title": "Rice + salmon",
+   "dinner_a": "Poultry",
+   "dinner_b": "Pasta"
+  },
+  {
+   "date": "2026-10-08",
+   "en_items": [
+    "Broccoli, potato and carrot",
+    "Stewed lentils with vegetables"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Verdures + llenties",
+   "en_title": "Vegetables + lentils",
+   "dinner_a": "Fish",
+   "dinner_b": "Rice"
+  },
+  {
+   "date": "2026-10-09",
+   "en_items": [
+    "Casserole noodles with vegetables",
+    "Potato omelette",
+    "Lettuce and tomato"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Fideus amb verdures + truita",
+   "en_title": "Noodles with vegetables + omelette",
+   "dinner_a": "Poultry",
+   "dinner_b": "Legumes"
+  },
+  {
+   "date": "2026-10-13",
+   "en_items": [
+    "Carrot cream soup",
+    "Battered hake rings",
+    "Lettuce and soybean sprouts"
+   ],
+   "en_dessert": "Plain yogurt",
+   "ca_title": "Crema de pastanaga + lluç",
+   "en_title": "Carrot soup + hake",
+   "dinner_a": "Eggs",
+   "dinner_b": "Pasta"
+  },
+  {
+   "date": "2026-10-14",
+   "en_items": [
+    "Rice salad (red pepper, corn and olives)",
+    "Stewed chickpeas with vegetables"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Amanida d'arròs + cigrons",
+   "en_title": "Rice salad + chickpeas",
+   "dinner_a": "Fish",
+   "dinner_b": "Poultry"
+  },
+  {
+   "date": "2026-10-15",
+   "en_items": [
+    "Green beans with potato",
+    "French omelette",
+    "Lettuce and tomato"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Mongeta tendra + truita",
+   "en_title": "Green beans + omelette",
+   "dinner_a": "Fish",
+   "dinner_b": "Legumes"
+  },
+  {
+   "date": "2026-10-16",
+   "en_items": [
+    "Organic whole-wheat spaghetti with vegetables",
+    "Chicken chilindrón",
+    "Lettuce and corn"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Espaguetis amb verdures + pollastre",
+   "en_title": "Spaghetti with vegetables + chicken",
+   "dinner_a": "Fish",
+   "dinner_b": "Soup"
+  },
+  {
+   "date": "2026-10-19",
+   "en_items": [
+    "Stewed lentils with quinoa",
+    "Potato and spinach omelette",
+    "Lettuce and olives"
+   ],
+   "en_dessert": "Plain yogurt",
+   "ca_title": "Llenties amb quinoa + truita",
+   "en_title": "Lentils with quinoa + omelette",
+   "dinner_a": "Fish",
+   "dinner_b": "Meat"
+  },
+  {
+   "date": "2026-10-20",
+   "en_items": [
+    "Russian salad",
+    "Organic whole-wheat macaroni with vegetable bolognese"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Amanida russa + macarrons",
+   "en_title": "Russian salad + macaroni",
+   "dinner_a": "Fish",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-10-21",
+   "en_items": [
+    "Stewed white beans with vegetables",
+    "Lemon chicken",
+    "Lettuce and asparagus"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Mongetes blanques + pollastre",
+   "en_title": "White beans + chicken",
+   "dinner_a": "Eggs",
+   "dinner_b": "Pasta"
+  },
+  {
+   "date": "2026-10-22",
+   "en_items": [
+    "Seafood paella",
+    "Baked hake with garlic and parsley",
+    "Lettuce and carrot"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Paella marinera + lluç",
+   "en_title": "Seafood paella + hake",
+   "dinner_a": "Meat",
+   "dinner_b": "Legumes"
+  },
+  {
+   "date": "2026-10-23",
+   "en_items": [
+    "Cauliflower gratin with béchamel",
+    "Turkey roast with garden vegetables (green beans, carrot, pea, potato)"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Coliflor gratinada + rostit de gall dindi",
+   "en_title": "Cauliflower gratin + turkey roast",
+   "dinner_a": "Fish",
+   "dinner_b": "Pasta"
+  },
+  {
+   "date": "2026-10-26",
+   "en_items": [
+    "Tricolor vegetables with diced turkey",
+    "Potato and zucchini omelette",
+    "Lettuce and tomato"
+   ],
+   "en_dessert": "Plain yogurt",
+   "ca_title": "Tricolor de verdures + truita",
+   "en_title": "Tricolor vegetables + omelette",
+   "dinner_a": "Fish",
+   "dinner_b": "Rice"
+  },
+  {
+   "date": "2026-10-27",
+   "en_items": [
+    "Chickpeas with spinach",
+    "Baked pork sausage",
+    "Lettuce and carrot"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Cigrons amb espinacs + botifarra",
+   "en_title": "Chickpeas with spinach + sausage",
+   "dinner_a": "Fish",
+   "dinner_b": "Eggs"
+  },
+  {
+   "date": "2026-10-28",
+   "en_items": [
+    "Vegetable cream soup",
+    "Roast chicken with aromatic herbs",
+    "Potato chips"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Crema de verdures + pollastre rostit",
+   "en_title": "Vegetable soup + roast chicken",
+   "dinner_a": "Fish",
+   "dinner_b": "Pasta"
+  },
+  {
+   "date": "2026-10-29",
+   "en_items": [
+    "Three delights rice (peas, carrot, omelette and ham)",
+    "Stewed lentils with vegetables"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Arròs tres delícies + llenties",
+   "en_title": "Three delights rice + lentils",
+   "dinner_a": "Soup",
+   "dinner_b": "Poultry"
+  },
+  {
+   "date": "2026-10-30",
+   "en_items": [
+    "Organic whole-wheat macaroni with sauce of tomato and tuna",
+    "Breaded hake",
+    "Lettuce and olives"
+   ],
+   "en_dessert": "Seasonal fruit",
+   "ca_title": "Macarrons amb tonyina + lluç",
+   "en_title": "Tuna macaroni + hake",
+   "dinner_a": "Poultry",
+   "dinner_b": "Legumes"
+  }
+ ]
+}

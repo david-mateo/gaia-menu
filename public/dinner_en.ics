@@ -4,175 +4,179 @@ PRODID:-//gaia-menu//publish_ics//CA
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
 UID:20261001-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261001T170000Z
 DTEND:20261001T180000Z
 SUMMARY:🍽️ Soup + Fish
-DESCRIPTION:🍽️ Soup + Fish\nToday's lunch: 🧑‍🍳 Potato salad + omelette
+DESCRIPTION:🍽️ Soup + Fish\nToday's lunch: 🍽️ Potato salad + omelette
 END:VEVENT
 BEGIN:VEVENT
 UID:20261002-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261002T170000Z
 DTEND:20261002T180000Z
-SUMMARY:🍽️ Rice + Fish
-DESCRIPTION:🍽️ Rice + Fish\nToday's lunch: 🧑‍🍳 Macaroni + sausage
+SUMMARY:🍽️ Fish + Eggs
+DESCRIPTION:🍽️ Fish + Eggs\nToday's lunch: 🍽️ Macaroni + sausage
 END:VEVENT
 BEGIN:VEVENT
 UID:20261005-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261005T170000Z
 DTEND:20261005T180000Z
-SUMMARY:🍽️ Rice + Fish
-DESCRIPTION:🍽️ Rice + Fish\nToday's lunch: 🧑‍🍳 Pumpkin soup + turkey esca
- lope
+SUMMARY:🍽️ Fish + Rice
+DESCRIPTION:🍽️ Fish + Rice\nToday's lunch: 🍽️ Zucchini soup + turkey cutl
+ et
 END:VEVENT
 BEGIN:VEVENT
 UID:20261006-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261006T170000Z
 DTEND:20261006T180000Z
 SUMMARY:🍽️ Soup + Eggs
-DESCRIPTION:🍽️ Soup + Eggs\nToday's lunch: 🧑‍🍳 Chickpea salad + meatballs
+DESCRIPTION:🍽️ Soup + Eggs\nToday's lunch: 🍽️ Chickpea salad + meatballs
 END:VEVENT
 BEGIN:VEVENT
 UID:20261007-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261007T170000Z
 DTEND:20261007T180000Z
-SUMMARY:🍽️ Soup + Poultry
-DESCRIPTION:🍽️ Soup + Poultry\nToday's lunch: 🧑‍🍳 Rice + salmon
+SUMMARY:🍽️ Poultry + Pasta
+DESCRIPTION:🍽️ Poultry + Pasta\nToday's lunch: 🍽️ Rice + salmon
 END:VEVENT
 BEGIN:VEVENT
 UID:20261008-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261008T170000Z
 DTEND:20261008T180000Z
-SUMMARY:🍽️ Soup + Meat
-DESCRIPTION:🍽️ Soup + Meat\nToday's lunch: 🧑‍🍳 Vegetables + lentils
+SUMMARY:🍽️ Fish + Rice
+DESCRIPTION:🍽️ Fish + Rice\nToday's lunch: 🍽️ Vegetables + lentils
 END:VEVENT
 BEGIN:VEVENT
 UID:20261009-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261009T170000Z
 DTEND:20261009T180000Z
-SUMMARY:🍽️ Rice + Meat
-DESCRIPTION:🍽️ Rice + Meat\nToday's lunch: 🧑‍🍳 Noodles + omelette
+SUMMARY:🍽️ Poultry + Legumes
+DESCRIPTION:🍽️ Poultry + Legumes\nToday's lunch: 🍽️ Noodles with vegetabl
+ es + omelette
 END:VEVENT
 BEGIN:VEVENT
 UID:20261013-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261013T170000Z
 DTEND:20261013T180000Z
-SUMMARY:🍽️ Pasta + Meat
-DESCRIPTION:🍽️ Pasta + Meat\nToday's lunch: 🧑‍🍳 Carrot soup + hake
+SUMMARY:🍽️ Eggs + Pasta
+DESCRIPTION:🍽️ Eggs + Pasta\nToday's lunch: 🍽️ Carrot soup + hake
 END:VEVENT
 BEGIN:VEVENT
 UID:20261014-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261014T170000Z
 DTEND:20261014T180000Z
-SUMMARY:🍽️ Soup + Fish
-DESCRIPTION:🍽️ Soup + Fish\nToday's lunch: 🧑‍🍳 Rice salad + chickpeas
+SUMMARY:🍽️ Fish + Poultry
+DESCRIPTION:🍽️ Fish + Poultry\nToday's lunch: 🍽️ Rice salad + chickpeas
 END:VEVENT
 BEGIN:VEVENT
 UID:20261015-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261015T170000Z
 DTEND:20261015T180000Z
-SUMMARY:🍽️ Soup + Fish
-DESCRIPTION:🍽️ Soup + Fish\nToday's lunch: 🧑‍🍳 Green beans + omelette
+SUMMARY:🍽️ Fish + Legumes
+DESCRIPTION:🍽️ Fish + Legumes\nToday's lunch: 🍽️ Green beans + omelette
 END:VEVENT
 BEGIN:VEVENT
 UID:20261016-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261016T170000Z
 DTEND:20261016T180000Z
-SUMMARY:🍽️ Rice + Fish
-DESCRIPTION:🍽️ Rice + Fish\nToday's lunch: 🧑‍🍳 Spaghetti + chicken
+SUMMARY:🍽️ Fish + Soup
+DESCRIPTION:🍽️ Fish + Soup\nToday's lunch: 🍽️ Spaghetti with vegetables +
+  chicken
 END:VEVENT
 BEGIN:VEVENT
 UID:20261019-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261019T170000Z
 DTEND:20261019T180000Z
-SUMMARY:🍽️ Soup + Fish
-DESCRIPTION:🍽️ Soup + Fish\nToday's lunch: 🧑‍🍳 Lentils with quinoa + omel
- ette
+SUMMARY:🍽️ Fish + Meat
+DESCRIPTION:🍽️ Fish + Meat\nToday's lunch: 🍽️ Lentils with quinoa + omele
+ tte
 END:VEVENT
 BEGIN:VEVENT
 UID:20261020-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261020T170000Z
 DTEND:20261020T180000Z
-SUMMARY:🍽️ Rice + Fish
-DESCRIPTION:🍽️ Rice + Fish\nToday's lunch: 🧑‍🍳 Russian salad + macaroni
+SUMMARY:🍽️ Fish + Eggs
+DESCRIPTION:🍽️ Fish + Eggs\nToday's lunch: 🍽️ Russian salad + macaroni
 END:VEVENT
 BEGIN:VEVENT
 UID:20261021-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261021T170000Z
 DTEND:20261021T180000Z
-SUMMARY:🍽️ Soup + Eggs
-DESCRIPTION:🍽️ Soup + Eggs\nToday's lunch: 🧑‍🍳 White beans + chicken
+SUMMARY:🍽️ Eggs + Pasta
+DESCRIPTION:🍽️ Eggs + Pasta\nToday's lunch: 🍽️ White beans + chicken
 END:VEVENT
 BEGIN:VEVENT
 UID:20261022-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261022T170000Z
 DTEND:20261022T180000Z
-SUMMARY:🍽️ Soup + Meat
-DESCRIPTION:🍽️ Soup + Meat\nToday's lunch: 🧑‍🍳 Seafood paella + hake
+SUMMARY:🍽️ Meat + Legumes
+DESCRIPTION:🍽️ Meat + Legumes\nToday's lunch: 🍽️ Seafood paella + hake
 END:VEVENT
 BEGIN:VEVENT
 UID:20261023-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261023T170000Z
 DTEND:20261023T180000Z
-SUMMARY:🍽️ Soup + Fish
-DESCRIPTION:🍽️ Soup + Fish\nToday's lunch: 🧑‍🍳 Cauliflower gratin + turke
- y roulade
+SUMMARY:🍽️ Fish + Pasta
+DESCRIPTION:🍽️ Fish + Pasta\nToday's lunch: 🍽️ Cauliflower gratin + turke
+ y roast
 END:VEVENT
 BEGIN:VEVENT
 UID:20261026-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261026T180000Z
 DTEND:20261026T190000Z
-SUMMARY:🍽️ Soup + Fish
-DESCRIPTION:🍽️ Soup + Fish\nToday's lunch: 🧑‍🍳 Vegetables + omelette
+SUMMARY:🍽️ Fish + Rice
+DESCRIPTION:🍽️ Fish + Rice\nToday's lunch: 🍽️ Tricolor vegetables + omele
+ tte
 END:VEVENT
 BEGIN:VEVENT
 UID:20261027-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261027T180000Z
 DTEND:20261027T190000Z
-SUMMARY:🍽️ Rice + Fish
-DESCRIPTION:🍽️ Rice + Fish\nToday's lunch: 🧑‍🍳 Chickpeas + sausage
+SUMMARY:🍽️ Fish + Eggs
+DESCRIPTION:🍽️ Fish + Eggs\nToday's lunch: 🍽️ Chickpeas with spinach + sa
+ usage
 END:VEVENT
 BEGIN:VEVENT
 UID:20261028-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261028T180000Z
 DTEND:20261028T190000Z
-SUMMARY:🍽️ Pasta + Fish
-DESCRIPTION:🍽️ Pasta + Fish\nToday's lunch: 🧑‍🍳 Vegetable soup + roast ch
- icken
+SUMMARY:🍽️ Fish + Pasta
+DESCRIPTION:🍽️ Fish + Pasta\nToday's lunch: 🍽️ Vegetable soup + roast chi
+ cken
 END:VEVENT
 BEGIN:VEVENT
 UID:20261029-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261029T180000Z
 DTEND:20261029T190000Z
 SUMMARY:🍽️ Soup + Poultry
-DESCRIPTION:🍽️ Soup + Poultry\nToday's lunch: 🧑‍🍳 Three-delight rice + le
+DESCRIPTION:🍽️ Soup + Poultry\nToday's lunch: 🍽️ Three delights rice + le
  ntils
 END:VEVENT
 BEGIN:VEVENT
 UID:20261030-dinner@gaia-menu
-DTSTAMP:20261003T212452Z
+DTSTAMP:20261004T093805Z
 DTSTART:20261030T180000Z
 DTEND:20261030T190000Z
-SUMMARY:🍽️ Soup + Meat
-DESCRIPTION:🍽️ Soup + Meat\nToday's lunch: 🧑‍🍳 Tuna macaroni + hake
+SUMMARY:🍽️ Poultry + Legumes
+DESCRIPTION:🍽️ Poultry + Legumes\nToday's lunch: 🍽️ Tuna macaroni + hake
 END:VEVENT
 END:VCALENDAR
