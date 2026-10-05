@@ -10,7 +10,8 @@ Goal: each month, upsert the new month into the 4 public calendars in
 dir per month: `W=~/.hermes/gaia-menu-work/<YYYYMM>` (step 0 prints it
 as WORKDIR). Follow steps in order. Never hand-edit generated JSON.
 
-Only generated output (`public/`, `data/glossary.json`) goes to `main`.
+Only generated output (`public/`, `archive/`, `data/glossary.json`) goes
+to `main`.
 Any code/doc change belongs on a separate branch, never `main`.
 
 **Step 0 - what now?** (job runs on the 28th..5th)
@@ -176,15 +177,14 @@ one (see README.md for why the split matters).
 **Dinner pairing**: computed by script, not you. `apply_enrichment.py`
 picks one `base_groups` entry and one `protein_groups` entry per day,
 excluding anything in that day's own `lunch_groups` or the next school
-day's (so dinner never repeats what's already eaten within a day of
-it - a `lunch_only_groups` tag like `"Processed Meat"` also excludes its
-`LUNCH_ONLY_IMPLIES` counterpart, e.g. plain `"Meat"`). Among what's left
-it prefers whichever group is furthest below its weekly weight-adjusted
-target (`food_groups.WEIGHTS` - e.g. `"Oily Fish"` is weighted twice
-`"Meat"`, so it gets suggested roughly twice as often, not at the same
-rate), via state persisted in `data/dinner_rotation.json` (same pattern
-as the translation glossary - re-running for an already-assigned date
-returns the same pairing rather than reassigning).
+day's (a `lunch_only_groups` tag like `"Processed Meat"` also excludes
+its `LUNCH_ONLY_IMPLIES` counterpart, e.g. plain `"Meat"`). Among what's
+left it prefers whichever group is furthest below its weekly
+weight-adjusted target (`food_groups.WEIGHTS` - `"Oily Fish"` is
+weighted twice `"Meat"`, so it is suggested roughly twice as often).
+There is no rotation state file: the counts are derived by replaying
+`archive/*/enriched.json`, and re-running an already-archived date
+returns the same pairing rather than reassigning.
 
 **Then**, merge and validate:
 
@@ -198,8 +198,7 @@ Catalan base/protein words joined by " + ") to each day, plus an `en`
 block with the English items/dessert/title/dinner (same two emoji). The
 emoji, the dinner pairing, and the Catalan food-group words all come
 from the script - don't put them in response.json yourself. It also
-merges `new_translations` into `data/glossary.json` and updates
-`data/dinner_rotation.json`.
+merges `new_translations` into `data/glossary.json`.
 
 Fails with exit code 2 if a day is missing from your response, its
 `lunch_groups` is empty, or contains a value outside
@@ -261,8 +260,11 @@ python3 scripts/run_tests.py --update-golden
   (parsing only, not enrichment).
 - `data/glossary.json` - persistent Catalan→English phrase cache, grown
   by `apply_enrichment.py`.
-- `data/dinner_rotation.json` - persistent dinner-pairing usage counts,
-  grown by `apply_enrichment.py`.
+- `archive/<YYYYMM>/` - each published month's `menu.json`,
+  `response.json`, `enriched.json` and source PDF (git-lfs), written by
+  `publish_month.py`. The dinner rotation is derived from the
+  `dinner_food_groups` in these `enriched.json` files, so every
+  published month must also be archived.
 - `public/*.ics` - the 4 live, publicly-hosted calendars (see "Publish
   the 4 public calendars" above). Don't hand-edit; only `publish_ics.py`
   writes these.

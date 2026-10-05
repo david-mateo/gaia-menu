@@ -4,185 +4,170 @@ PRODID:-//gaia-menu//publish_ics//CA
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
 UID:20261001-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261001T170000Z
 DTEND:20261001T180000Z
 SUMMARY:🍽️ Sopa + Llegums
-DESCRIPTION:🍽️ Sopa + Llegums\nDinar d'avui: 🧑‍🍳 Amanida de patata + trui
- ta
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Amanida de patata + truita
 END:VEVENT
 BEGIN:VEVENT
 UID:20261002-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261002T170000Z
 DTEND:20261002T180000Z
 SUMMARY:🍽️ Verdures + Peix
-DESCRIPTION:🍽️ Verdures + Peix\nDinar d'avui: 🧑‍🍳 Macarrons + botifarra
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Macarrons + botifarra
 END:VEVENT
 BEGIN:VEVENT
 UID:20261005-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261005T170000Z
 DTEND:20261005T180000Z
 SUMMARY:🍽️ Pasta + Peix blau
-DESCRIPTION:🍽️ Pasta + Peix blau\nDinar d'avui: 🧑‍🍳 Crema de carbassó + e
- scalopa de gall dindi
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Crema de carbassó + escalopa de gall dindi
 END:VEVENT
 BEGIN:VEVENT
 UID:20261006-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261006T170000Z
 DTEND:20261006T180000Z
 SUMMARY:🍽️ Patata + Aviram
-DESCRIPTION:🍽️ Patata + Aviram\nDinar d'avui: 🧑‍🍳 Amanida de cigrons + ma
- ndonguilles
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Amanida de cigrons + mandonguilles
 END:VEVENT
 BEGIN:VEVENT
 UID:20261007-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261007T170000Z
 DTEND:20261007T180000Z
-SUMMARY:🍽️ Pa + Carn
-DESCRIPTION:🍽️ Pa + Carn\nDinar d'avui: 🧑‍🍳 Arròs + salmó
+SUMMARY:🍽️ Cereals + Carn
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Arròs + Salmó
 END:VEVENT
 BEGIN:VEVENT
 UID:20261008-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261008T170000Z
 DTEND:20261008T180000Z
 SUMMARY:🍽️ Arròs + Marisc
-DESCRIPTION:🍽️ Arròs + Marisc\nDinar d'avui: 🧑‍🍳 Verdures + llenties
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Verdures + llenties
 END:VEVENT
 BEGIN:VEVENT
 UID:20261009-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261009T170000Z
 DTEND:20261009T180000Z
-SUMMARY:🍽️ Cereals + Lactis
-DESCRIPTION:🍽️ Cereals + Lactis\nDinar d'avui: 🧑‍🍳 Fideus amb verdures + 
- truita
+SUMMARY:🍽️ Verdures + Lactis
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Fideus amb verdures + truita
 END:VEVENT
 BEGIN:VEVENT
 UID:20261013-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261013T170000Z
 DTEND:20261013T180000Z
-SUMMARY:🍽️ Verdures + Ou
-DESCRIPTION:🍽️ Verdures + Ou\nDinar d'avui: 🧑‍🍳 Crema de pastanaga + lluç
+SUMMARY:🍽️ Pasta + Ou
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Crema de pastanaga + lluç
 END:VEVENT
 BEGIN:VEVENT
 UID:20261014-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261014T170000Z
 DTEND:20261014T180000Z
 SUMMARY:🍽️ Sopa + Peix blau
-DESCRIPTION:🍽️ Sopa + Peix blau\nDinar d'avui: 🧑‍🍳 Amanida d'arròs + cigr
- ons
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Amanida d'arròs + cigrons
 END:VEVENT
 BEGIN:VEVENT
 UID:20261015-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261015T170000Z
 DTEND:20261015T180000Z
 SUMMARY:🍽️ Patata + Peix
-DESCRIPTION:🍽️ Patata + Peix\nDinar d'avui: 🧑‍🍳 Mongeta tendra + truita
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Mongeta tendra + truita
 END:VEVENT
 BEGIN:VEVENT
 UID:20261016-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261016T170000Z
 DTEND:20261016T180000Z
-SUMMARY:🍽️ Pa + Carn
-DESCRIPTION:🍽️ Pa + Carn\nDinar d'avui: 🧑‍🍳 Espaguetis amb verdures + pol
- lastre
+SUMMARY:🍽️ Arròs + Carn
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Espaguetis + pollastre
 END:VEVENT
 BEGIN:VEVENT
 UID:20261019-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261019T170000Z
 DTEND:20261019T180000Z
-SUMMARY:🍽️ Arròs + Aviram
-DESCRIPTION:🍽️ Arròs + Aviram\nDinar d'avui: 🧑‍🍳 Llenties amb quinoa + tr
- uita
+SUMMARY:🍽️ Verdures + Aviram
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Llenties amb quinoa + truita
 END:VEVENT
 BEGIN:VEVENT
 UID:20261020-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261020T170000Z
 DTEND:20261020T180000Z
 SUMMARY:🍽️ Cereals + Ou
-DESCRIPTION:🍽️ Cereals + Ou\nDinar d'avui: 🧑‍🍳 Amanida russa + macarrons
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Amanida russa + macarrons
 END:VEVENT
 BEGIN:VEVENT
 UID:20261021-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261021T170000Z
 DTEND:20261021T180000Z
-SUMMARY:🍽️ Pasta + Lactis
-DESCRIPTION:🍽️ Pasta + Lactis\nDinar d'avui: 🧑‍🍳 Mongetes blanques + poll
- astre
+SUMMARY:🍽️ Verdures + Lactis
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Mongetes blanques + pollastre
 END:VEVENT
 BEGIN:VEVENT
 UID:20261022-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261022T170000Z
 DTEND:20261022T180000Z
 SUMMARY:🍽️ Amanida + Llegums
-DESCRIPTION:🍽️ Amanida + Llegums\nDinar d'avui: 🧑‍🍳 Paella marinera + llu
- ç
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Paella marinera + lluç
 END:VEVENT
 BEGIN:VEVENT
 UID:20261023-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261023T170000Z
 DTEND:20261023T180000Z
 SUMMARY:🍽️ Amanida + Marisc
-DESCRIPTION:🍽️ Amanida + Marisc\nDinar d'avui: 🧑‍🍳 Coliflor gratinada + r
- ostit de gall dindi
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Coliflor gratinada + rotllo de gall dindi
 END:VEVENT
 BEGIN:VEVENT
 UID:20261026-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261026T180000Z
 DTEND:20261026T190000Z
-SUMMARY:🍽️ Sopa + Peix blau
-DESCRIPTION:🍽️ Sopa + Peix blau\nDinar d'avui: 🧑‍🍳 Tricolor de verdures +
-  truita
+SUMMARY:🍽️ Pasta + Peix blau
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Tricolor de verdures + truita
 END:VEVENT
 BEGIN:VEVENT
 UID:20261027-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261027T180000Z
 DTEND:20261027T190000Z
-SUMMARY:🍽️ Verdures + Ou
-DESCRIPTION:🍽️ Verdures + Ou\nDinar d'avui: 🧑‍🍳 Cigrons amb espinacs + bo
- tifarra
+SUMMARY:🍽️ Arròs + Ou
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Cigrons amb espinacs + botifarra
 END:VEVENT
 BEGIN:VEVENT
 UID:20261028-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261028T180000Z
 DTEND:20261028T190000Z
 SUMMARY:🍽️ Amanida + Peix blau
-DESCRIPTION:🍽️ Amanida + Peix blau\nDinar d'avui: 🧑‍🍳 Crema de verdures +
-  pollastre rostit
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Crema de verdures + pollastre rostit
 END:VEVENT
 BEGIN:VEVENT
 UID:20261029-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261029T180000Z
 DTEND:20261029T190000Z
-SUMMARY:🍽️ Verdures + Aviram
-DESCRIPTION:🍽️ Verdures + Aviram\nDinar d'avui: 🧑‍🍳 Arròs tres delícies +
-  llenties
+SUMMARY:🍽️ Sopa + Aviram
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Arròs tres delícies + llenties
 END:VEVENT
 BEGIN:VEVENT
 UID:20261030-dinner@gaia-menu
-DTSTAMP:20261004T145549Z
+DTSTAMP:20261005T060937Z
 DTSTART:20261030T180000Z
 DTEND:20261030T190000Z
 SUMMARY:🍽️ Patata + Llegums
-DESCRIPTION:🍽️ Patata + Llegums\nDinar d'avui: 🧑‍🍳 Macarrons amb tonyina 
- + lluç
+DESCRIPTION:Dinar d'avui: 🧑‍🍳 Macarrons amb tonyina + lluç
 END:VEVENT
 END:VCALENDAR

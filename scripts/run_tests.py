@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Regression runner for parse_menu.py against tests/fixtures/*.pdf.
+"""Test runner: golden-file checks for parse_menu.py against
+tests/fixtures/*.pdf, then the unit tests in tests/test_units.py.
 
 Usage:
-    python3 scripts/run_tests.py                 # check all fixtures
+    python3 scripts/run_tests.py                 # run everything
     python3 scripts/run_tests.py --update-golden  # accept current output as golden
 
 For each fixture: runs parse_menu(), checks structural invariants
@@ -22,6 +23,7 @@ import datetime
 import difflib
 import json
 import sys
+import unittest
 from pathlib import Path
 from typing import Any
 
@@ -133,7 +135,12 @@ def main() -> int:
     results = [run_one(p, args.update_golden) for p in pdfs]
     print()
     print(f"{sum(results)}/{len(results)} fixtures OK")
-    return 0 if all(results) else 1
+
+    print("\n=== unit tests ===")
+    suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"))
+    units_ok = unittest.TextTestRunner(verbosity=1).run(suite).wasSuccessful()
+
+    return 0 if all(results) and units_ok else 1
 
 
 if __name__ == "__main__":

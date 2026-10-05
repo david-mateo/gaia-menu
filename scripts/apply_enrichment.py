@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Merges an enrichment response into parse_menu.py's JSON, assigns each
-day's dinner pairing, and updates the translation glossary and the
-dinner-rotation state.
+day's dinner pairing, and updates the translation glossary.
 
 Usage: apply_enrichment.py <menu.json> <response.json> [-o enriched.json]
-       [--glossary data/glossary.json] [--rotation data/dinner_rotation.json]
+       [--glossary data/glossary.json] [--archive archive/]
 
 Expected response.json shape:
 {
@@ -17,7 +16,8 @@ Expected response.json shape:
 }
 
 Adds to each day in menu.json:
-  "lunch_food_groups": [...]  (= lunch_groups, kept for transparency)
+  "lunch_food_groups": [...]  (= lunch_groups)
+  "dinner_food_groups": {"base": "...", "protein": "..."}
   "title":  "🧑‍🍳 <ca_title>"
   "dinner": "🍽️ <Catalan base> + <Catalan protein>"
   "en": {"items": [...], "dessert": "...", "title": "🧑‍🍳 <en_title>",
@@ -25,6 +25,8 @@ Adds to each day in menu.json:
 
 The dinner pairing (base + protein) is not chosen by the model - it's
 computed here by dinner_rotation.assign() from each day's lunch_groups.
+"dinner_food_groups" records that pick in machine-readable form;
+dinner_rotation.derive_state() replays these from the archive.
 
 Raises EnrichmentError (exit code 2) if a day is missing from the
 response, 'lunch_groups' is empty, or contains a value outside
@@ -37,7 +39,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent))
-from dinner_rotation import DEFAULT_ROTATION, assign, load_state, save_state  # noqa: E402
+from dinner_rotation import DEFAULT_ARCHIVE, assign, derive_state  # noqa: E402
 from food_groups import FOOD_GROUPS_EN_TO_CA, LUNCH_ONLY_IMPLIES, LUNCH_TAGS_EN_TO_CA  # noqa: E402
 from prepare_enrichment import DEFAULT_GLOSSARY, load_glossary  # noqa: E402
 
@@ -79,6 +81,7 @@ def apply(menu: dict[str, Any], response: dict[str, Any], rotation: dict[str, An
         en_dinner = f"{base} + {protein}"
 
         day["lunch_food_groups"] = resp["lunch_groups"]
+        day["dinner_food_groups"] = {"base": base, "protein": protein}
         day["title"] = LUNCH_EMOJI + resp["ca_title"]
         day["dinner"] = DINNER_EMOJI + ca_dinner
         day["en"] = {
@@ -108,12 +111,13 @@ def main() -> int:
     ap.add_argument("response_json", type=Path)
     ap.add_argument("-o", "--output", type=Path, help="Write enriched JSON here (default: stdout)")
     ap.add_argument("--glossary", type=Path, default=DEFAULT_GLOSSARY)
-    ap.add_argument("--rotation", type=Path, default=DEFAULT_ROTATION)
+    ap.add_argument("--archive", type=Path, default=DEFAULT_ARCHIVE,
+                     help="Past months to derive the dinner rotation from")
     args = ap.parse_args()
 
     menu = json.loads(args.menu_json.read_text(encoding="utf-8"))
     response = json.loads(args.response_json.read_text(encoding="utf-8"))
-    rotation = load_state(args.rotation)
+    rotation = derive_state(args.archive)
 
     try:
         enriched = apply(menu, response, rotation)
@@ -123,7 +127,6 @@ def main() -> int:
 
     glossary = load_glossary(args.glossary)
     update_glossary(args.glossary, glossary, response.get("new_translations", {}))
-    save_state(args.rotation, rotation)
 
     out = json.dumps(enriched, ensure_ascii=False, indent=2)
     if args.output:

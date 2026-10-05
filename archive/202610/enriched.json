@@ -1,9 +1,6 @@
 {
-  "source": "202610-ESCOLA-GAIA_BASAL-ESCOLAR-MP.pdf",
-  "diet": "BASAL-ESCOLAR",
   "year": 2026,
   "month": 10,
-  "month_name": "Octubre",
   "days": [
     {
       "date": "2026-10-01",
@@ -17,8 +14,17 @@
       "allergens": null,
       "day_label_from_pdf": 1,
       "date_label_mismatch": false,
-      "title": "🍽️ Amanida de patata + truita",
-      "dinner": "🍽️ Sopa + Peix",
+      "lunch_food_groups": [
+        "Potato",
+        "Salad",
+        "Eggs"
+      ],
+      "dinner_food_groups": {
+        "base": "Soup",
+        "protein": "Legumes"
+      },
+      "title": "🧑‍🍳 Amanida de patata + truita",
+      "dinner": "🍽️ Sopa + Llegums",
       "en": {
         "items": [
           "Potato salad",
@@ -26,8 +32,8 @@
           "Lettuce and tomato"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Potato salad + omelette",
-        "dinner": "🍽️ Soup + Fish"
+        "title": "🧑‍🍳 Potato salad + omelette",
+        "dinner": "🍽️ Soup + Legumes"
       }
     },
     {
@@ -42,16 +48,24 @@
       "allergens": null,
       "day_label_from_pdf": 2,
       "date_label_mismatch": false,
-      "title": "🍽️ Macarrons + botifarra",
-      "dinner": "🍽️ Peix + Ou",
+      "lunch_food_groups": [
+        "Pasta",
+        "Processed Meat"
+      ],
+      "dinner_food_groups": {
+        "base": "Vegetables",
+        "protein": "Fish"
+      },
+      "title": "🧑‍🍳 Macarrons + botifarra",
+      "dinner": "🍽️ Verdures + Peix",
       "en": {
         "items": [
-          "Organic whole-wheat macaroni with vegetable carbonara",
-          "Pork sausage with samfaina"
+          "Organic wholegrain macaroni with vegetable carbonara",
+          "Pork sausage with samfaina (vegetable stew)"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Macaroni + sausage",
-        "dinner": "🍽️ Fish + Eggs"
+        "title": "🧑‍🍳 Macaroni + sausage",
+        "dinner": "🍽️ Vegetables + Fish"
       }
     },
     {
@@ -66,17 +80,26 @@
       "allergens": null,
       "day_label_from_pdf": 5,
       "date_label_mismatch": false,
-      "title": "🍽️ Crema de carbassó + escalopa de gall dindi",
-      "dinner": "🍽️ Peix + Arròs",
+      "lunch_food_groups": [
+        "Soup",
+        "Poultry",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Pasta",
+        "protein": "Oily Fish"
+      },
+      "title": "🧑‍🍳 Crema de carbassó + escalopa de gall dindi",
+      "dinner": "🍽️ Pasta + Peix blau",
       "en": {
         "items": [
-          "Zucchini cream soup",
-          "Turkey cordon bleu cutlet",
+          "Pumpkin cream soup",
+          "Turkey cordon bleu escalope",
           "Lettuce and corn"
         ],
         "dessert": "Plain yogurt",
-        "title": "🍽️ Zucchini soup + turkey cutlet",
-        "dinner": "🍽️ Fish + Rice"
+        "title": "🧑‍🍳 Pumpkin soup + turkey escalope",
+        "dinner": "🍽️ Pasta + Oily Fish"
       }
     },
     {
@@ -92,16 +115,25 @@
       "allergens": null,
       "day_label_from_pdf": 6,
       "date_label_mismatch": false,
-      "title": "🍽️ Amanida de cigrons + mandonguilles",
-      "dinner": "🍽️ Sopa + Ou",
+      "lunch_food_groups": [
+        "Legumes",
+        "Meat",
+        "Vegetables"
+      ],
+      "dinner_food_groups": {
+        "base": "Potato",
+        "protein": "Poultry"
+      },
+      "title": "🧑‍🍳 Amanida de cigrons + mandonguilles",
+      "dinner": "🍽️ Patata + Aviram",
       "en": {
         "items": [
-          "Chickpea salad (carrot, corn and tomato)",
-          "Mixed meatballs with garden vegetables (green beans, carrot, pea, potato)"
+          "Chickpea salad (carrot, corn, and tomato)",
+          "Mixed meatballs jardinière style (green beans, carrot, peas, potato)"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Chickpea salad + meatballs",
-        "dinner": "🍽️ Soup + Eggs"
+        "title": "🧑‍🍳 Chickpea salad + meatballs",
+        "dinner": "🍽️ Potato + Poultry"
       }
     },
     {
@@ -116,17 +148,26 @@
       "allergens": null,
       "day_label_from_pdf": 7,
       "date_label_mismatch": false,
-      "title": "🍽️ Arròs + salmó",
-      "dinner": "🍽️ Aviram + Pasta",
+      "lunch_food_groups": [
+        "Rice",
+        "Oily Fish",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Grains",
+        "protein": "Meat"
+      },
+      "title": "🧑‍🍳 Arròs + Salmó",
+      "dinner": "🍽️ Cereals + Carn",
       "en": {
         "items": [
-          "Brown rice with tomato sauce",
+          "Wholegrain rice with tomato sauce",
           "Baked salmon with dill",
           "Lettuce and olives"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Rice + salmon",
-        "dinner": "🍽️ Poultry + Pasta"
+        "title": "🧑‍🍳 Rice + salmon",
+        "dinner": "🍽️ Grains + Meat"
       }
     },
     {
@@ -140,16 +181,25 @@
       "allergens": null,
       "day_label_from_pdf": 8,
       "date_label_mismatch": false,
-      "title": "🍽️ Verdures + llenties",
-      "dinner": "🍽️ Peix + Arròs",
+      "lunch_food_groups": [
+        "Vegetables",
+        "Potato",
+        "Legumes"
+      ],
+      "dinner_food_groups": {
+        "base": "Rice",
+        "protein": "Seafood"
+      },
+      "title": "🧑‍🍳 Verdures + llenties",
+      "dinner": "🍽️ Arròs + Marisc",
       "en": {
         "items": [
           "Broccoli, potato and carrot",
-          "Stewed lentils with vegetables"
+          "Vegetable lentil stew"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Vegetables + lentils",
-        "dinner": "🍽️ Fish + Rice"
+        "title": "🧑‍🍳 Vegetables + lentils",
+        "dinner": "🍽️ Rice + Seafood"
       }
     },
     {
@@ -164,8 +214,17 @@
       "allergens": null,
       "day_label_from_pdf": 9,
       "date_label_mismatch": false,
-      "title": "🍽️ Fideus amb verdures + truita",
-      "dinner": "🍽️ Aviram + Llegums",
+      "lunch_food_groups": [
+        "Pasta",
+        "Eggs",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Vegetables",
+        "protein": "Dairy"
+      },
+      "title": "🧑‍🍳 Fideus amb verdures + truita",
+      "dinner": "🍽️ Verdures + Lactis",
       "en": {
         "items": [
           "Casserole noodles with vegetables",
@@ -173,8 +232,8 @@
           "Lettuce and tomato"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Noodles with vegetables + omelette",
-        "dinner": "🍽️ Poultry + Legumes"
+        "title": "🧑‍🍳 Noodles + omelette",
+        "dinner": "🍽️ Vegetables + Dairy"
       }
     },
     {
@@ -189,17 +248,26 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Crema de pastanaga + lluç",
-      "dinner": "🍽️ Ou + Pasta",
+      "lunch_food_groups": [
+        "Soup",
+        "Fish",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Pasta",
+        "protein": "Eggs"
+      },
+      "title": "🧑‍🍳 Crema de pastanaga + lluç",
+      "dinner": "🍽️ Pasta + Ou",
       "en": {
         "items": [
           "Carrot cream soup",
-          "Battered hake rings",
-          "Lettuce and soybean sprouts"
+          "Hake Roman-style",
+          "Lettuce and soy sprouts"
         ],
         "dessert": "Plain yogurt",
-        "title": "🍽️ Carrot soup + hake",
-        "dinner": "🍽️ Eggs + Pasta"
+        "title": "🧑‍🍳 Carrot soup + hake",
+        "dinner": "🍽️ Pasta + Eggs"
       }
     },
     {
@@ -214,16 +282,25 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Amanida d'arròs + cigrons",
-      "dinner": "🍽️ Peix + Aviram",
+      "lunch_food_groups": [
+        "Rice",
+        "Legumes",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Soup",
+        "protein": "Oily Fish"
+      },
+      "title": "🧑‍🍳 Amanida d'arròs + cigrons",
+      "dinner": "🍽️ Sopa + Peix blau",
       "en": {
         "items": [
-          "Rice salad (red pepper, corn and olives)",
-          "Stewed chickpeas with vegetables"
+          "Rice salad (red pepper, corn, and olives)",
+          "Chickpea stew with vegetables"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Rice salad + chickpeas",
-        "dinner": "🍽️ Fish + Poultry"
+        "title": "🧑‍🍳 Rice salad + chickpeas",
+        "dinner": "🍽️ Soup + Oily Fish"
       }
     },
     {
@@ -238,8 +315,17 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Mongeta tendra + truita",
-      "dinner": "🍽️ Peix + Llegums",
+      "lunch_food_groups": [
+        "Legumes",
+        "Eggs",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Potato",
+        "protein": "Fish"
+      },
+      "title": "🧑‍🍳 Mongeta tendra + truita",
+      "dinner": "🍽️ Patata + Peix",
       "en": {
         "items": [
           "Green beans with potato",
@@ -247,8 +333,8 @@
           "Lettuce and tomato"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Green beans + omelette",
-        "dinner": "🍽️ Fish + Legumes"
+        "title": "🧑‍🍳 Green beans + omelette",
+        "dinner": "🍽️ Potato + Fish"
       }
     },
     {
@@ -264,17 +350,26 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Espaguetis amb verdures + pollastre",
-      "dinner": "🍽️ Peix + Sopa",
+      "lunch_food_groups": [
+        "Pasta",
+        "Poultry",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Rice",
+        "protein": "Meat"
+      },
+      "title": "🧑‍🍳 Espaguetis + pollastre",
+      "dinner": "🍽️ Arròs + Carn",
       "en": {
         "items": [
-          "Organic whole-wheat spaghetti with vegetables",
-          "Chicken chilindrón",
+          "Organic wholegrain spaghetti with vegetables",
+          "Chicken xilindrón style",
           "Lettuce and corn"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Spaghetti with vegetables + chicken",
-        "dinner": "🍽️ Fish + Soup"
+        "title": "🧑‍🍳 Spaghetti + chicken",
+        "dinner": "🍽️ Rice + Meat"
       }
     },
     {
@@ -289,17 +384,26 @@
       "allergens": null,
       "day_label_from_pdf": 19,
       "date_label_mismatch": false,
-      "title": "🍽️ Llenties amb quinoa + truita",
-      "dinner": "🍽️ Peix + Carn",
+      "lunch_food_groups": [
+        "Legumes",
+        "Grains",
+        "Eggs"
+      ],
+      "dinner_food_groups": {
+        "base": "Vegetables",
+        "protein": "Poultry"
+      },
+      "title": "🧑‍🍳 Llenties amb quinoa + truita",
+      "dinner": "🍽️ Verdures + Aviram",
       "en": {
         "items": [
-          "Stewed lentils with quinoa",
+          "Lentil stew with quinoa",
           "Potato and spinach omelette",
           "Lettuce and olives"
         ],
         "dessert": "Plain yogurt",
-        "title": "🍽️ Lentils with quinoa + omelette",
-        "dinner": "🍽️ Fish + Meat"
+        "title": "🧑‍🍳 Lentils with quinoa + omelette",
+        "dinner": "🍽️ Vegetables + Poultry"
       }
     },
     {
@@ -314,16 +418,25 @@
       "allergens": null,
       "day_label_from_pdf": 20,
       "date_label_mismatch": false,
-      "title": "🍽️ Amanida russa + macarrons",
-      "dinner": "🍽️ Peix + Ou",
+      "lunch_food_groups": [
+        "Potato",
+        "Salad",
+        "Pasta"
+      ],
+      "dinner_food_groups": {
+        "base": "Grains",
+        "protein": "Eggs"
+      },
+      "title": "🧑‍🍳 Amanida russa + macarrons",
+      "dinner": "🍽️ Cereals + Ou",
       "en": {
         "items": [
           "Russian salad",
-          "Organic whole-wheat macaroni with vegetable bolognese"
+          "Organic wholegrain macaroni with vegetable bolognese"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Russian salad + macaroni",
-        "dinner": "🍽️ Fish + Eggs"
+        "title": "🧑‍🍳 Russian salad + macaroni",
+        "dinner": "🍽️ Grains + Eggs"
       }
     },
     {
@@ -339,17 +452,26 @@
       "allergens": null,
       "day_label_from_pdf": 21,
       "date_label_mismatch": false,
-      "title": "🍽️ Mongetes blanques + pollastre",
-      "dinner": "🍽️ Ou + Pasta",
+      "lunch_food_groups": [
+        "Legumes",
+        "Poultry",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Vegetables",
+        "protein": "Dairy"
+      },
+      "title": "🧑‍🍳 Mongetes blanques + pollastre",
+      "dinner": "🍽️ Verdures + Lactis",
       "en": {
         "items": [
-          "Stewed white beans with vegetables",
+          "White bean stew with vegetables",
           "Lemon chicken",
           "Lettuce and asparagus"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ White beans + chicken",
-        "dinner": "🍽️ Eggs + Pasta"
+        "title": "🧑‍🍳 White beans + chicken",
+        "dinner": "🍽️ Vegetables + Dairy"
       }
     },
     {
@@ -364,8 +486,17 @@
       "allergens": null,
       "day_label_from_pdf": 22,
       "date_label_mismatch": false,
-      "title": "🍽️ Paella marinera + lluç",
-      "dinner": "🍽️ Carn + Llegums",
+      "lunch_food_groups": [
+        "Rice",
+        "Seafood",
+        "Fish"
+      ],
+      "dinner_food_groups": {
+        "base": "Salad",
+        "protein": "Legumes"
+      },
+      "title": "🧑‍🍳 Paella marinera + lluç",
+      "dinner": "🍽️ Amanida + Llegums",
       "en": {
         "items": [
           "Seafood paella",
@@ -373,8 +504,8 @@
           "Lettuce and carrot"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Seafood paella + hake",
-        "dinner": "🍽️ Meat + Legumes"
+        "title": "🧑‍🍳 Seafood paella + hake",
+        "dinner": "🍽️ Salad + Legumes"
       }
     },
     {
@@ -389,16 +520,25 @@
       "allergens": null,
       "day_label_from_pdf": 23,
       "date_label_mismatch": false,
-      "title": "🍽️ Coliflor gratinada + rostit de gall dindi",
-      "dinner": "🍽️ Peix + Pasta",
+      "lunch_food_groups": [
+        "Vegetables",
+        "Dairy",
+        "Poultry"
+      ],
+      "dinner_food_groups": {
+        "base": "Salad",
+        "protein": "Seafood"
+      },
+      "title": "🧑‍🍳 Coliflor gratinada + rotllo de gall dindi",
+      "dinner": "🍽️ Amanida + Marisc",
       "en": {
         "items": [
           "Cauliflower gratin with béchamel",
-          "Turkey roast with garden vegetables (green beans, carrot, pea, potato)"
+          "Turkey roulade jardinière style (green beans, carrot, peas, potato)"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Cauliflower gratin + turkey roast",
-        "dinner": "🍽️ Fish + Pasta"
+        "title": "🧑‍🍳 Cauliflower gratin + turkey roulade",
+        "dinner": "🍽️ Salad + Seafood"
       }
     },
     {
@@ -414,17 +554,26 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Tricolor de verdures + truita",
-      "dinner": "🍽️ Peix + Arròs",
+      "lunch_food_groups": [
+        "Vegetables",
+        "Poultry",
+        "Eggs"
+      ],
+      "dinner_food_groups": {
+        "base": "Pasta",
+        "protein": "Oily Fish"
+      },
+      "title": "🧑‍🍳 Tricolor de verdures + truita",
+      "dinner": "🍽️ Pasta + Peix blau",
       "en": {
         "items": [
-          "Tricolor vegetables with diced turkey",
-          "Potato and zucchini omelette",
+          "Three-colour vegetables with diced turkey",
+          "Potato and courgette omelette",
           "Lettuce and tomato"
         ],
         "dessert": "Plain yogurt",
-        "title": "🍽️ Tricolor vegetables + omelette",
-        "dinner": "🍽️ Fish + Rice"
+        "title": "🧑‍🍳 Vegetables + omelette",
+        "dinner": "🍽️ Pasta + Oily Fish"
       }
     },
     {
@@ -439,8 +588,17 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Cigrons amb espinacs + botifarra",
-      "dinner": "🍽️ Peix + Ou",
+      "lunch_food_groups": [
+        "Legumes",
+        "Processed Meat",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Rice",
+        "protein": "Eggs"
+      },
+      "title": "🧑‍🍳 Cigrons amb espinacs + botifarra",
+      "dinner": "🍽️ Arròs + Ou",
       "en": {
         "items": [
           "Chickpeas with spinach",
@@ -448,8 +606,8 @@
           "Lettuce and carrot"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Chickpeas with spinach + sausage",
-        "dinner": "🍽️ Fish + Eggs"
+        "title": "🧑‍🍳 Chickpeas + sausage",
+        "dinner": "🍽️ Rice + Eggs"
       }
     },
     {
@@ -465,17 +623,26 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Crema de verdures + pollastre rostit",
-      "dinner": "🍽️ Peix + Pasta",
+      "lunch_food_groups": [
+        "Soup",
+        "Poultry",
+        "Potato"
+      ],
+      "dinner_food_groups": {
+        "base": "Salad",
+        "protein": "Oily Fish"
+      },
+      "title": "🧑‍🍳 Crema de verdures + pollastre rostit",
+      "dinner": "🍽️ Amanida + Peix blau",
       "en": {
         "items": [
           "Vegetable cream soup",
-          "Roast chicken with aromatic herbs",
+          "Oven-roasted chicken with aromatic herbs",
           "Potato chips"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Vegetable soup + roast chicken",
-        "dinner": "🍽️ Fish + Pasta"
+        "title": "🧑‍🍳 Vegetable soup + roast chicken",
+        "dinner": "🍽️ Salad + Oily Fish"
       }
     },
     {
@@ -490,15 +657,25 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Arròs tres delícies + llenties",
+      "lunch_food_groups": [
+        "Rice",
+        "Eggs",
+        "Processed Meat",
+        "Legumes"
+      ],
+      "dinner_food_groups": {
+        "base": "Soup",
+        "protein": "Poultry"
+      },
+      "title": "🧑‍🍳 Arròs tres delícies + llenties",
       "dinner": "🍽️ Sopa + Aviram",
       "en": {
         "items": [
-          "Three delights rice (peas, carrot, omelette and ham)",
-          "Stewed lentils with vegetables"
+          "Three-delight rice (peas, carrot, egg and cooked ham)",
+          "Vegetable lentil stew"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Three delights rice + lentils",
+        "title": "🧑‍🍳 Three-delight rice + lentils",
         "dinner": "🍽️ Soup + Poultry"
       }
     },
@@ -515,17 +692,27 @@
       "allergens": null,
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
-      "title": "🍽️ Macarrons amb tonyina + lluç",
-      "dinner": "🍽️ Aviram + Llegums",
+      "lunch_food_groups": [
+        "Pasta",
+        "Fish",
+        "Oily Fish",
+        "Salad"
+      ],
+      "dinner_food_groups": {
+        "base": "Potato",
+        "protein": "Legumes"
+      },
+      "title": "🧑‍🍳 Macarrons amb tonyina + lluç",
+      "dinner": "🍽️ Patata + Llegums",
       "en": {
         "items": [
-          "Organic whole-wheat macaroni with sauce of tomato and tuna",
+          "Organic wholegrain macaroni with sauce of tomato and tuna",
           "Breaded hake",
           "Lettuce and olives"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🍽️ Tuna macaroni + hake",
-        "dinner": "🍽️ Poultry + Legumes"
+        "title": "🧑‍🍳 Tuna macaroni + hake",
+        "dinner": "🍽️ Potato + Legumes"
       }
     }
   ]

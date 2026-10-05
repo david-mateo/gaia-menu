@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
-"""Publishes one month: upserts enriched.json into public/*.ics, commits
-public/ + data/glossary.json to main as "Hermes (gaia-menu)", pushes, and
-writes <workdir>/published.done.
+"""Publishes one month: upserts enriched.json into public/*.ics, copies
+the month's work files into archive/<YYYYMM>/, commits public/ +
+archive/ + data/glossary.json to main as "Hermes (gaia-menu)", pushes,
+and writes <workdir>/published.done.
 
 Usage: publish_month.py <workdir> <YYYYMM>
+
+dinner_rotation.py derives the pairing rotation by replaying
+archive/*/enriched.json, so every published month must also be archived.
 
 Refuses to run unless the repo is on branch main. Exit 0 = pushed (or
 nothing new to push), 1 = problem (message on stderr).
 """
+import shutil
 import subprocess, sys
 from pathlib import Path
+
+ARCHIVED = ("menu.json", "response.json", "enriched.json")
 
 REPO = Path(__file__).resolve().parent.parent
 IDENT = ["-c", "user.name=Hermes (gaia-menu)", "-c", "user.email=hermes-gaia-menu@users.noreply.github.com"]
@@ -36,7 +43,16 @@ def main() -> int:
     if r.returncode:
         print(r.stderr, file=sys.stderr); return 1
     print(r.stderr.strip())
-    git("add", "public/", "data/glossary.json")
+
+    archive = REPO / "archive" / month
+    archive.mkdir(parents=True, exist_ok=True)
+    for name in ARCHIVED:
+        if (work / name).exists():
+            shutil.copy2(work / name, archive / name)
+    for pdf in work.glob("*.pdf"):
+        shutil.copy2(pdf, archive / pdf.name)
+
+    git("add", "public/", "archive/", "data/glossary.json")
     if git("diff", "--cached", "--quiet", check=False).returncode == 0:
         print("nothing changed; already up to date")
     else:

@@ -325,8 +325,6 @@ def build_days(
     week_index_for_row: list[int],
     year: int,
     month: int,
-    diet: str,
-    source: str,
 ) -> MenuDoc:
     """Returns one entry per school day with menu content. Closure days
     and empty cells are omitted."""
@@ -355,17 +353,7 @@ def build_days(
                 "day_label_from_pdf": cell.get("day_label"),
                 "date_label_mismatch": mismatch,
             })
-    return {
-        "source": source, "diet": diet,
-        "year": year, "month": month,
-        "month_name": [k for k, v in CATALAN_MONTHS.items() if v == month][0].title(),
-        "days": days,
-    }
-
-
-def guess_diet(pdf_path: Path) -> str:
-    m = re.search(r"_([A-Z\-]+?)(?:-MP)?\.pdf$", pdf_path.name, re.IGNORECASE)
-    return m.group(1).upper() if m else "UNKNOWN"
+    return {"year": year, "month": month, "days": days}
 
 
 def parse_menu(pdf_path: Path) -> MenuDoc:
@@ -379,8 +367,7 @@ def parse_menu(pdf_path: Path) -> MenuDoc:
     rows = group_rows(lines)
     parsed_rows = parse_rows_into_cells(rows)
     weeks, week_index_for_row = assign_calendar_weeks(parsed_rows, year, month)
-    diet = guess_diet(pdf_path)
-    return build_days(parsed_rows, weeks, week_index_for_row, year, month, diet, pdf_path.name)
+    return build_days(parsed_rows, weeks, week_index_for_row, year, month)
 
 
 def main() -> int:

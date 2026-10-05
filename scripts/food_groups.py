@@ -4,13 +4,13 @@ dinner-pairing output.
 
 BASE_GROUPS, PROTEIN_GROUPS - suggestable for dinner (one of each per
 day, see dinner_rotation.py); also valid lunch_groups tags.
-LUNCH_ONLY_GROUPS - valid lunch_groups tags, never suggested for dinner
-(processed meat is a cap to respect, not something to recommend more of).
+LUNCH_ONLY_GROUPS - valid lunch_groups tags, never suggested for dinner.
+LUNCH_ONLY_IMPLIES maps each to the suggestable group it also excludes.
 
-WEIGHTS give each suggestable group's relative weekly dinner target (see
-README.md "Why these dinner-pairing frequencies" for sourcing);
+WEIGHTS give each suggestable group's relative weekly dinner target;
 dinner_rotation.py picks whichever eligible group is furthest below its
-weight-adjusted share of use, not just least-recently-used.
+weight-adjusted share of use. See README.md "Why these dinner-pairing
+frequencies" for sourcing.
 """
 
 BASE_GROUPS_EN_TO_CA: dict[str, str] = {
@@ -20,12 +20,11 @@ BASE_GROUPS_EN_TO_CA: dict[str, str] = {
     "Pasta": "Pasta",
     "Rice": "Arròs",
     "Potato": "Patata",
-    "Bread": "Pa",
-    "Cereal": "Cereals",
+    "Grains": "Cereals",
 }
 BASE_WEIGHTS: dict[str, int] = {
     "Soup": 1, "Salad": 2, "Vegetables": 2, "Pasta": 1,
-    "Rice": 1, "Potato": 1, "Bread": 1, "Cereal": 1,
+    "Rice": 1, "Potato": 1, "Grains": 1,
 }
 
 PROTEIN_GROUPS_EN_TO_CA: dict[str, str] = {

@@ -34,9 +34,8 @@ sufficient:
   1-3 values from a fixed base/protein vocabulary (`food_groups.py`) -
   classification, not creativity. The actual pairing is picked
   afterward by a deterministic weighted rotation (`dinner_rotation.py`),
-  persisted in `data/dinner_rotation.json` (same pattern as the
-  glossary), excluding whatever's already in that day's or the next
-  day's lunch tags. This removes a judgment call from the model and
+  excluding whatever's already in that day's or the next day's lunch
+  tags. This removes a judgment call from the model and
   guarantees variety: left to pure LLM choice, it kept converging on
   the same "safe" pairing. The weights themselves (e.g. oily fish twice
   as often as red meat) come from pediatric Mediterranean-diet guidance
@@ -96,13 +95,33 @@ that day's dinner pick (`LUNCH_ONLY_IMPLIES`), since they're the same
 nutritional family.
 
 Vegetables (`Vegetables`/`Salad`, weight 2) outweigh the other
-`base_groups` (Rice, Pasta, Potato, Bread, Cereal, Soup, weight 1 each)
+`base_groups` (Rice, Pasta, Potato, Grains, Soup, weight 1 each)
 given the "every meal" guidance, rather than being rotated as just one
 option among eight.
 
 `dinner_rotation.py` picks whichever eligible group has the lowest
-`count / weight` ratio - so a weight-2 group gets suggested roughly
-twice as often as a weight-1 group, not at the same rate.
+`count / weight` ratio, so a weight-2 group is suggested roughly twice
+as often as a weight-1 group.
+
+## The archive
+
+`publish_month.py` writes `archive/<YYYYMM>/` for every month it
+publishes: `menu.json`, the `response.json` the model produced,
+`enriched.json`, and the source PDF (via git-lfs).
+
+It isn't only a record. The dinner rotation keeps no state file -
+`dinner_rotation.derive_state()` replays the `dinner_food_groups` in
+every archived `enriched.json` to rebuild its usage counts, so a month
+published but not archived is invisible to every later month's frequency
+balancing.
+
+That buys two things: rotation history can't drift from what was
+actually published, because it *is* what was published; and a category
+retired from `food_groups.py` is skipped on replay rather than crashing,
+so the vocabulary can change without a migration step.
+
+`response.json` is also the one artefact not reproducible from the PDF,
+being model judgment.
 
 ## Setup
 
@@ -154,7 +173,8 @@ follow it, not just Claude.
 
 ```
 scripts/   all tooling (see SKILL.md for what each does)
-data/      glossary.json - translation cache; dinner_rotation.json - pairing state
-tests/     fixtures (sample PDFs) + golden (expected JSON)
+data/      glossary.json - the Catalan->English translation cache
+archive/   one dir per published month (see "The archive" below)
+tests/     fixtures (sample PDFs) + golden (expected JSON) + unit tests
 public/    the 4 live, published calendars (generated, not hand-edited)
 ```

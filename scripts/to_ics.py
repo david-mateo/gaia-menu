@@ -66,10 +66,7 @@ def build_event(day: dict[str, Any], dtstamp: str, lang: str, kind: str = "lunch
         title = en.get("title") if lang == "en" else day.get("title")
         context_label = "Today's lunch" if lang == "en" else "Dinar d'avui"
         summary = dinner
-        desc_lines = [dinner]
-        if title:
-            desc_lines.append(f"{context_label}: {title}")
-        description = "\n".join(desc_lines)
+        description = f"{context_label}: {title}" if title else ""
     else:
         if lang == "en":
             if "en" not in day:

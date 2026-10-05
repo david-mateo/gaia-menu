@@ -41,7 +41,9 @@ def parse_existing_events(path: Path) -> dict[str, str]:
     for block in VEVENT_RE.findall(path.read_text(encoding="utf-8")):
         m = UID_RE.search(block)
         if m:
-            events[m.group(1).strip()] = block.rstrip("\r\n")
+            # read_text() translated CRLF to LF; restore it (RFC 5545
+            # requires CRLF).
+            events[m.group(1).strip()] = "\r\n".join(block.rstrip("\r\n").splitlines())
     return events
 
 
