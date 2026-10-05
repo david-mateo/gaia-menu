@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Fetches this month's Gaia BASAL menu PDF, parses it, and prints JSON
-(optionally also writes .ics).
+"""Fetch this month's Gaia BASAL menu PDF, parse it, and print the JSON.
+Writes an .ics alongside it on request.
 
 Usage:
     python3 scripts/menu.py                        # JSON to stdout
@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from fetch_menu import discover_basal_url, fetch  # noqa: E402
 from parse_menu import parse_menu, MenuParseError  # noqa: E402
-from to_ics import build_ics  # noqa: E402
+from to_ics import build_ics, utc_now_stamp  # noqa: E402
 
 
 def main() -> int:
@@ -45,21 +45,19 @@ def main() -> int:
             return 1
 
     try:
-        data = parse_menu(pdf_path)
+        menu = parse_menu(pdf_path)
     except MenuParseError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 2
 
-    out_json = json.dumps(data, ensure_ascii=False, indent=2)
+    out_json = json.dumps(menu.to_dict(), ensure_ascii=False, indent=2)
     if args.output:
         args.output.write_text(out_json, encoding="utf-8")
     else:
         print(out_json)
 
     if args.ics:
-        import datetime
-        dtstamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-        args.ics.write_text(build_ics(data, dtstamp), encoding="utf-8", newline="")
+        args.ics.write_text(build_ics(menu, utc_now_stamp()), encoding="utf-8", newline="")
         print(f"Wrote {args.ics}", file=sys.stderr)
 
     return 0

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tells you what to do next in the monthly Gaia menu pipeline.
+"""Report which step of the monthly Gaia menu run comes next.
 
 Usage: pipeline_status.py [--today YYYY-MM-DD] [--month YYYYMM]
 

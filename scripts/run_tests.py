@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-"""Test runner: golden-file checks for parse_menu.py against
+"""Run every test. Golden-file checks for parse_menu.py over
 tests/fixtures/*.pdf, then the unit tests in tests/test_units.py.
 
 Usage:
     python3 scripts/run_tests.py                 # run everything
     python3 scripts/run_tests.py --update-golden  # accept current output as golden
 
-For each fixture: runs parse_menu(), checks structural invariants
-(weekday matches the date, no date_label_mismatch, no duplicate dates),
-then diffs the result against tests/golden/<stem>.json if present. A
-fixture with no golden file writes tests/golden/<stem>.proposed.json
-instead of failing.
+Each fixture runs through parse_menu(), then the structural invariants
+that hold for any month, then a diff against tests/golden/<stem>.json
+when one exists. A fixture with no golden file writes
+tests/golden/<stem>.proposed.json rather than failing.
 
 Adding a new month:
   1. cp <pdf> tests/fixtures/<YYYYMM>-BASAL.pdf
@@ -25,45 +24,45 @@ import json
 import sys
 import unittest
 from pathlib import Path
-from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent))
-from parse_menu import parse_menu, MenuParseError, CATALAN_WEEKDAYS  # noqa: E402
+from models import Menu  # noqa: E402
+from parse_menu import CATALAN_WEEKDAYS, MenuParseError, parse_menu  # noqa: E402
 
 ROOT = Path(__file__).parent.parent
 FIXTURES_DIR = ROOT / "tests" / "fixtures"
 GOLDEN_DIR = ROOT / "tests" / "golden"
 
 
-def check_structural_invariants(data: dict[str, Any]) -> list[str]:
+def check_structural_invariants(menu: Menu) -> list[str]:
+    """What must hold for any month, independent of a golden file."""
     problems: list[str] = []
-    if not data["days"]:
+    if not menu.days:
         problems.append("zero days parsed")
-    for day in data["days"]:
-        y, m, d = (int(x) for x in day["date"].split("-"))
-        if (y, m) != (data["year"], data["month"]):
-            problems.append(f"{day['date']}: year/month doesn't match document ({data['year']}/{data['month']})")
-        iso_weekday = datetime.date(y, m, d).isoweekday()  # 1=Monday
-        if iso_weekday > 5:
-            problems.append(f"{day['date']}: falls on a weekend (isoweekday={iso_weekday})")
-        elif CATALAN_WEEKDAYS[iso_weekday - 1] != day["weekday"]:
+    for day in menu.days:
+        where = day.date.isoformat()
+        if (day.date.year, day.date.month) != (menu.year, menu.month):
+            problems.append(f"{where}: outside the document's {menu.year}/{menu.month}")
+        weekday = day.date.isoweekday()  # 1 = Monday
+        if weekday > 5:
+            problems.append(f"{where}: falls on a weekend (isoweekday={weekday})")
+        elif CATALAN_WEEKDAYS[weekday - 1] != day.weekday:
             problems.append(
-                f"{day['date']}: weekday field '{day['weekday']}' != actual "
-                f"calendar weekday '{CATALAN_WEEKDAYS[iso_weekday - 1]}'"
+                f"{where}: weekday field '{day.weekday}' is not the calendar's "
+                f"'{CATALAN_WEEKDAYS[weekday - 1]}'"
             )
-        if day["date_label_mismatch"]:
-            problems.append(f"{day['date']}: date_label_mismatch is True "
-                             f"(PDF said DIA {day['day_label_from_pdf']})")
-        if not day["items"] and day["dessert"] is None:
-            problems.append(f"{day['date']}: has no menu content but wasn't filtered out")
-    dates = [day["date"] for day in data["days"]]
+        if day.date_label_mismatch:
+            problems.append(f"{where}: the PDF labelled this DIA {day.day_label_from_pdf}")
+        if not day.items and day.dessert is None:
+            problems.append(f"{where}: has no menu but was not filtered out")
+    dates = [day.date for day in menu.days]
     if len(dates) != len(set(dates)):
         problems.append("duplicate dates in output")
     return problems
 
 
-def dump(data: dict[str, Any]) -> str:
-    return json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+def dump(menu: Menu) -> str:
+    return json.dumps(menu.to_dict(), ensure_ascii=False, indent=2, sort_keys=True) + "\n"
 
 
 def run_one(pdf_path: Path, update_golden: bool) -> bool:
@@ -73,39 +72,39 @@ def run_one(pdf_path: Path, update_golden: bool) -> bool:
 
     print(f"=== {pdf_path.name} ===")
     try:
-        data = parse_menu(pdf_path)
+        menu = parse_menu(pdf_path)
     except MenuParseError as e:
         print(f"  FAIL: parser raised MenuParseError: {e}")
         return False
 
-    problems = check_structural_invariants(data)
+    problems = check_structural_invariants(menu)
     if problems:
         print(f"  FAIL: structural invariant violations:")
         for p in problems:
             print(f"    - {p}")
         return False
 
-    actual = dump(data)
+    actual = dump(menu)
 
     if update_golden:
         GOLDEN_DIR.mkdir(parents=True, exist_ok=True)
         golden_path.write_text(actual, encoding="utf-8")
         proposed_path.unlink(missing_ok=True)
-        print(f"  UPDATED golden ({len(data['days'])} days)")
+        print(f"  UPDATED golden ({len(menu.days)} days)")
         return True
 
     if not golden_path.exists():
         GOLDEN_DIR.mkdir(parents=True, exist_ok=True)
         proposed_path.write_text(actual, encoding="utf-8")
         print(f"  NEW: no golden file yet. Structural checks passed "
-              f"({len(data['days'])} days). Proposed output written to:")
+              f"({len(menu.days)} days). Proposed output written to:")
         print(f"    {proposed_path.relative_to(ROOT)}")
         print(f"  Review it against the PDF, then run with --update-golden to accept.")
         return True
 
     expected = golden_path.read_text(encoding="utf-8")
     if actual == expected:
-        print(f"  PASS ({len(data['days'])} days)")
+        print(f"  PASS ({len(menu.days)} days)")
         return True
 
     print(f"  FAIL: output differs from {golden_path.relative_to(ROOT)}:")

@@ -3,38 +3,39 @@
 
 Usage: parse_menu.py <pdf> [-o output.json]
 
-Reconstructs the 5-column (Dilluns..Divendres) weekly table from
-`pdftotext -bbox` word coordinates:
+Rebuilds the 5-column (Dilluns..Divendres) weekly table from
+`pdftotext -bbox` word coordinates, in four stages: Word, Line, Cell,
+MenuDay.
 
   1. Column x-boundaries come from clustering the x-position of every
      "DIA" word in the document.
   2. Rows (weeks) are split on y-gaps larger than normal line spacing;
-     everything at/after the footer paragraph is excluded.
-  3. Calendar dates come from Python's `calendar` module (year/month read
-     from the title line), anchored to whichever row(s) carry a legible
-     "DIA N" label; other rows are consecutive weeks from there.
-  4. Each cell is: optional "DIA N" label, optional trailing allergen-code
-     line "(1, 2, 7)", then either one ALL-CAPS closure line, or course
-     lines where "-" means no item and the last line is dessert.
-  5. Closure days and cells with no menu content are dropped from the
-     output.
+     everything at or after the footer paragraph is excluded.
+  3. Calendar dates come from Python's `calendar` module (year and month
+     read from the title line), anchored to whichever row carries a
+     legible "DIA N" label. Other rows follow as consecutive weeks.
+  4. Each cell is an optional "DIA N" label, an optional trailing
+     allergen-code line "(1, 2, 7)", then either one ALL-CAPS closure
+     line, or course lines where "-" means no item and the last line is
+     dessert.
+
+Closure days and cells with no menu are dropped from the output.
 
 Raises MenuParseError (exit code 2) when a structural assumption fails,
-with a message identifying what didn't match.
+with a message naming what did not match.
 """
 import argparse
 import calendar
+import datetime
 import json
 import re
 import subprocess
 import sys
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 
-Word = dict[str, Any]       # {"x0", "y0", "x1", "y1", "text"}
-Line = dict[str, Any]       # {"y", "col", "text"}
-Cell = dict[str, Any]       # {"holiday", "holiday_label", "items", "dessert", "allergens"}
-MenuDoc = dict[str, Any]    # parse_menu()'s return shape (see module docstring)
+sys.path.insert(0, str(Path(__file__).parent))
+from models import Menu, MenuDay  # noqa: E402
 
 CATALAN_MONTHS = {
     "GENER": 1, "FEBRER": 2, "MARÇ": 3, "ABRIL": 4, "MAIG": 5, "JUNY": 6,
@@ -51,13 +52,56 @@ WORD_RE = re.compile(
     r'<word xMin="([\d.]+)" yMin="([\d.]+)" xMax="([\d.]+)" yMax="([\d.]+)">(.*?)</word>'
 )
 
-ROW_GAP_THRESHOLD = 18.0  # pt; normal intra-cell line spacing is ~8-15pt
+ROW_GAP_THRESHOLD = 18.0  # pt; normal intra-cell line spacing is 8-15pt
 Y_CLUSTER_TOL = 1.0
 X_ANCHOR_TOL = 2.0
+COLUMN_EPS = 0.05  # float tolerance for the boundary comparison
+TITLE_BAND_Y = 100.0  # the month/year line sits above this
+BODY_TOP_Y = 70.0
+FOOTER_SEARCH_Y = 400.0  # the legal footer never starts above this
 
 
 class MenuParseError(RuntimeError):
-    """Raised when a structural assumption about the PDF layout doesn't hold."""
+    """A structural assumption about the PDF layout did not hold."""
+
+
+@dataclass(frozen=True, slots=True)
+class Word:
+    """One word with its bounding box, straight from pdftotext."""
+
+    x0: float
+    y0: float
+    x1: float
+    y1: float
+    text: str
+
+
+@dataclass(frozen=True, slots=True)
+class Line:
+    """Words sharing a baseline within one column, joined left to right."""
+
+    y: float
+    column: int
+    text: str
+
+
+@dataclass(frozen=True, slots=True)
+class Cell:
+    """One printed day box, before it is matched to a calendar date."""
+
+    items: tuple[str, ...]
+    dessert: str | None
+    allergens: tuple[int, ...] | None
+    closure_label: str | None = None
+    day_label: int | None = None
+
+    @property
+    def has_menu(self) -> bool:
+        return bool(self.items) or self.dessert is not None
+
+
+# One printed week: five weekday columns, None where a column held no words.
+WeekRow = tuple[Cell | None, ...]
 
 
 def run_pdftotext_bbox(pdf_path: Path) -> str:
@@ -74,15 +118,11 @@ def unescape(text: str) -> str:
 
 
 def extract_words(bbox_xml: str) -> list[Word]:
-    words = []
-    for m in WORD_RE.finditer(bbox_xml):
-        xmin, ymin, xmax, ymax, text = m.groups()
-        words.append({
-            "x0": float(xmin), "y0": float(ymin),
-            "x1": float(xmax), "y1": float(ymax),
-            "text": unescape(text),
-        })
-    return words
+    return [
+        Word(x0=float(m[0]), y0=float(m[1]), x1=float(m[2]), y1=float(m[3]),
+             text=unescape(m[4]))
+        for m in WORD_RE.findall(bbox_xml)
+    ]
 
 
 def cluster_1d(values: list[float], tol: float) -> list[list[int]]:
@@ -102,49 +142,48 @@ def cluster_1d(values: list[float], tol: float) -> list[list[int]]:
 
 
 def detect_month_year(words: list[Word]) -> tuple[int, int]:
-    title_words = [w for w in words if w["y0"] < 100]
+    title_words = [w for w in words if w.y0 < TITLE_BAND_Y]
     month: int | None = None
     year: int | None = None
     for w in title_words:
-        up = w["text"].upper()
+        up = w.text.upper()
         if up in CATALAN_MONTHS:
             month = CATALAN_MONTHS[up]
-        elif re.fullmatch(r"\d{4}", w["text"]):
-            year = int(w["text"])
+        elif re.fullmatch(r"\d{4}", w.text):
+            year = int(w.text)
     if not month or not year:
         raise MenuParseError(
-            "Could not find a Catalan month name + 4-digit year in the title "
-            "band (y<100). Title words seen: "
-            f"{[w['text'] for w in title_words]}"
+            "Could not find a Catalan month name and 4-digit year in the "
+            f"title band (y<{TITLE_BAND_Y:g}). Title words seen: "
+            f"{[w.text for w in title_words]}"
         )
     return month, year
 
 
 def detect_column_anchors(words: list[Word]) -> list[float]:
-    dia_xmins = [w["x0"] for w in words if w["text"] == "DIA"]
+    """The left edge of each weekday column, self-calibrated from the
+    x-position of every "DIA" label in the document."""
+    dia_xmins = [w.x0 for w in words if w.text == "DIA"]
     if len(dia_xmins) < NUM_COLS:
         raise MenuParseError(
             f"Only found {len(dia_xmins)} 'DIA' label word(s) in the whole "
-            f"document; need at least {NUM_COLS} (one column anchor each) "
+            f"document; need at least {NUM_COLS}, one column anchor each, "
             "to self-calibrate column boundaries."
         )
     clusters = cluster_1d(dia_xmins, X_ANCHOR_TOL)
-    anchors = sorted(sum(c) / len(c) for c in [[dia_xmins[i] for i in cl] for cl in clusters])
+    anchors = sorted(sum(vals) / len(vals)
+                     for vals in ([dia_xmins[i] for i in cl] for cl in clusters))
     if len(anchors) != NUM_COLS:
         raise MenuParseError(
             f"Expected {NUM_COLS} distinct column x-anchors from 'DIA' labels, "
             f"found {len(anchors)}: {anchors}"
         )
-    return anchors  # ascending, left edge of each column
+    return anchors
 
 
 def column_bounds_from_anchors(anchors: list[float]) -> list[float]:
     spacing = anchors[1] - anchors[0]
-    bounds = anchors + [anchors[-1] + spacing * 1.3]
-    return bounds
-
-
-COLUMN_EPS = 0.05  # float tolerance for the boundary comparison below
+    return anchors + [anchors[-1] + spacing * 1.3]
 
 
 def column_of(x0: float, bounds: list[float]) -> int:
@@ -155,8 +194,8 @@ def column_of(x0: float, bounds: list[float]) -> int:
 
 
 def find_footer_cutoff_y(words: list[Word]) -> float:
-    candidates = [w["y0"] for w in words
-                  if w["text"] in FOOTER_ANCHOR_WORDS and w["y0"] > 400]
+    candidates = [w.y0 for w in words
+                  if w.text in FOOTER_ANCHOR_WORDS and w.y0 > FOOTER_SEARCH_Y]
     return min(candidates) if candidates else float("inf")
 
 
@@ -164,210 +203,191 @@ WEEKDAY_HEADER_WORDS = {w.upper() for w in CATALAN_WEEKDAYS}
 
 
 def build_lines(words: list[Word], bounds: list[float], y_max: float) -> list[Line]:
-    """Groups words into (y, column, text) lines. Excludes the title band,
-    the weekday-name header row (matched by text, not position), and
-    anything at/after the footer."""
-    body_words = [w for w in words
-                  if w["y0"] >= 70 and w["y0"] < y_max
-                  and w["text"].upper() not in WEEKDAY_HEADER_WORDS]
-    if not body_words:
+    """Groups words into lines. Skips the title band, the weekday-name
+    header row (matched by text, not position), and the footer."""
+    body = [w for w in words
+            if BODY_TOP_Y <= w.y0 < y_max
+            and w.text.upper() not in WEEKDAY_HEADER_WORDS]
+    if not body:
         raise MenuParseError("No body words found between the title and footer bands.")
-    y_clusters = cluster_1d([w["y0"] for w in body_words], Y_CLUSTER_TOL)
+
     lines: list[Line] = []
-    for cl in y_clusters:
-        cluster_words = [body_words[i] for i in cl]
-        y = sum(w["y0"] for w in cluster_words) / len(cluster_words)
-        by_col: dict[int, list[Word]] = {}
-        for w in cluster_words:
-            by_col.setdefault(column_of(w["x0"], bounds), []).append(w)
-        for col, ws in by_col.items():
-            ws.sort(key=lambda w: w["x0"])
-            text = " ".join(w["text"] for w in ws)
-            lines.append({"y": y, "col": col, "text": text})
-    lines.sort(key=lambda l: (l["y"], l["col"]))
+    for cluster in cluster_1d([w.y0 for w in body], Y_CLUSTER_TOL):
+        words_here = [body[i] for i in cluster]
+        y = sum(w.y0 for w in words_here) / len(words_here)
+        by_column: dict[int, list[Word]] = {}
+        for w in words_here:
+            by_column.setdefault(column_of(w.x0, bounds), []).append(w)
+        for column, column_words in by_column.items():
+            column_words.sort(key=lambda w: w.x0)
+            lines.append(Line(y=y, column=column,
+                               text=" ".join(w.text for w in column_words)))
+    lines.sort(key=lambda line: (line.y, line.column))
     return lines
 
 
 def group_rows(lines: list[Line]) -> list[list[Line]]:
-    """Splits lines into week-row blocks using a y-gap threshold."""
-    ys = sorted(set(l["y"] for l in lines))
-    row_breaks = [ys[0]]
+    """Splits lines into week-row blocks on the y-gap threshold."""
+    ys = sorted({line.y for line in lines})
+    breaks = [ys[0]]
     for prev, cur in zip(ys, ys[1:]):
         if cur - prev > ROW_GAP_THRESHOLD:
-            row_breaks.append(cur)
+            breaks.append(cur)
+
     rows = []
-    for i, start_y in enumerate(row_breaks):
-        end_y = row_breaks[i + 1] if i + 1 < len(row_breaks) else float("inf")
-        row_lines = [l for l in lines if start_y - 0.5 <= l["y"] < end_y - 0.5]
-        rows.append(row_lines)
+    for i, start_y in enumerate(breaks):
+        end_y = breaks[i + 1] if i + 1 < len(breaks) else float("inf")
+        rows.append([line for line in lines if start_y - 0.5 <= line.y < end_y - 0.5])
     return rows
 
 
-def parse_cell(content_lines: list[str]) -> Cell:
-    """Takes one day's content lines (DIA-label already removed). Returns
-    a dict with holiday/items/dessert/allergens."""
-    allergens: list[int] | None = None
-    if content_lines and ALLERGEN_LINE_RE.match(content_lines[-1]):
-        allergens = [int(n) for n in re.findall(r"\d+", content_lines[-1])]
-        content_lines = content_lines[:-1]
+def parse_cell(lines: list[str]) -> Cell:
+    """Turns one column's text lines into a Cell: an optional leading
+    "DIA N" label, an optional trailing allergen-code line, then either a
+    single ALL-CAPS closure line or course lines where "-" means no item
+    and the last line is dessert."""
+    day_label: int | None = None
+    label_match = DIA_LABEL_RE.match(lines[0]) if lines else None
+    if label_match:
+        day_label = int(label_match.group(1)) if label_match.group(1) else None
+        lines = lines[1:]
 
-    is_holiday = (
-        len(content_lines) == 1
-        and content_lines[0].isupper()
-        and any(c.isalpha() for c in content_lines[0])
-    )
-    if is_holiday:
-        return {
-            "holiday": True, "holiday_label": content_lines[0],
-            "items": [], "dessert": None, "allergens": allergens,
-        }
+    allergens: tuple[int, ...] | None = None
+    if lines and ALLERGEN_LINE_RE.match(lines[-1]):
+        allergens = tuple(int(n) for n in re.findall(r"\d+", lines[-1]))
+        lines = lines[:-1]
 
-    if not content_lines:
-        return {"holiday": False, "holiday_label": None,
-                "items": [], "dessert": None, "allergens": allergens}
+    is_closure = (len(lines) == 1 and lines[0].isupper()
+                  and any(c.isalpha() for c in lines[0]))
+    if is_closure:
+        return Cell(items=(), dessert=None, allergens=allergens,
+                     closure_label=lines[0], day_label=day_label)
+    if not lines:
+        return Cell(items=(), dessert=None, allergens=allergens, day_label=day_label)
 
-    dessert = None if content_lines[-1] == "-" else content_lines[-1]
-    items = [l for l in content_lines[:-1] if l != "-"]
-    return {"holiday": False, "holiday_label": None,
-            "items": items, "dessert": dessert, "allergens": allergens}
+    dessert = None if lines[-1] == "-" else lines[-1]
+    items = tuple(line for line in lines[:-1] if line != "-")
+    return Cell(items=items, dessert=dessert, allergens=allergens, day_label=day_label)
 
 
-def parse_rows_into_cells(rows: list[list[Line]]) -> list[list[Cell | None]]:
-    """Splits each row-block's 5 columns into day_label + cell dict.
-    Returns a list of rows, each a list of 5 entries (None where a column
-    had no words)."""
-    parsed_rows: list[list[Cell | None]] = []
+def parse_rows_into_cells(rows: list[list[Line]]) -> list[WeekRow]:
+    """One WeekRow per printed week, five columns each."""
+    week_rows: list[WeekRow] = []
     for row_lines in rows:
-        by_col: dict[int, list[Line]] = {c: [] for c in range(NUM_COLS)}
-        for l in row_lines:
-            by_col[l["col"]].append(l)
-        for c in by_col:
-            by_col[c].sort(key=lambda l: l["y"])
+        by_column: dict[int, list[Line]] = {c: [] for c in range(NUM_COLS)}
+        for line in row_lines:
+            by_column[line.column].append(line)
 
-        row_out: list[Cell | None] = []
-        for c in range(NUM_COLS):
-            col_lines = [l["text"] for l in by_col[c]]
-            if not col_lines:
-                row_out.append(None)
-                continue
-            day_label = None
-            m = DIA_LABEL_RE.match(col_lines[0])
-            if m:
-                day_label = int(m.group(1)) if m.group(1) else None
-                col_lines = col_lines[1:]
-            cell = parse_cell(col_lines)
-            cell["day_label"] = day_label
-            row_out.append(cell)
-        parsed_rows.append(row_out)
-    return parsed_rows
+        cells: list[Cell | None] = []
+        for column in range(NUM_COLS):
+            texts = [line.text for line in sorted(by_column[column], key=lambda l: l.y)]
+            cells.append(parse_cell(texts) if texts else None)
+        week_rows.append(tuple(cells))
+    return week_rows
 
 
 def assign_calendar_weeks(
-    parsed_rows: list[list[Cell | None]], year: int, month: int
+    week_rows: list[WeekRow], year: int, month: int
 ) -> tuple[list[list[int]], list[int]]:
-    """Maps each row-block to a 0-based week-of-month index (into
-    calendar.monthdayscalendar(year, month)), using rows with a legible
-    day_label as anchors and filling in the rest as consecutive weeks.
-    Returns (weeks, week_index_for_row)."""
+    """Maps each printed row to a 0-based week-of-month index into
+    calendar.monthdayscalendar(year, month). Rows with a legible day label
+    anchor the sequence; the rest follow as consecutive weeks. Returns
+    (weeks, week_index_per_row)."""
     weeks = calendar.Calendar(firstweekday=0).monthdayscalendar(year, month)
-    week_index_for_row: list[int | None] = [None] * len(parsed_rows)
+    anchored_week: list[int | None] = [None] * len(week_rows)
 
-    for r, row in enumerate(parsed_rows):
+    for r, row in enumerate(week_rows):
         for c, cell in enumerate(row):
-            if cell is None or cell.get("day_label") is None:
+            if cell is None or cell.day_label is None:
                 continue
-            day = cell["day_label"]
-            candidates = [wi for wi, wk in enumerate(weeks) if wk[c] == day]
+            candidates = [wi for wi, week in enumerate(weeks) if week[c] == cell.day_label]
             if not candidates:
                 raise MenuParseError(
-                    f"Row {r} col {c}: label DIA {day} doesn't match any "
+                    f"Row {r} col {c}: label DIA {cell.day_label} matches no "
                     f"{CATALAN_WEEKDAYS[c]} in {month}/{year} "
                     f"(calendar weeks: {weeks})"
                 )
-            if week_index_for_row[r] is not None and week_index_for_row[r] not in candidates:
+            if anchored_week[r] is not None and anchored_week[r] not in candidates:
                 raise MenuParseError(
-                    f"Row {r}: conflicting week anchors (col {c} DIA {day} "
-                    f"implies week(s) {candidates}, but row was already "
-                    f"anchored to week {week_index_for_row[r]})"
+                    f"Row {r}: conflicting week anchors (col {c} DIA "
+                    f"{cell.day_label} implies week(s) {candidates}, but the row "
+                    f"was already anchored to week {anchored_week[r]})"
                 )
-            week_index_for_row[r] = candidates[0]
+            anchored_week[r] = candidates[0]
 
-    anchored = [i for i, wi in enumerate(week_index_for_row) if wi is not None]
-    if not anchored:
+    anchors = [i for i, week in enumerate(anchored_week) if week is not None]
+    if not anchors:
         raise MenuParseError(
-            "No row in the document has a single legible 'DIA N' label - "
-            "cannot anchor rows to calendar weeks. Manual/LLM review needed."
+            "No row in the document carries a legible 'DIA N' label, so the "
+            "rows cannot be anchored to calendar weeks. Needs manual review."
         )
-    # fill remaining rows as consecutive weeks from the first anchor
-    base_row, base_week = anchored[0], week_index_for_row[anchored[0]]
+
+    base_row = anchors[0]
+    base_week = anchored_week[base_row]
     assert base_week is not None
     resolved: list[int] = []
-    for r in range(len(parsed_rows)):
+    for r in range(len(week_rows)):
         expected = base_week + (r - base_row)
-        if week_index_for_row[r] is not None and week_index_for_row[r] != expected:
+        if anchored_week[r] is not None and anchored_week[r] != expected:
             raise MenuParseError(
-                f"Row {r}: anchored week {week_index_for_row[r]} doesn't "
-                f"match the expected consecutive offset {expected} from "
-                f"row {base_row} (week {base_week})."
+                f"Row {r}: anchored week {anchored_week[r]} does not match the "
+                f"expected consecutive offset {expected} from row {base_row} "
+                f"(week {base_week})."
             )
-        if expected < 0 or expected >= len(weeks):
+        if not 0 <= expected < len(weeks):
             raise MenuParseError(
-                f"Row {r} maps to week-of-month index {expected}, outside "
-                f"the {len(weeks)} calendar weeks of {month}/{year}."
+                f"Row {r} maps to week-of-month index {expected}, outside the "
+                f"{len(weeks)} calendar weeks of {month}/{year}."
             )
         resolved.append(expected)
     return weeks, resolved
 
 
 def build_days(
-    parsed_rows: list[list[Cell | None]],
+    week_rows: list[WeekRow],
     weeks: list[list[int]],
-    week_index_for_row: list[int],
+    week_index_per_row: list[int],
     year: int,
     month: int,
-) -> MenuDoc:
-    """Returns one entry per school day with menu content. Closure days
-    and empty cells are omitted."""
-    days: list[dict[str, Any]] = []
-    for r, row in enumerate(parsed_rows):
-        week = weeks[week_index_for_row[r]]
+) -> list[MenuDay]:
+    """One MenuDay per school day that has a menu."""
+    days: list[MenuDay] = []
+    for r, row in enumerate(week_rows):
+        week = weeks[week_index_per_row[r]]
         for c, cell in enumerate(row):
-            day_num = week[c]
-            if day_num == 0:
-                continue  # not a day in this month (leading/trailing blank)
-            date_str = f"{year:04d}-{month:02d}-{day_num:02d}"
+            day_number = week[c]
+            if day_number == 0:
+                continue  # not a day of this month, so the box is blank
+            date = datetime.date(year, month, day_number)
             if cell is None:
                 raise MenuParseError(
-                    f"{date_str} ({CATALAN_WEEKDAYS[c]}) is a real calendar "
-                    "day in this grid but no cell content was found at all."
+                    f"{date.isoformat()} ({CATALAN_WEEKDAYS[c]}) is a real "
+                    "calendar day in this grid but its cell held no words."
                 )
-            if cell["holiday"] or (not cell["items"] and cell["dessert"] is None):
+            if cell.closure_label is not None or not cell.has_menu:
                 continue
-            mismatch = cell.get("day_label") is not None and cell["day_label"] != day_num
-            days.append({
-                "date": date_str,
-                "weekday": CATALAN_WEEKDAYS[c],
-                "items": cell["items"],
-                "dessert": cell["dessert"],
-                "allergens": cell["allergens"],
-                "day_label_from_pdf": cell.get("day_label"),
-                "date_label_mismatch": mismatch,
-            })
-    return {"year": year, "month": month, "days": days}
+            days.append(MenuDay(
+                date=date,
+                weekday=CATALAN_WEEKDAYS[c],
+                items=list(cell.items),
+                dessert=cell.dessert,
+                allergens=list(cell.allergens) if cell.allergens is not None else None,
+                day_label_from_pdf=cell.day_label,
+                date_label_mismatch=(cell.day_label is not None
+                                      and cell.day_label != day_number),
+            ))
+    return days
 
 
-def parse_menu(pdf_path: Path) -> MenuDoc:
-    bbox_xml = run_pdftotext_bbox(pdf_path)
-    words = extract_words(bbox_xml)
+def parse_menu(pdf_path: Path) -> Menu:
+    words = extract_words(run_pdftotext_bbox(pdf_path))
     month, year = detect_month_year(words)
-    anchors = detect_column_anchors(words)
-    bounds = column_bounds_from_anchors(anchors)
-    footer_y = find_footer_cutoff_y(words)
-    lines = build_lines(words, bounds, footer_y)
-    rows = group_rows(lines)
-    parsed_rows = parse_rows_into_cells(rows)
-    weeks, week_index_for_row = assign_calendar_weeks(parsed_rows, year, month)
-    return build_days(parsed_rows, weeks, week_index_for_row, year, month)
+    bounds = column_bounds_from_anchors(detect_column_anchors(words))
+    lines = build_lines(words, bounds, find_footer_cutoff_y(words))
+    week_rows = parse_rows_into_cells(group_rows(lines))
+    weeks, week_index_per_row = assign_calendar_weeks(week_rows, year, month)
+    return Menu(year=year, month=month,
+                 days=build_days(week_rows, weeks, week_index_per_row, year, month))
 
 
 def main() -> int:
@@ -377,12 +397,12 @@ def main() -> int:
     args = ap.parse_args()
 
     try:
-        data = parse_menu(args.pdf)
+        menu = parse_menu(args.pdf)
     except MenuParseError as e:
         print(f"MenuParseError: {e}", file=sys.stderr)
         return 2
 
-    out = json.dumps(data, ensure_ascii=False, indent=2)
+    out = json.dumps(menu.to_dict(), ensure_ascii=False, indent=2)
     if args.output:
         args.output.write_text(out, encoding="utf-8")
     else:

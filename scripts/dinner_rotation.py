@@ -1,92 +1,97 @@
 #!/usr/bin/env python3
 """Deterministic weighted dinner-pairing rotation.
 
-Each school day gets one BASE_GROUPS pick + one PROTEIN_GROUPS pick,
-preferring whichever eligible category is furthest below its
-weight-adjusted share of use (count / WEIGHTS[group], ascending; ties
-broken by oldest last-used date, then declared order) - a weight-2
-group (e.g. "Oily Fish") is picked roughly twice as often as a weight-1
-group (e.g. "Meat"). See README.md "Why these dinner-pairing
-frequencies" for where the weights come from.
+Each school day gets one base group plus one protein group. Among the
+groups a day's lunch leaves eligible, the rotation picks whichever sits
+furthest below its weekly target: lowest count/weight, then longest
+unused, then declared order. A weight-2 group such as Oily Fish comes up
+about twice as often as a weight-1 group such as Meat.
 
-There is no rotation state file. derive_state() rebuilds the counts by
-replaying the "dinner_food_groups" of every archive/<YYYYMM>/enriched.json
-in date order. Re-assigning a date already in the archive returns its
-stored pairing unchanged; entries naming a category no longer in the
-vocabulary are skipped.
+The rotation keeps no state file. derive_state rebuilds the counts by
+replaying the pairing recorded on every archived day, oldest first.
+Re-assigning a date the archive already covers returns its stored
+pairing. Days the archive records under a retired group resolve to no
+enrichment at all, so the replay passes over them.
 """
+import datetime
 import json
 import sys
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Iterator
 
 sys.path.insert(0, str(Path(__file__).parent))
-from food_groups import BASE_GROUPS, PROTEIN_GROUPS, WEIGHTS  # noqa: E402
+import food_groups  # noqa: E402
+from food_groups import BASE_GROUPS, PROTEIN_GROUPS, FoodGroup  # noqa: E402
+from models import DinnerPairing, Menu  # noqa: E402
 
 DEFAULT_ARCHIVE = Path(__file__).parent.parent / "archive"
 
 
-def empty_state() -> dict[str, Any]:
-    return {
-        "usage": {
-            "base": {g: {"count": 0, "last_date": None} for g in BASE_GROUPS},
-            "protein": {g: {"count": 0, "last_date": None} for g in PROTEIN_GROUPS},
-        },
-        "by_date": {},
-    }
+@dataclass(slots=True)
+class GroupUsage:
+    count: int = 0
+    last_used: datetime.date | None = None
+
+    def record(self, day: datetime.date) -> None:
+        self.count += 1
+        self.last_used = day
 
 
-def _record(state: dict[str, Any], date: str, base: str, protein: str) -> None:
-    for role, group in (("base", base), ("protein", protein)):
-        u = state["usage"][role][group]
-        state["usage"][role][group] = {"count": u["count"] + 1, "last_date": date}
-    state["by_date"][date] = {"base": base, "protein": protein}
+@dataclass(slots=True)
+class RotationState:
+    usage: dict[str, GroupUsage] = field(
+        default_factory=lambda: {g.name: GroupUsage() for g in food_groups.FOOD_GROUPS}
+    )
+    assigned: dict[datetime.date, DinnerPairing] = field(default_factory=dict)
+
+    def count_of(self, group: FoodGroup) -> int:
+        return self.usage[group.name].count
+
+    def pick(self, groups: tuple[FoodGroup, ...], excluded: set[str]) -> FoodGroup:
+        """The eligible group furthest below its weekly target. Falls back
+        to the full set when a lunch excludes every one of them."""
+        candidates = [g for g in groups if g.name not in excluded] or list(groups)
+
+        def rank(group: FoodGroup) -> tuple[float, datetime.date, int]:
+            used = self.usage[group.name]
+            return (used.count / group.weight,
+                    used.last_used or datetime.date.min,
+                    groups.index(group))
+
+        return min(candidates, key=rank)
+
+    def record(self, day: datetime.date, pairing: DinnerPairing) -> None:
+        self.usage[pairing.base.name].record(day)
+        self.usage[pairing.protein.name].record(day)
+        self.assigned[day] = pairing
+
+    def assign(self, day: datetime.date, excluded: set[str]) -> DinnerPairing:
+        """The pairing for `day`, reusing the stored one when the archive
+        already covers it."""
+        if day in self.assigned:
+            return self.assigned[day]
+        pairing = DinnerPairing(base=self.pick(BASE_GROUPS, excluded),
+                                 protein=self.pick(PROTEIN_GROUPS, excluded))
+        self.record(day, pairing)
+        return pairing
 
 
-def iter_archived_days(archive_dir: Path) -> Iterator[tuple[str, str, str]]:
-    """Yields (date, base, protein) from every archived enriched.json.
-    Days with no structured dinner_food_groups, or naming a category no
-    longer in the vocabulary, are skipped."""
+def iter_archived_months(archive_dir: Path) -> Iterator[Menu]:
     for month_dir in sorted(p for p in archive_dir.glob("*") if p.is_dir()):
         enriched = month_dir / "enriched.json"
-        if not enriched.exists():
-            continue
-        data = json.loads(enriched.read_text(encoding="utf-8"))
-        for day in data.get("days", []):
-            groups = day.get("dinner_food_groups") or {}
-            base, protein = groups.get("base"), groups.get("protein")
-            if base in BASE_GROUPS and protein in PROTEIN_GROUPS:
-                yield day["date"], base, protein
+        if enriched.exists():
+            yield Menu.from_dict(json.loads(enriched.read_text(encoding="utf-8")))
 
 
-def derive_state(archive_dir: Path = DEFAULT_ARCHIVE) -> dict[str, Any]:
-    """Rebuilds rotation usage by replaying the archive, oldest day first."""
-    state = empty_state()
-    if archive_dir.exists():
-        for date, base, protein in sorted(iter_archived_days(archive_dir)):
-            _record(state, date, base, protein)
+def derive_state(archive_dir: Path = DEFAULT_ARCHIVE) -> RotationState:
+    """Rebuilds the rotation by replaying every archived month."""
+    state = RotationState()
+    if not archive_dir.exists():
+        return state
+    dated = [(day.date, day.enrichment.pairing)
+             for menu in iter_archived_months(archive_dir)
+             for day in menu.days if day.enrichment is not None]
+    for day, pairing in sorted(dated, key=lambda pair: pair[0]):
+        state.record(day, pairing)
     return state
-
-
-def _pick(usage: dict[str, Any], groups: list[str], excluded: set[str]) -> str:
-    candidates = [g for g in groups if g not in excluded] or list(groups)
-
-    def key(g: str) -> tuple[float, str, int]:
-        u = usage[g]
-        return (u["count"] / WEIGHTS[g], u["last_date"] or "", groups.index(g))
-
-    return min(candidates, key=key)
-
-
-def assign(state: dict[str, Any], date: str, excluded: set[str]) -> tuple[str, str]:
-    """Returns (base, protein) for `date`. Reuses a prior assignment for
-    the same date if one exists; otherwise picks and records one,
-    mutating `state`."""
-    if date in state["by_date"]:
-        d = state["by_date"][date]
-        return d["base"], d["protein"]
-
-    base = _pick(state["usage"]["base"], BASE_GROUPS, excluded)
-    protein = _pick(state["usage"]["protein"], PROTEIN_GROUPS, excluded)
-    _record(state, date, base, protein)
-    return base, protein

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Publishes one month: upserts enriched.json into public/*.ics, copies
-the month's work files into archive/<YYYYMM>/, commits public/ +
-archive/ + data/glossary.json to main as "Hermes (gaia-menu)", pushes,
-and writes <workdir>/published.done.
+"""Publish one month. Upserts enriched.json into public/*.ics, copies the
+month's work files into archive/<YYYYMM>/, commits public/, archive/ and
+data/glossary.json to main as "Hermes (gaia-menu)", pushes, then writes
+<workdir>/published.done.
 
 Usage: publish_month.py <workdir> <YYYYMM>
 

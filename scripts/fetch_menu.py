@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Downloads the current month's BASAL menu PDF from Escola Gaia's
+"""Download the current month's BASAL menu PDF from Escola Gaia's
 families/AFA page.
 
 Usage: fetch_menu.py [--output-dir DIR] [--url URL] [--print-url-only]

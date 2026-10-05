@@ -1,78 +1,93 @@
 #!/usr/bin/env python3
-"""Upserts one month's menu JSON into the 4 published calendars by event UID.
+"""Upsert one month into the four published calendars, matching on event UID.
 
 Usage: publish_ics.py <menu.json> [--public-dir public] [--dtstamp TIMESTAMP]
 
-Writes/updates:
-  public/lunch_ca.ics    public/lunch_en.ics
-  public/dinner_ca.ics   public/dinner_en.ics
+Writes public/lunch_ca.ics, lunch_en.ics, dinner_ca.ics and dinner_en.ics.
+Only the events whose UID the month covers are replaced; every other
+event in each file is kept, so earlier months accumulate. Commit and push
+public/ afterwards, which SKILL.md covers.
 
-Replaces only the events whose UID matches a day in menu.json; every
-other event in each file is left untouched. Commit and push public/
-after running this - see SKILL.md.
+A menu with no enrichment still fills lunch_ca.ics with fallback titles;
+the other three come out empty.
 """
 import argparse
-import datetime
 import json
 import re
 import sys
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent))
-from to_ics import build_event  # noqa: E402
+from models import Menu  # noqa: E402
+from to_ics import Language, MealKind, build_event, utc_now_stamp  # noqa: E402
 
 VEVENT_RE = re.compile(r"BEGIN:VEVENT\r?\n.*?END:VEVENT\r?\n?", re.DOTALL)
 UID_RE = re.compile(r"^UID:(.+)$", re.MULTILINE)
 DTSTART_RE = re.compile(r"^DTSTART[^:]*:(\d{8})", re.MULTILINE)
+LAST_DATE = "99999999"
 
-CALENDARS = [
-    ("lunch", "ca", "lunch_ca.ics"),
-    ("lunch", "en", "lunch_en.ics"),
-    ("dinner", "ca", "dinner_ca.ics"),
-    ("dinner", "en", "dinner_en.ics"),
-]
+
+@dataclass(frozen=True, slots=True)
+class Calendar:
+    """One published file and the view of the menu it renders."""
+
+    kind: MealKind
+    lang: Language
+
+    @property
+    def filename(self) -> str:
+        return f"{self.kind.value}_{self.lang.value}.ics"
+
+
+CALENDARS = (
+    Calendar(MealKind.LUNCH, Language.CA),
+    Calendar(MealKind.LUNCH, Language.EN),
+    Calendar(MealKind.DINNER, Language.CA),
+    Calendar(MealKind.DINNER, Language.EN),
+)
 
 
 def parse_existing_events(path: Path) -> dict[str, str]:
+    """The VEVENT blocks already in `path`, keyed by UID."""
     if not path.exists():
         return {}
     events = {}
     for block in VEVENT_RE.findall(path.read_text(encoding="utf-8")):
-        m = UID_RE.search(block)
-        if m:
-            # read_text() translated CRLF to LF; restore it (RFC 5545
-            # requires CRLF).
-            events[m.group(1).strip()] = "\r\n".join(block.rstrip("\r\n").splitlines())
+        uid = UID_RE.search(block)
+        if uid:
+            # read_text() turned the CRLF endings into LF; RFC 5545 wants
+            # them back.
+            events[uid.group(1).strip()] = "\r\n".join(block.rstrip("\r\n").splitlines())
     return events
 
 
 def wrap_vcalendar(events_by_uid: dict[str, str]) -> str:
-    def dtstart_key(block: str) -> str:
-        m = DTSTART_RE.search(block)
-        return m.group(1) if m else "99999999"
+    def starts_on(block: str) -> str:
+        found = DTSTART_RE.search(block)
+        return found.group(1) if found else LAST_DATE
 
-    ordered = sorted(events_by_uid.values(), key=dtstart_key)
-    body = "\r\n".join([
+    return "\r\n".join([
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
         "PRODID:-//gaia-menu//publish_ics//CA",
         "CALSCALE:GREGORIAN",
-        *ordered,
+        *sorted(events_by_uid.values(), key=starts_on),
         "END:VCALENDAR",
-    ])
-    return body + "\r\n"
+    ]) + "\r\n"
 
 
-def upsert_one(data: dict[str, Any], kind: str, lang: str, path: Path, dtstamp: str) -> int:
+def upsert_one(menu: Menu, calendar: Calendar, path: Path, dtstamp: str) -> int:
+    """Merges the month into `path`. Returns the file's total event count."""
     events = parse_existing_events(path)
-    for day in data["days"]:
-        block = build_event(day, dtstamp, lang, kind)
+    for day in menu.days:
+        block = build_event(day, dtstamp, calendar.lang, calendar.kind)
         if block is None:
             continue
-        m = UID_RE.search(block)
-        assert m is not None
-        events[m.group(1).strip()] = block
+        uid = UID_RE.search(block)
+        assert uid is not None
+        events[uid.group(1).strip()] = block
+
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(wrap_vcalendar(events), encoding="utf-8", newline="")
     return len(events)
@@ -83,15 +98,16 @@ def main() -> int:
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("menu_json", type=Path)
     ap.add_argument("--public-dir", type=Path, default=Path("public"))
-    ap.add_argument("--dtstamp", help="Override DTSTAMP (UTC); defaults to current time")
+    ap.add_argument("--dtstamp", help="Override DTSTAMP (UTC); defaults to the current time")
     args = ap.parse_args()
 
-    data = json.loads(args.menu_json.read_text(encoding="utf-8"))
-    dtstamp = args.dtstamp or datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    menu = Menu.from_dict(json.loads(args.menu_json.read_text(encoding="utf-8")))
+    dtstamp = args.dtstamp or utc_now_stamp()
 
-    for kind, lang, filename in CALENDARS:
-        n = upsert_one(data, kind, lang, args.public_dir / filename, dtstamp)
-        print(f"{filename}: {n} events", file=sys.stderr)
+    for calendar in CALENDARS:
+        path = args.public_dir / calendar.filename
+        count = upsert_one(menu, calendar, path, dtstamp)
+        print(f"{calendar.filename}: {count} events", file=sys.stderr)
     return 0
 
 

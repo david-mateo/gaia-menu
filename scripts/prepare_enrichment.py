@@ -1,25 +1,21 @@
 #!/usr/bin/env python3
-"""Builds an enrichment request from parse_menu.py's JSON output.
+"""Build the enrichment request for one parsed menu.
 
 Usage: prepare_enrichment.py <menu.json> [-o request.json] [--glossary data/glossary.json]
 
 Output JSON:
 {
-  "base_groups": [...English base-course tags you may use...],
-  "protein_groups": [...English protein tags you may use...],
-  "lunch_only_groups": [...extra tags valid only for lunch_groups,
-                         never a dinner suggestion...],
+  "base_groups": [...],        # tags for the starch/vegetable half
+  "protein_groups": [...],     # tags for the protein half
+  "lunch_only_groups": [...],  # taggable on a lunch, never suggested for dinner
   "known_translations": {"<ca phrase>": "<en phrase>", ...},
-  "new_phrases": ["<ca phrase not yet in the glossary>", ...],
-  "days": [
-    {"date": "...", "items": [...], "dessert": "..."}
-  ]
+  "new_phrases": ["<ca phrase the glossary does not cover>", ...],
+  "days": [{"date": "...", "items": [...], "dessert": "..."}]
 }
 
-See SKILL.md for what to do with this file (an agent fills in a response,
-scripts/apply_enrichment.py merges it back). The dinner pairing itself
-is computed deterministically from the "lunch_groups" tags you provide
-per day (see dinner_rotation.py) - you don't pick it.
+SKILL.md "Enrich" covers what to write back. The dinner pairing is
+computed from the lunch_groups in that response, so this request carries
+the tag vocabulary rather than any dinner wording.
 """
 import argparse
 import json
@@ -28,7 +24,9 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent))
+import food_groups  # noqa: E402
 from food_groups import BASE_GROUPS, LUNCH_ONLY_GROUPS, PROTEIN_GROUPS  # noqa: E402
+from models import Menu  # noqa: E402
 
 DEFAULT_GLOSSARY = Path(__file__).parent.parent / "data" / "glossary.json"
 
@@ -39,29 +37,25 @@ def load_glossary(path: Path) -> dict[str, str]:
     return {}
 
 
-def build_request(menu: dict[str, Any], glossary: dict[str, str]) -> dict[str, Any]:
-    days = menu["days"]
-    phrases: set[str] = set()
-    for day in days:
-        phrases.update(day["items"])
-        if day["dessert"]:
-            phrases.add(day["dessert"])
+def menu_phrases(menu: Menu) -> set[str]:
+    """Every distinct Catalan phrase the month prints."""
+    phrases = {item for day in menu.days for item in day.items}
+    phrases |= {day.dessert for day in menu.days if day.dessert}
+    return phrases
 
-    known = {p: glossary[p] for p in phrases if p in glossary}
-    new_phrases = sorted(p for p in phrases if p not in glossary)
 
-    days_ctx: list[dict[str, Any]] = [
-        {"date": day["date"], "items": day["items"], "dessert": day["dessert"]}
-        for day in days
-    ]
-
+def build_request(menu: Menu, glossary: dict[str, str]) -> dict[str, Any]:
+    phrases = menu_phrases(menu)
     return {
-        "base_groups": BASE_GROUPS,
-        "protein_groups": PROTEIN_GROUPS,
-        "lunch_only_groups": LUNCH_ONLY_GROUPS,
-        "known_translations": known,
-        "new_phrases": new_phrases,
-        "days": days_ctx,
+        "base_groups": food_groups.names(BASE_GROUPS),
+        "protein_groups": food_groups.names(PROTEIN_GROUPS),
+        "lunch_only_groups": food_groups.names(LUNCH_ONLY_GROUPS),
+        "known_translations": {p: glossary[p] for p in phrases if p in glossary},
+        "new_phrases": sorted(p for p in phrases if p not in glossary),
+        "days": [
+            {"date": day.date.isoformat(), "items": day.items, "dessert": day.dessert}
+            for day in menu.days
+        ],
     }
 
 
@@ -73,9 +67,8 @@ def main() -> int:
     ap.add_argument("--glossary", type=Path, default=DEFAULT_GLOSSARY)
     args = ap.parse_args()
 
-    menu = json.loads(args.menu_json.read_text(encoding="utf-8"))
-    glossary = load_glossary(args.glossary)
-    request = build_request(menu, glossary)
+    menu = Menu.from_dict(json.loads(args.menu_json.read_text(encoding="utf-8")))
+    request = build_request(menu, load_glossary(args.glossary))
 
     out = json.dumps(request, ensure_ascii=False, indent=2)
     if args.output:

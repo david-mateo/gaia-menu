@@ -1,40 +1,78 @@
 #!/usr/bin/env python3
-"""Converts parse_menu.py's JSON output into a .ics calendar file, one
-timed event per day listed in the JSON.
+"""Render a parsed or enriched menu as a .ics calendar, one timed event
+per day.
 
-Usage: to_ics.py <json_file> [-o output.ics] [--lang ca|en] [--kind lunch|dinner] [--dtstamp TIMESTAMP]
+Usage: to_ics.py <json_file> [-o output.ics] [--lang ca|en] [--kind lunch|dinner]
+                 [--dtstamp TIMESTAMP]
 
---kind lunch (default) uses "title" as SUMMARY and items/dessert/allergens
-as DESCRIPTION, falling back to "Menú: <first item>" if not enriched;
-event runs 13:15-14:00 Europe/Madrid time.
---kind dinner uses the "dinner" field (from apply_enrichment.py) as both;
-event runs 19:00-20:00 Europe/Madrid time.
---lang en reads the "en" sub-object. A day missing the data a given
---lang/--kind combination needs (not yet enriched) is skipped, not an
-error.
+Lunch events run 13:15 to 14:00 and dinner events 19:00 to 20:00, both
+Europe/Madrid, converted to UTC so the published file needs no VTIMEZONE.
+A lunch event falls back to "Menú: <first item>" when the day has no
+enrichment. A day that lacks what the chosen language and meal need is
+skipped rather than raising.
 
-UIDs are "<date>-<kind>@gaia-menu", stable across months (used by
-publish_ics.py for upserting).
+UIDs are "<date>-<kind>@gaia-menu", stable across months, which is what
+publish_ics.py upserts on.
 """
 import argparse
+import datetime
 import json
 import sys
-from datetime import date, datetime, time, timezone
+from dataclasses import dataclass
+from enum import Enum
 from pathlib import Path
-from typing import Any
 from zoneinfo import ZoneInfo
 
+sys.path.insert(0, str(Path(__file__).parent))
+from models import Menu, MenuDay  # noqa: E402
+
 ICS_FOLD_WIDTH = 73
-MADRID_TZ = ZoneInfo("Europe/Madrid")
-EVENT_TIMES = {
-    "lunch": (time(13, 15), time(14, 0)),
-    "dinner": (time(19, 0), time(20, 0)),
+MADRID = ZoneInfo("Europe/Madrid")
+
+
+class Language(str, Enum):
+    CA = "ca"
+    EN = "en"
+
+
+class MealKind(str, Enum):
+    LUNCH = "lunch"
+    DINNER = "dinner"
+
+
+@dataclass(frozen=True, slots=True)
+class MealTimes:
+    start: datetime.time
+    end: datetime.time
+
+
+MEAL_TIMES = {
+    MealKind.LUNCH: MealTimes(datetime.time(13, 15), datetime.time(14, 0)),
+    MealKind.DINNER: MealTimes(datetime.time(19, 0), datetime.time(20, 0)),
 }
 
 
-def to_utc_stamp(date_str: str, local_time: time) -> str:
-    local = datetime.combine(date.fromisoformat(date_str), local_time, tzinfo=MADRID_TZ)
-    return local.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+@dataclass(frozen=True, slots=True)
+class Labels:
+    """The fixed wording each language puts around a day's dishes."""
+
+    dessert: str
+    allergens: str
+    todays_lunch: str
+    untitled_lunch: str
+
+
+LABELS = {
+    Language.CA: Labels(dessert="Postres", allergens="Al·lèrgens",
+                         todays_lunch="Dinar d'avui", untitled_lunch="Menú escolar"),
+    Language.EN: Labels(dessert="Dessert", allergens="Allergens",
+                         todays_lunch="Today's lunch", untitled_lunch="School lunch"),
+}
+
+
+def to_utc_stamp(day: datetime.date, local_time: datetime.time) -> str:
+    local = datetime.datetime.combine(day, local_time, tzinfo=MADRID)
+    return local.astimezone(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 
 def escape_text(text: str) -> str:
@@ -53,88 +91,96 @@ def fold(line: str) -> str:
     return "\r\n".join(parts)
 
 
-def build_event(day: dict[str, Any], dtstamp: str, lang: str, kind: str = "lunch") -> str | None:
-    """Returns one VEVENT block, or None if this day has nothing to show
-    for the requested kind (e.g. a dinner calendar before enrichment)."""
-    date_compact = day["date"].replace("-", "")
-    en: dict[str, Any] = day.get("en", {})
-
-    if kind == "dinner":
-        dinner = en.get("dinner") if lang == "en" else day.get("dinner")
-        if dinner is None:
+def lunch_content(day: MenuDay, lang: Language) -> tuple[str, str] | None:
+    """(summary, description) for a lunch event, or None when the day
+    lacks a translation the chosen language needs."""
+    labels = LABELS[lang]
+    if lang is Language.EN:
+        if day.enrichment is None:
             return None
-        title = en.get("title") if lang == "en" else day.get("title")
-        context_label = "Today's lunch" if lang == "en" else "Dinar d'avui"
-        summary = dinner
-        description = f"{context_label}: {title}" if title else ""
+        items = list(day.enrichment.items_en)
+        dessert = day.enrichment.dessert_en
+        summary = day.enrichment.lunch_title_en
     else:
-        if lang == "en":
-            if "en" not in day:
-                return None
-            items, dessert = en["items"], en["dessert"]
-            title = en.get("title")
-            dessert_label, allergen_label = "Dessert", "Allergens"
-            fallback = f"Lunch: {items[0]}" if items else "School lunch"
-        else:
-            items, dessert = day["items"], day["dessert"]
-            title = day.get("title")
-            dessert_label, allergen_label = "Postres", "Al·lèrgens"
-            fallback = f"Menú: {items[0]}" if items else "Menú escolar"
+        items = list(day.items)
+        dessert = day.dessert
+        summary = (day.enrichment.lunch_title_ca if day.enrichment
+                    else f"Menú: {items[0]}" if items else labels.untitled_lunch)
 
-        summary = title or fallback
-        desc_lines = list(items)
-        if dessert:
-            desc_lines.append(f"{dessert_label}: {dessert}")
-        if day.get("allergens"):
-            desc_lines.append(f"{allergen_label}: {', '.join(str(a) for a in day['allergens'])}")
-        description = "\n".join(desc_lines)
+    lines = list(items)
+    if dessert:
+        lines.append(f"{labels.dessert}: {dessert}")
+    if day.allergens:
+        lines.append(f"{labels.allergens}: {', '.join(str(a) for a in day.allergens)}")
+    return summary, "\n".join(lines)
 
-    start_time, end_time = EVENT_TIMES[kind]
-    uid = f"{date_compact}-{kind}@gaia-menu"
+
+def dinner_content(day: MenuDay, lang: Language) -> tuple[str, str] | None:
+    if day.enrichment is None:
+        return None
+    labels = LABELS[lang]
+    if lang is Language.EN:
+        summary, lunch_title = day.enrichment.dinner_en, day.enrichment.lunch_title_en
+    else:
+        summary, lunch_title = day.enrichment.dinner_ca, day.enrichment.lunch_title_ca
+    return summary, f"{labels.todays_lunch}: {lunch_title}"
+
+
+def build_event(day: MenuDay, dtstamp: str, lang: Language,
+                 kind: MealKind = MealKind.LUNCH) -> str | None:
+    """One VEVENT block, or None when this day has nothing to show for
+    the chosen language and meal."""
+    content = (dinner_content(day, lang) if kind is MealKind.DINNER
+                else lunch_content(day, lang))
+    if content is None:
+        return None
+    summary, description = content
+
+    times = MEAL_TIMES[kind]
     lines = [
         "BEGIN:VEVENT",
-        f"UID:{uid}",
+        f"UID:{day.compact_date}-{kind.value}@gaia-menu",
         f"DTSTAMP:{dtstamp}",
-        f"DTSTART:{to_utc_stamp(day['date'], start_time)}",
-        f"DTEND:{to_utc_stamp(day['date'], end_time)}",
+        f"DTSTART:{to_utc_stamp(day.date, times.start)}",
+        f"DTEND:{to_utc_stamp(day.date, times.end)}",
         f"SUMMARY:{escape_text(summary)}",
         f"DESCRIPTION:{escape_text(description)}",
         "END:VEVENT",
     ]
-    return "\r\n".join(fold(l) for l in lines)
+    return "\r\n".join(fold(line) for line in lines)
 
 
-def build_ics(data: dict[str, Any], dtstamp: str, lang: str = "ca", kind: str = "lunch") -> str:
-    events = [e for e in (build_event(day, dtstamp, lang, kind) for day in data["days"]) if e]
-    body = "\r\n".join([
+def build_ics(menu: Menu, dtstamp: str, lang: Language = Language.CA,
+               kind: MealKind = MealKind.LUNCH) -> str:
+    events = [e for e in (build_event(day, dtstamp, lang, kind) for day in menu.days) if e]
+    return "\r\n".join([
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
         "PRODID:-//gaia-menu//parse_menu//CA",
         "CALSCALE:GREGORIAN",
         *events,
         "END:VCALENDAR",
-    ])
-    return body + "\r\n"
+    ]) + "\r\n"
+
+
+def utc_now_stamp() -> str:
+    return datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__)
+    ap = argparse.ArgumentParser(description=__doc__,
+                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("json_file", type=Path, help="Output of parse_menu.py")
     ap.add_argument("-o", "--output", type=Path, help="Write .ics here instead of stdout")
-    ap.add_argument("--lang", choices=["ca", "en"], default="ca")
-    ap.add_argument("--kind", choices=["lunch", "dinner"], default="lunch")
+    ap.add_argument("--lang", type=Language, choices=list(Language), default=Language.CA)
+    ap.add_argument("--kind", type=MealKind, choices=list(MealKind), default=MealKind.LUNCH)
     ap.add_argument("--dtstamp", help="Override DTSTAMP (UTC, e.g. 20261003T000000Z); "
-                                       "defaults to current time")
+                                       "defaults to the current time")
     args = ap.parse_args()
 
-    data = json.loads(args.json_file.read_text(encoding="utf-8"))
+    menu = Menu.from_dict(json.loads(args.json_file.read_text(encoding="utf-8")))
+    ics = build_ics(menu, args.dtstamp or utc_now_stamp(), args.lang, args.kind)
 
-    dtstamp = args.dtstamp
-    if not dtstamp:
-        import datetime
-        dtstamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-
-    ics = build_ics(data, dtstamp, args.lang, args.kind)
     if args.output:
         args.output.write_text(ics, encoding="utf-8", newline="")
     else:
