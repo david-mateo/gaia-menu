@@ -13,14 +13,15 @@
       "en_title": "Potato salad + omelette",
       "lunch_groups": [
         "Potato",
-        "Salad",
-        "Eggs"
+        "Eggs",
+        "Salad"
       ]
     },
     {
       "date": "2026-10-02",
       "en_items": [
-        "Organic wholegrain macaroni with vegetable carbonara",
+        "Organic wholegrain macaroni with",
+        "vegetable carbonara",
         "Pork sausage with samfaina (vegetable stew)"
       ],
       "en_dessert": "Seasonal fruit",
@@ -28,7 +29,8 @@
       "en_title": "Macaroni + sausage",
       "lunch_groups": [
         "Pasta",
-        "Processed Meat"
+        "Processed Meat",
+        "Vegetables"
       ]
     },
     {
@@ -40,7 +42,7 @@
       ],
       "en_dessert": "Plain yogurt",
       "ca_title": "Crema de carbassó + escalopa de gall dindi",
-      "en_title": "Pumpkin soup + turkey escalope",
+      "en_title": "Zucchini soup + turkey cutlet",
       "lunch_groups": [
         "Soup",
         "Poultry",
@@ -50,16 +52,18 @@
     {
       "date": "2026-10-06",
       "en_items": [
-        "Chickpea salad (carrot, corn, and tomato)",
-        "Mixed meatballs jardinière style (green beans, carrot, peas, potato)"
+        "Chickpea salad (carrot, corn,",
+        "and tomato)",
+        "Mixed meatballs jardinière style (green",
+        "beans, carrot, peas, potato)"
       ],
       "en_dessert": "Seasonal fruit",
       "ca_title": "Amanida de cigrons + mandonguilles",
       "en_title": "Chickpea salad + meatballs",
       "lunch_groups": [
+        "Salad",
         "Legumes",
-        "Meat",
-        "Vegetables"
+        "Meat"
       ]
     },
     {
@@ -70,7 +74,7 @@
         "Lettuce and olives"
       ],
       "en_dessert": "Seasonal fruit",
-      "ca_title": "Arròs + Salmó",
+      "ca_title": "Arròs + salmó",
       "en_title": "Rice + salmon",
       "lunch_groups": [
         "Rice",
@@ -102,7 +106,7 @@
       ],
       "en_dessert": "Seasonal fruit",
       "ca_title": "Fideus amb verdures + truita",
-      "en_title": "Noodles + omelette",
+      "en_title": "Noodles with vegetables + omelette",
       "lunch_groups": [
         "Pasta",
         "Eggs",
@@ -128,7 +132,8 @@
     {
       "date": "2026-10-14",
       "en_items": [
-        "Rice salad (red pepper, corn, and olives)",
+        "Rice salad (red pepper, corn,",
+        "and olives)",
         "Chickpea stew with vegetables"
       ],
       "en_dessert": "Seasonal fruit",
@@ -137,7 +142,7 @@
       "lunch_groups": [
         "Rice",
         "Legumes",
-        "Salad"
+        "Vegetables"
       ]
     },
     {
@@ -151,21 +156,22 @@
       "ca_title": "Mongeta tendra + truita",
       "en_title": "Green beans + omelette",
       "lunch_groups": [
-        "Legumes",
-        "Eggs",
-        "Salad"
+        "Vegetables",
+        "Potato",
+        "Eggs"
       ]
     },
     {
       "date": "2026-10-16",
       "en_items": [
-        "Organic wholegrain spaghetti with vegetables",
+        "Organic wholegrain spaghetti with",
+        "vegetables",
         "Chicken xilindrón style",
         "Lettuce and corn"
       ],
       "en_dessert": "Seasonal fruit",
-      "ca_title": "Espaguetis + pollastre",
-      "en_title": "Spaghetti + chicken",
+      "ca_title": "Espaguetis amb verdures + pollastre",
+      "en_title": "Spaghetti with vegetables + chicken",
       "lunch_groups": [
         "Pasta",
         "Poultry",
@@ -192,21 +198,23 @@
       "date": "2026-10-20",
       "en_items": [
         "Russian salad",
-        "Organic wholegrain macaroni with vegetable bolognese"
+        "Organic wholegrain macaroni with",
+        "vegetable bolognese"
       ],
       "en_dessert": "Seasonal fruit",
       "ca_title": "Amanida russa + macarrons",
       "en_title": "Russian salad + macaroni",
       "lunch_groups": [
-        "Potato",
         "Salad",
-        "Pasta"
+        "Pasta",
+        "Meat"
       ]
     },
     {
       "date": "2026-10-21",
       "en_items": [
-        "White bean stew with vegetables",
+        "White bean stew with",
+        "vegetables",
         "Lemon chicken",
         "Lettuce and asparagus"
       ],
@@ -239,11 +247,12 @@
       "date": "2026-10-23",
       "en_items": [
         "Cauliflower gratin with béchamel",
-        "Turkey roulade jardinière style (green beans, carrot, peas, potato)"
+        "Turkey roulade jardinière style (green",
+        "beans, carrot, peas, potato)"
       ],
       "en_dessert": "Seasonal fruit",
-      "ca_title": "Coliflor gratinada + rotllo de gall dindi",
-      "en_title": "Cauliflower gratin + turkey roulade",
+      "ca_title": "Coliflor gratinada + rostit de gall dindi",
+      "en_title": "Cauliflower gratin + turkey roast",
       "lunch_groups": [
         "Vegetables",
         "Dairy",
@@ -253,17 +262,18 @@
     {
       "date": "2026-10-26",
       "en_items": [
-        "Three-colour vegetables with diced turkey",
+        "Three-colour vegetables with diced",
+        "turkey",
         "Potato and courgette omelette",
         "Lettuce and tomato"
       ],
       "en_dessert": "Plain yogurt",
       "ca_title": "Tricolor de verdures + truita",
-      "en_title": "Vegetables + omelette",
+      "en_title": "Tricolor vegetables + omelette",
       "lunch_groups": [
         "Vegetables",
-        "Poultry",
-        "Eggs"
+        "Eggs",
+        "Salad"
       ]
     },
     {
@@ -275,7 +285,7 @@
       ],
       "en_dessert": "Seasonal fruit",
       "ca_title": "Cigrons amb espinacs + botifarra",
-      "en_title": "Chickpeas + sausage",
+      "en_title": "Chickpeas with spinach + sausage",
       "lunch_groups": [
         "Legumes",
         "Processed Meat",
@@ -286,7 +296,8 @@
       "date": "2026-10-28",
       "en_items": [
         "Vegetable cream soup",
-        "Oven-roasted chicken with aromatic herbs",
+        "Oven-roasted chicken with",
+        "aromatic herbs",
         "Potato chips"
       ],
       "en_dessert": "Seasonal fruit",
@@ -301,23 +312,24 @@
     {
       "date": "2026-10-29",
       "en_items": [
-        "Three-delight rice (peas, carrot, egg and cooked ham)",
+        "Three-delight rice (peas, carrot,",
+        "egg and cooked ham)",
         "Vegetable lentil stew"
       ],
       "en_dessert": "Seasonal fruit",
       "ca_title": "Arròs tres delícies + llenties",
-      "en_title": "Three-delight rice + lentils",
+      "en_title": "Three delights rice + lentils",
       "lunch_groups": [
         "Rice",
         "Eggs",
-        "Processed Meat",
-        "Legumes"
+        "Processed Meat"
       ]
     },
     {
       "date": "2026-10-30",
       "en_items": [
-        "Organic wholegrain macaroni with sauce of tomato and tuna",
+        "Organic wholegrain macaroni with sauce",
+        "of tomato and tuna",
         "Breaded hake",
         "Lettuce and olives"
       ],
@@ -326,9 +338,8 @@
       "en_title": "Tuna macaroni + hake",
       "lunch_groups": [
         "Pasta",
-        "Fish",
         "Oily Fish",
-        "Salad"
+        "Fish"
       ]
     }
   ]

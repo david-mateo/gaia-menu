@@ -4,7 +4,7 @@ PRODID:-//gaia-menu//publish_ics//CA
 CALSCALE:GREGORIAN
 BEGIN:VEVENT
 UID:20261001-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261001T111500Z
 DTEND:20261001T120000Z
 SUMMARY:🧑‍🍳 Amanida de patata + truita
@@ -13,7 +13,7 @@ DESCRIPTION:Amanida de patata\nTruita francesa\nEnciam i tomàquet\nPostre
 END:VEVENT
 BEGIN:VEVENT
 UID:20261002-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261002T111500Z
 DTEND:20261002T120000Z
 SUMMARY:🧑‍🍳 Macarrons + botifarra
@@ -22,7 +22,7 @@ DESCRIPTION:Macarrons integrals ecològics amb\ncarbonara vegetal\nBotifar
 END:VEVENT
 BEGIN:VEVENT
 UID:20261005-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261005T111500Z
 DTEND:20261005T120000Z
 SUMMARY:🧑‍🍳 Crema de carbassó + escalopa de gall dindi
@@ -31,7 +31,7 @@ DESCRIPTION:Crema de carbassó\nEscalopa d'au cordon bleu de gall dindi\nE
 END:VEVENT
 BEGIN:VEVENT
 UID:20261006-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261006T111500Z
 DTEND:20261006T120000Z
 SUMMARY:🧑‍🍳 Amanida de cigrons + mandonguilles
@@ -41,16 +41,16 @@ DESCRIPTION:Amanida de cigrons (pastanaga\, blat de\nmoro i tomàquet)\nMa
 END:VEVENT
 BEGIN:VEVENT
 UID:20261007-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261007T111500Z
 DTEND:20261007T120000Z
-SUMMARY:🧑‍🍳 Arròs + Salmó
+SUMMARY:🧑‍🍳 Arròs + salmó
 DESCRIPTION:Arròs integral amb salsa de tomàquet\nSalmó al forn amb anet\
  nEnciam i olives\nPostres: Fruita de temporada
 END:VEVENT
 BEGIN:VEVENT
 UID:20261008-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261008T111500Z
 DTEND:20261008T120000Z
 SUMMARY:🧑‍🍳 Verdures + llenties
@@ -59,7 +59,7 @@ DESCRIPTION:Bròquil\, patata i pastanaga\nLlenties estofades amb verdures
 END:VEVENT
 BEGIN:VEVENT
 UID:20261009-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261009T111500Z
 DTEND:20261009T120000Z
 SUMMARY:🧑‍🍳 Fideus amb verdures + truita
@@ -68,7 +68,7 @@ DESCRIPTION:Fideus a la cassola amb verdures\nTruita de patata\nEnciam i
 END:VEVENT
 BEGIN:VEVENT
 UID:20261013-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261013T111500Z
 DTEND:20261013T120000Z
 SUMMARY:🧑‍🍳 Crema de pastanaga + lluç
@@ -77,7 +77,7 @@ DESCRIPTION:Crema de pastanaga\nLluç a la romana\nEnciam i brots de soja\
 END:VEVENT
 BEGIN:VEVENT
 UID:20261014-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261014T111500Z
 DTEND:20261014T120000Z
 SUMMARY:🧑‍🍳 Amanida d'arròs + cigrons
@@ -86,7 +86,7 @@ DESCRIPTION:Amanida d'arròs (pebrot vermell\, blat de\nmoro i olives)\nCi
 END:VEVENT
 BEGIN:VEVENT
 UID:20261015-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261015T111500Z
 DTEND:20261015T120000Z
 SUMMARY:🧑‍🍳 Mongeta tendra + truita
@@ -95,16 +95,16 @@ DESCRIPTION:Mongeta tendra amb patata\nTruita francesa\nEnciam i tomàquet
 END:VEVENT
 BEGIN:VEVENT
 UID:20261016-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261016T111500Z
 DTEND:20261016T120000Z
-SUMMARY:🧑‍🍳 Espaguetis + pollastre
+SUMMARY:🧑‍🍳 Espaguetis amb verdures + pollastre
 DESCRIPTION:Espaguetis integrals ecològics amb\nverdures\nPollastre al xi
  lindrón\nEnciam i blat de moro\nPostres: Fruita de temporada
 END:VEVENT
 BEGIN:VEVENT
 UID:20261019-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261019T111500Z
 DTEND:20261019T120000Z
 SUMMARY:🧑‍🍳 Llenties amb quinoa + truita
@@ -113,7 +113,7 @@ DESCRIPTION:Llenties estofades amb quinoa\nTruita de patata i espinacs\nE
 END:VEVENT
 BEGIN:VEVENT
 UID:20261020-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261020T111500Z
 DTEND:20261020T120000Z
 SUMMARY:🧑‍🍳 Amanida russa + macarrons
@@ -122,7 +122,7 @@ DESCRIPTION:Amanida russa\nMacarrons integrals ecològics amb\nbolonyesa v
 END:VEVENT
 BEGIN:VEVENT
 UID:20261021-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261021T111500Z
 DTEND:20261021T120000Z
 SUMMARY:🧑‍🍳 Mongetes blanques + pollastre
@@ -131,7 +131,7 @@ DESCRIPTION:Mongetes blanques estofades amb\nverdures\nPollastre a la lli
 END:VEVENT
 BEGIN:VEVENT
 UID:20261022-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261022T111500Z
 DTEND:20261022T120000Z
 SUMMARY:🧑‍🍳 Paella marinera + lluç
@@ -140,17 +140,17 @@ DESCRIPTION:Paella marinera\nLluç al forn amb all i julivert\nEnciam i pa
 END:VEVENT
 BEGIN:VEVENT
 UID:20261023-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261023T111500Z
 DTEND:20261023T120000Z
-SUMMARY:🧑‍🍳 Coliflor gratinada + rotllo de gall dindi
+SUMMARY:🧑‍🍳 Coliflor gratinada + rostit de gall dindi
 DESCRIPTION:Coliflor gratinada amb beixamel\nRoti de gall d'indi a la jar
  dinera (m.\ntendra\, pastanaga\, pèsol\, patata)\nPostres: Fruita de tem
  porada
 END:VEVENT
 BEGIN:VEVENT
 UID:20261026-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261026T121500Z
 DTEND:20261026T130000Z
 SUMMARY:🧑‍🍳 Tricolor de verdures + truita
@@ -159,7 +159,7 @@ DESCRIPTION:Tricolor de verdures amb dauets de gall\nd´indi\nTruita de pa
 END:VEVENT
 BEGIN:VEVENT
 UID:20261027-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261027T121500Z
 DTEND:20261027T130000Z
 SUMMARY:🧑‍🍳 Cigrons amb espinacs + botifarra
@@ -168,7 +168,7 @@ DESCRIPTION:Cigrons amb espinacs\nBotifarra de porc al forn\nEnciam i pas
 END:VEVENT
 BEGIN:VEVENT
 UID:20261028-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261028T121500Z
 DTEND:20261028T130000Z
 SUMMARY:🧑‍🍳 Crema de verdures + pollastre rostit
@@ -177,7 +177,7 @@ DESCRIPTION:Crema de verdures\nPollastre rostit al forn amb herbes\naromà
 END:VEVENT
 BEGIN:VEVENT
 UID:20261029-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261029T121500Z
 DTEND:20261029T130000Z
 SUMMARY:🧑‍🍳 Arròs tres delícies + llenties
@@ -186,7 +186,7 @@ DESCRIPTION:Arròs tres delícies (pèsols\, pastanaga\,\ntruita i pernil do
 END:VEVENT
 BEGIN:VEVENT
 UID:20261030-lunch@gaia-menu
-DTSTAMP:20261005T060937Z
+DTSTAMP:20261006T043548Z
 DTSTART:20261030T121500Z
 DTEND:20261030T130000Z
 SUMMARY:🧑‍🍳 Macarrons amb tonyina + lluç

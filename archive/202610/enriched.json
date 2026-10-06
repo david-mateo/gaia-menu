@@ -16,8 +16,8 @@
       "date_label_mismatch": false,
       "lunch_food_groups": [
         "Potato",
-        "Salad",
-        "Eggs"
+        "Eggs",
+        "Salad"
       ],
       "dinner_food_groups": {
         "base": "Soup",
@@ -50,7 +50,8 @@
       "date_label_mismatch": false,
       "lunch_food_groups": [
         "Pasta",
-        "Processed Meat"
+        "Processed Meat",
+        "Vegetables"
       ],
       "dinner_food_groups": {
         "base": "Vegetables",
@@ -60,7 +61,8 @@
       "dinner": "🍽️ Verdures + Peix",
       "en": {
         "items": [
-          "Organic wholegrain macaroni with vegetable carbonara",
+          "Organic wholegrain macaroni with",
+          "vegetable carbonara",
           "Pork sausage with samfaina (vegetable stew)"
         ],
         "dessert": "Seasonal fruit",
@@ -98,7 +100,7 @@
           "Lettuce and corn"
         ],
         "dessert": "Plain yogurt",
-        "title": "🧑‍🍳 Pumpkin soup + turkey escalope",
+        "title": "🧑‍🍳 Zucchini soup + turkey cutlet",
         "dinner": "🍽️ Pasta + Oily Fish"
       }
     },
@@ -116,9 +118,9 @@
       "day_label_from_pdf": 6,
       "date_label_mismatch": false,
       "lunch_food_groups": [
+        "Salad",
         "Legumes",
-        "Meat",
-        "Vegetables"
+        "Meat"
       ],
       "dinner_food_groups": {
         "base": "Potato",
@@ -128,8 +130,10 @@
       "dinner": "🍽️ Patata + Aviram",
       "en": {
         "items": [
-          "Chickpea salad (carrot, corn, and tomato)",
-          "Mixed meatballs jardinière style (green beans, carrot, peas, potato)"
+          "Chickpea salad (carrot, corn,",
+          "and tomato)",
+          "Mixed meatballs jardinière style (green",
+          "beans, carrot, peas, potato)"
         ],
         "dessert": "Seasonal fruit",
         "title": "🧑‍🍳 Chickpea salad + meatballs",
@@ -157,7 +161,7 @@
         "base": "Grains",
         "protein": "Meat"
       },
-      "title": "🧑‍🍳 Arròs + Salmó",
+      "title": "🧑‍🍳 Arròs + salmó",
       "dinner": "🍽️ Cereals + Carn",
       "en": {
         "items": [
@@ -232,7 +236,7 @@
           "Lettuce and tomato"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🧑‍🍳 Noodles + omelette",
+        "title": "🧑‍🍳 Noodles with vegetables + omelette",
         "dinner": "🍽️ Vegetables + Dairy"
       }
     },
@@ -285,7 +289,7 @@
       "lunch_food_groups": [
         "Rice",
         "Legumes",
-        "Salad"
+        "Vegetables"
       ],
       "dinner_food_groups": {
         "base": "Soup",
@@ -295,7 +299,8 @@
       "dinner": "🍽️ Sopa + Peix blau",
       "en": {
         "items": [
-          "Rice salad (red pepper, corn, and olives)",
+          "Rice salad (red pepper, corn,",
+          "and olives)",
           "Chickpea stew with vegetables"
         ],
         "dessert": "Seasonal fruit",
@@ -316,9 +321,9 @@
       "day_label_from_pdf": null,
       "date_label_mismatch": false,
       "lunch_food_groups": [
-        "Legumes",
-        "Eggs",
-        "Salad"
+        "Vegetables",
+        "Potato",
+        "Eggs"
       ],
       "dinner_food_groups": {
         "base": "Potato",
@@ -359,16 +364,17 @@
         "base": "Rice",
         "protein": "Meat"
       },
-      "title": "🧑‍🍳 Espaguetis + pollastre",
+      "title": "🧑‍🍳 Espaguetis amb verdures + pollastre",
       "dinner": "🍽️ Arròs + Carn",
       "en": {
         "items": [
-          "Organic wholegrain spaghetti with vegetables",
+          "Organic wholegrain spaghetti with",
+          "vegetables",
           "Chicken xilindrón style",
           "Lettuce and corn"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🧑‍🍳 Spaghetti + chicken",
+        "title": "🧑‍🍳 Spaghetti with vegetables + chicken",
         "dinner": "🍽️ Rice + Meat"
       }
     },
@@ -419,9 +425,9 @@
       "day_label_from_pdf": 20,
       "date_label_mismatch": false,
       "lunch_food_groups": [
-        "Potato",
         "Salad",
-        "Pasta"
+        "Pasta",
+        "Meat"
       ],
       "dinner_food_groups": {
         "base": "Grains",
@@ -432,7 +438,8 @@
       "en": {
         "items": [
           "Russian salad",
-          "Organic wholegrain macaroni with vegetable bolognese"
+          "Organic wholegrain macaroni with",
+          "vegetable bolognese"
         ],
         "dessert": "Seasonal fruit",
         "title": "🧑‍🍳 Russian salad + macaroni",
@@ -465,7 +472,8 @@
       "dinner": "🍽️ Verdures + Lactis",
       "en": {
         "items": [
-          "White bean stew with vegetables",
+          "White bean stew with",
+          "vegetables",
           "Lemon chicken",
           "Lettuce and asparagus"
         ],
@@ -529,15 +537,16 @@
         "base": "Salad",
         "protein": "Seafood"
       },
-      "title": "🧑‍🍳 Coliflor gratinada + rotllo de gall dindi",
+      "title": "🧑‍🍳 Coliflor gratinada + rostit de gall dindi",
       "dinner": "🍽️ Amanida + Marisc",
       "en": {
         "items": [
           "Cauliflower gratin with béchamel",
-          "Turkey roulade jardinière style (green beans, carrot, peas, potato)"
+          "Turkey roulade jardinière style (green",
+          "beans, carrot, peas, potato)"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🧑‍🍳 Cauliflower gratin + turkey roulade",
+        "title": "🧑‍🍳 Cauliflower gratin + turkey roast",
         "dinner": "🍽️ Salad + Seafood"
       }
     },
@@ -556,8 +565,8 @@
       "date_label_mismatch": false,
       "lunch_food_groups": [
         "Vegetables",
-        "Poultry",
-        "Eggs"
+        "Eggs",
+        "Salad"
       ],
       "dinner_food_groups": {
         "base": "Pasta",
@@ -567,12 +576,13 @@
       "dinner": "🍽️ Pasta + Peix blau",
       "en": {
         "items": [
-          "Three-colour vegetables with diced turkey",
+          "Three-colour vegetables with diced",
+          "turkey",
           "Potato and courgette omelette",
           "Lettuce and tomato"
         ],
         "dessert": "Plain yogurt",
-        "title": "🧑‍🍳 Vegetables + omelette",
+        "title": "🧑‍🍳 Tricolor vegetables + omelette",
         "dinner": "🍽️ Pasta + Oily Fish"
       }
     },
@@ -606,7 +616,7 @@
           "Lettuce and carrot"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🧑‍🍳 Chickpeas + sausage",
+        "title": "🧑‍🍳 Chickpeas with spinach + sausage",
         "dinner": "🍽️ Rice + Eggs"
       }
     },
@@ -637,7 +647,8 @@
       "en": {
         "items": [
           "Vegetable cream soup",
-          "Oven-roasted chicken with aromatic herbs",
+          "Oven-roasted chicken with",
+          "aromatic herbs",
           "Potato chips"
         ],
         "dessert": "Seasonal fruit",
@@ -660,8 +671,7 @@
       "lunch_food_groups": [
         "Rice",
         "Eggs",
-        "Processed Meat",
-        "Legumes"
+        "Processed Meat"
       ],
       "dinner_food_groups": {
         "base": "Soup",
@@ -671,11 +681,12 @@
       "dinner": "🍽️ Sopa + Aviram",
       "en": {
         "items": [
-          "Three-delight rice (peas, carrot, egg and cooked ham)",
+          "Three-delight rice (peas, carrot,",
+          "egg and cooked ham)",
           "Vegetable lentil stew"
         ],
         "dessert": "Seasonal fruit",
-        "title": "🧑‍🍳 Three-delight rice + lentils",
+        "title": "🧑‍🍳 Three delights rice + lentils",
         "dinner": "🍽️ Soup + Poultry"
       }
     },
@@ -694,9 +705,8 @@
       "date_label_mismatch": false,
       "lunch_food_groups": [
         "Pasta",
-        "Fish",
         "Oily Fish",
-        "Salad"
+        "Fish"
       ],
       "dinner_food_groups": {
         "base": "Potato",
@@ -706,7 +716,8 @@
       "dinner": "🍽️ Patata + Llegums",
       "en": {
         "items": [
-          "Organic wholegrain macaroni with sauce of tomato and tuna",
+          "Organic wholegrain macaroni with sauce",
+          "of tomato and tuna",
           "Breaded hake",
           "Lettuce and olives"
         ],
