@@ -47,15 +47,17 @@ def main() -> int:
     if (d / "published.done").exists():
         print("NEXT=DONE"); return 0
     if not (d / "menu.json").exists():
-        from fetch_menu import discover_basal_url
+        from fetch_menu import discover_basal_urls, url_month
         try:
-            url = discover_basal_url()
+            urls = discover_basal_urls()
         except Exception as e:  # network or page changed
             print(f"REASON=cannot check listing page: {e}\nNEXT=WAIT"); return 0
-        name = url.rsplit("/", 1)[-1]
-        if not name.startswith(month):
-            print(f"LATEST_PDF={name}\nREASON=menu for {month} not published yet\nNEXT=WAIT")
+        hits = [u for u in urls if url_month(u) == month]
+        if not hits:
+            print(f"LATEST_PDF={urls[-1].rsplit('/', 1)[-1]}\n"
+                  f"REASON=menu for {month} not published yet\nNEXT=WAIT")
             return 0
+        url = hits[-1]
         print(f"PDF_URL={url}\nNEXT=FETCH"); return 0
     for fname, nxt in (("response.json", "ENRICH"), ("enriched.json", "APPLY")):
         if not (d / fname).exists():

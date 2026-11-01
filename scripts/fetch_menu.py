@@ -5,7 +5,7 @@ families/AFA page.
 Usage: fetch_menu.py [--output-dir DIR] [--url URL] [--print-url-only]
 
 Scans the listing page for an <a href> under uploads/<year>/<month>/
-whose filename contains "_BASAL" (the school also publishes HALAL,
+whose filename contains the word "BASAL" (the school also publishes HALAL,
 SENSE-GLUTEN, and other diet variants from the same page).
 """
 import argparse
@@ -14,11 +14,14 @@ import sys
 import urllib.request
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
+from month_detect import detect_month  # noqa: E402
+
 LISTING_URL = "https://www.escolagaia.cat/espai-per-a-les-families-serveis-de-lafa/"
 USER_AGENT = "Mozilla/5.0 (gaia-menu-fetcher)"
 
 PDF_LINK_RE = re.compile(
-    r'https://www\.escolagaia\.cat/wp-content/uploads/\d{4}/\d{2}/[^"\'<>\s]*_BASAL[^"\'<>\s]*\.pdf',
+    r'https://www\.escolagaia\.cat/wp-content/uploads/\d{4}/\d{2}/[^"\'<>\s]*(?<![A-Za-z])BASAL(?![A-Za-z])[^"\'<>\s]*\.pdf',
     re.IGNORECASE,
 )
 
@@ -29,7 +32,8 @@ def fetch(url: str) -> bytes:
         return resp.read()
 
 
-def discover_basal_url(listing_url: str = LISTING_URL) -> str:
+def discover_basal_urls(listing_url: str = LISTING_URL) -> list[str]:
+    """Every BASAL PDF on the page, oldest menu month first."""
     html = fetch(listing_url).decode("utf-8", errors="replace")
     matches = sorted(set(PDF_LINK_RE.findall(html)))
     if not matches:
@@ -37,9 +41,24 @@ def discover_basal_url(listing_url: str = LISTING_URL) -> str:
             f"No BASAL menu PDF link found on {listing_url}. "
             "The page layout or filename convention may have changed."
         )
-    if len(matches) > 1:
-        matches.sort(key=_uploads_year_month)  # most recent by year/month last
-    return matches[-1]
+    return sorted(matches, key=menu_month_key)
+
+
+def discover_basal_url(listing_url: str = LISTING_URL) -> str:
+    return discover_basal_urls(listing_url)[-1]
+
+
+def url_month(url: str) -> str | None:
+    """YYYYMM the PDF is for, from its hand-written filename."""
+    year, month = _uploads_year_month(url)
+    return detect_month(url.rsplit("/", 1)[-1], int(year), int(month))
+
+
+def menu_month_key(url: str) -> tuple[str, str]:
+    """Sort key: the menu month, or the upload month when the name has none."""
+    detected = url_month(url)
+    year, month = _uploads_year_month(url)
+    return (detected or year + month, url)
 
 
 def _uploads_year_month(url: str) -> tuple[str, str]:
