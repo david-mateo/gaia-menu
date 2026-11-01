@@ -192,4 +192,194 @@ SUMMARY:🧑‍🍳 Tuna macaroni + hake
 DESCRIPTION:Organic wholegrain macaroni with sauce\nof tomato and tuna\nB
  readed hake\nLettuce and olives\nDessert: Seasonal fruit
 END:VEVENT
+BEGIN:VEVENT
+UID:20261102-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261102T121500Z
+DTEND:20261102T130000Z
+SUMMARY:🧑‍🍳 Lentils + potato omelette
+DESCRIPTION:Vegetable lentil stew\nPotato omelette\nLettuce and corn\nDes
+ sert: Plain yogurt\nAllergens: 3\, 14\, 7
+END:VEVENT
+BEGIN:VEVENT
+UID:20261103-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261103T121500Z
+DTEND:20261103T130000Z
+SUMMARY:🧑‍🍳 Carrot soup + roast turkey
+DESCRIPTION:Organic carrot cream soup\nTurkey roulade jardinière style (g
+ reen\nbeans\, carrot\, peas\, potato)\nDessert: Seasonal fruit\nAllergen
+ s: 6\, 7
+END:VEVENT
+BEGIN:VEVENT
+UID:20261104-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261104T121500Z
+DTEND:20261104T130000Z
+SUMMARY:🧑‍🍳 Rice + hake
+DESCRIPTION:Wholegrain rice with tomato sauce\nBaked hake with garlic and
+  parsley\nLettuce and olives\nDessert: Seasonal fruit\nAllergens: 4
+END:VEVENT
+BEGIN:VEVENT
+UID:20261105-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261105T121500Z
+DTEND:20261105T130000Z
+SUMMARY:🧑‍🍳 Green beans + chickpeas
+DESCRIPTION:Green beans with potato\nChickpeas with spinach\nDessert: Sea
+ sonal fruit
+END:VEVENT
+BEGIN:VEVENT
+UID:20261106-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261106T121500Z
+DTEND:20261106T130000Z
+SUMMARY:🧑‍🍳 Chicken soup + nuggets
+DESCRIPTION:Chicken soup with pasta\nChicken nuggets\nLettuce and tomato\
+ nDessert: Seasonal fruit\nAllergens: 1\, 3\, 9\, 6\, 7
+END:VEVENT
+BEGIN:VEVENT
+UID:20261109-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261109T121500Z
+DTEND:20261109T130000Z
+SUMMARY:🧑‍🍳 Peas + chicken
+DESCRIPTION:Peas with potatoes\nLemon chicken\nLettuce and carrot\nDesser
+ t: Plain yogurt\nAllergens: 7
+END:VEVENT
+BEGIN:VEVENT
+UID:20261110-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261110T121500Z
+DTEND:20261110T130000Z
+SUMMARY:🧑‍🍳 Rice + hake
+DESCRIPTION:Rice with vegetables\nHake Roman-style\nLettuce and soy sprou
+ ts\nDessert: Seasonal fruit\nAllergens: 6
+END:VEVENT
+BEGIN:VEVENT
+UID:20261111-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261111T121500Z
+DTEND:20261111T130000Z
+SUMMARY:🧑‍🍳 Beans + spinach omelette
+DESCRIPTION:White bean stew with\nvegetables\nSpinach omelette\nLettuce a
+ nd olives\nDessert: Seasonal fruit\nAllergens: 3
+END:VEVENT
+BEGIN:VEVENT
+UID:20261112-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261112T121500Z
+DTEND:20261112T130000Z
+SUMMARY:🧑‍🍳 Vegetable soup + macaroni
+DESCRIPTION:Vegetable cream soup\nOrganic wholegrain macaroni with\nveget
+ able bolognese\nDessert: Seasonal fruit\nAllergens: 1\, 6
+END:VEVENT
+BEGIN:VEVENT
+UID:20261113-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261113T121500Z
+DTEND:20261113T130000Z
+SUMMARY:🧑‍🍳 Broccoli + pork loin
+DESCRIPTION:Broccoli with potato\nRoast pork loin with mushroom sauce\nDe
+ ssert: Seasonal fruit\nAllergens: 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20261116-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261116T121500Z
+DTEND:20261116T130000Z
+SUMMARY:🧑‍🍳 Lentils + burger
+DESCRIPTION:Vegetable lentil stew\nBaked mixed-meat burger\nLettuce and o
+ lives\nDessert: Plain yogurt\nAllergens: 6\, 14\, 7
+END:VEVENT
+BEGIN:VEVENT
+UID:20261117-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261117T121500Z
+DTEND:20261117T130000Z
+SUMMARY:🧑‍🍳 Macaroni + zucchini omelette
+DESCRIPTION:Organic wholegrain macaroni\nNeapolitan style\nZucchini omele
+ tte\nLettuce and carrot\nDessert: Seasonal fruit\nAllergens: 1\, 3
+END:VEVENT
+BEGIN:VEVENT
+UID:20261118-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261118T121500Z
+DTEND:20261118T130000Z
+SUMMARY:🧑‍🍳 Pumpkin soup + redfish
+DESCRIPTION:Pumpkin cream soup\nRedfish in green sauce\nDessert: Seasonal
+  fruit\nAllergens: 4
+END:VEVENT
+BEGIN:VEVENT
+UID:20261119-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261119T121500Z
+DTEND:20261119T130000Z
+SUMMARY:🧑‍🍳 Three-delight rice + chickpeas
+DESCRIPTION:Three-delight rice (peas\, carrot\,\negg and cooked ham)\nChi
+ ckpea stew with vegetables\nDessert: Seasonal fruit\nAllergens: 3
+END:VEVENT
+BEGIN:VEVENT
+UID:20261120-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261120T121500Z
+DTEND:20261120T130000Z
+SUMMARY:🧑‍🍳 Vegetable medley + roast chicken
+DESCRIPTION:Vegetable medley\nOven-roasted chicken with\naromatic herbs\n
+ Lettuce and corn\nDessert: Seasonal fruit
+END:VEVENT
+BEGIN:VEVENT
+UID:20261123-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261123T121500Z
+DTEND:20261123T130000Z
+SUMMARY:🧑‍🍳 Potato stew + omelette
+DESCRIPTION:Vegetable potato stew\nFrench omelette\nLettuce and soy sprou
+ ts\nDessert: Plain yogurt\nAllergens: 3\, 6\, 7
+END:VEVENT
+BEGIN:VEVENT
+UID:20261124-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261124T121500Z
+DTEND:20261124T130000Z
+SUMMARY:🧑‍🍳 Rice + meatballs
+DESCRIPTION:Wholegrain rice with tomato sauce\nMixed meatballs in\nmushro
+ om sauce\nDessert: Seasonal fruit\nAllergens: 6\, 14
+END:VEVENT
+BEGIN:VEVENT
+UID:20261125-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261125T121500Z
+DTEND:20261125T130000Z
+SUMMARY:🧑‍🍳 Beans with chard + hake
+DESCRIPTION:White beans with chard\nBreaded hake\nLettuce and olives\nDes
+ sert: Seasonal fruit\nAllergens: 1\, 4
+END:VEVENT
+BEGIN:VEVENT
+UID:20261126-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261126T121500Z
+DTEND:20261126T130000Z
+SUMMARY:🧑‍🍳 Fideuà + chicken
+DESCRIPTION:Vegetable fideuà\nGarlic chicken\nLettuce and tomato\nDessert
+ : Seasonal fruit\nAllergens: 1
+END:VEVENT
+BEGIN:VEVENT
+UID:20261127-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261127T121500Z
+DTEND:20261127T130000Z
+SUMMARY:🧑‍🍳 Green beans + lentils
+DESCRIPTION:Green beans with potato\nLentil stew with quinoa\nDessert: Se
+ asonal fruit
+END:VEVENT
+BEGIN:VEVENT
+UID:20261130-lunch@gaia-menu
+DTSTAMP:20261101T215718Z
+DTSTART:20261130T121500Z
+DTEND:20261130T130000Z
+SUMMARY:🧑‍🍳 Zucchini soup + roast chicken
+DESCRIPTION:Zucchini cream soup\nOven-roasted chicken with\naromatic herb
+ s\nLettuce and corn\nDessert: Plain yogurt\nAllergens: 3
+END:VEVENT
 END:VCALENDAR
