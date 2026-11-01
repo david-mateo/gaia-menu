@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Month detection from hand-written PDF filenames."""
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -7,6 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
 from month_detect import detect_month  # noqa: E402
+import fetch_menu  # noqa: E402
 from fetch_menu import discover_basal_urls, url_month  # noqa: E402
 
 
@@ -48,6 +50,21 @@ class TestDetectMonth(unittest.TestCase):
     def test_dates_not_mistaken_for_months(self):
         self.check("BASAL-2026.pdf", None)
         self.check("BASAL-v3-nov.pdf", "202611")  # word beats stray number
+
+
+class TestSeenNames(unittest.TestCase):
+    """Regression list of every real filename; see tests/data/pdf_names.json."""
+
+    def test_every_seen_name(self):
+        data = json.loads((Path(__file__).parent / "data" / "pdf_names.json").read_text())
+        self.assertTrue(data["cases"])
+        for c in data["cases"]:
+            y, m = map(int, c["upload"].split("-"))
+            with self.subTest(name=c["name"]):
+                self.assertEqual(detect_month(c["name"], y, m), c["month"])
+                url = f"https://www.escolagaia.cat/wp-content/uploads/{y}/{m:02d}/{c['name']}"
+                self.assertRegex(url, fetch_menu.PDF_LINK_RE)  # the link regex must find it too
+                self.assertEqual(url_month(url), c["month"])
 
 
 class TestListing(unittest.TestCase):

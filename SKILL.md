@@ -110,11 +110,25 @@ visibility.
 Read the proposed JSON against the PDF, then accept it with
 `python3 scripts/run_tests.py --update-golden`.
 
+## Recording a new PDF filename
+
+The school names files by hand, so the month can appear as a number, name
+or short name in any position. Every filename seen on the listing page must
+be a case in `tests/data/pdf_names.json` (`name`, `upload` as `YYYY-MM` from
+the `uploads/` path, expected `month` as `YYYYMM`). Append a case whenever a
+new BASAL filename shows up, including the one in step 0's `LATEST_PDF=` or
+`PDF_URL=`, and whenever `pipeline_status.py` says `WAIT` although the PDF
+for the month is live. Never edit or remove old cases. Then run
+`python3 -m unittest discover tests`. If the new case fails, extend
+`scripts/month_detect.py` (on a branch, never `main`) until all cases pass.
+
 ## What lives where
 
 `ls scripts/` lists the tooling; these are the parts its filenames do
 not tell you.
 
+- `month_detect.py` maps a hand-written PDF filename to its `YYYYMM`;
+  `tests/data/pdf_names.json` is its list of real filenames.
 - `models.py` holds the entities every stage passes around: `Menu`,
   `MenuDay`, `Enrichment`, `DinnerPairing`, and their JSON shapes.
 - `food_groups.py` is the closed tag vocabulary, one `FoodGroup` per

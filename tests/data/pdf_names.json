@@ -1,0 +1,8 @@
+{
+  "_doc": "Every BASAL PDF filename seen in the wild. Fields: name, upload (YYYY-MM from the uploads/ path), month (expected YYYYMM). Append new ones; never edit or remove old ones.",
+  "cases": [
+    {"name": "202609-BASAL.pdf", "upload": "2026-09", "month": "202609"},
+    {"name": "202610-ESCOLA-GAIA_BASAL-ESCOLAR-MP.pdf", "upload": "2026-10", "month": "202610"},
+    {"name": "ESCOLA-GAIA_BASAL-NOVEMBRE.pdf", "upload": "2026-10", "month": "202611"}
+  ]
+}
