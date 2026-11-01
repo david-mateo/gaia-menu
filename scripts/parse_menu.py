@@ -46,7 +46,8 @@ CATALAN_WEEKDAYS = ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres"]
 NUM_COLS = 5
 
 FOOTER_ANCHOR_WORDS = {"Tots", "CATASA"}
-ALLERGEN_LINE_RE = re.compile(r"^\(\s*\d+(?:\s*,\s*\d+)*\s*\)$")
+# "(1, 2, 7)", or per-course groups "( (3 , 14) , (7) )", or "( (1 , 3 , 9) , 6 , 7) )"
+ALLERGEN_LINE_RE = re.compile(r"^\((?=[\d\s,()]*\d)[\d\s,()]*\)$")
 DIA_LABEL_RE = re.compile(r"^DIA(?:\s+(\d+))?$")
 WORD_RE = re.compile(
     r'<word xMin="([\d.]+)" yMin="([\d.]+)" xMax="([\d.]+)" yMax="([\d.]+)">(.*?)</word>'
@@ -54,6 +55,7 @@ WORD_RE = re.compile(
 
 ROW_GAP_THRESHOLD = 18.0  # pt; normal intra-cell line spacing is 8-15pt
 Y_CLUSTER_TOL = 1.0
+DIA_ROW_TOL = 4.0  # pt; DIA labels of one week sit within this of each other
 X_ANCHOR_TOL = 2.0
 COLUMN_EPS = 0.05  # float tolerance for the boundary comparison
 TITLE_BAND_Y = 100.0  # the month/year line sits above this
@@ -233,12 +235,27 @@ def group_rows(lines: list[Line]) -> list[list[Line]]:
     for prev, cur in zip(ys, ys[1:]):
         if cur - prev > ROW_GAP_THRESHOLD:
             breaks.append(cur)
+    # A "DIA N" label always opens a cell, so it also opens a week. This keeps
+    # templates with tighter cells (gap under the threshold) from merging weeks.
+    label_ys = sorted(line.y for line in lines if DIA_LABEL_RE.match(line.text))
+    for y in label_ys:
+        if all(abs(y - b) > DIA_ROW_TOL for b in breaks):
+            breaks.append(y)
+    breaks.sort()
 
     rows = []
     for i, start_y in enumerate(breaks):
         end_y = breaks[i + 1] if i + 1 < len(breaks) else float("inf")
         rows.append([line for line in lines if start_y - 0.5 <= line.y < end_y - 0.5])
-    return rows
+    # A block holding nothing but allergen codes is the tail of the cell above
+    # (a short last cell can leave its codes further down than the threshold).
+    merged: list[list[Line]] = []
+    for row in rows:
+        if merged and row and all(ALLERGEN_LINE_RE.match(l.text) for l in row):
+            merged[-1].extend(row)
+        else:
+            merged.append(row)
+    return merged
 
 
 def parse_cell(lines: list[str]) -> Cell:
