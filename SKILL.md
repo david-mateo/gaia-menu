@@ -110,6 +110,17 @@ visibility.
 Read the proposed JSON against the PDF, then accept it with
 `python3 scripts/run_tests.py --update-golden`.
 
+## When the school changes the layout
+
+`menu.py` exit 2 (or a parse that silently drops days) means a new template.
+Do not publish around it. On a branch: copy the PDF to
+`tests/fixtures/<YYYYMM>-BASAL.pdf`, fix `parse_menu.py` until
+`python3 scripts/run_tests.py` passes for every fixture (old months must
+still pass), check the proposed JSON against the rendered PDF
+(`pdftoppm -png`), then accept it with `--update-golden`. Merge to `main`
+only after that, then resume the monthly run. Past examples: tighter cells
+that merged two weeks, and nested allergen codes like `( (3 , 14) , (7) )`.
+
 ## Recording a new PDF filename
 
 The school names files by hand, so the month can appear as a number, name
